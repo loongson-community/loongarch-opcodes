@@ -1,0 +1,17 @@
+00001000 clo.w                  DJ
+00001400 clz.w                  DJ
+00001800 cto.w                  DJ
+00001c00 ctz.w                  DJ
+00003000 revb.2h                DJ
+00004800 bitrev.4b              DJ
+00005000 bitrev.w               DJ
+00040000 alsl.w                 DJKUa2
+00080000 bytepick.w             DJKUa2
+00240000 crc.w.b.w              DJK
+00248000 crc.w.h.w              DJK
+00250000 crc.w.w.w              DJK
+00260000 crcc.w.b.w             DJK
+00268000 crcc.w.h.w             DJK
+00270000 crcc.w.w.w             DJK
+00600000 bstrins.w              DJUk5Um5
+00608000 bstrpick.w             DJUk5Um5

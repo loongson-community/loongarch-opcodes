@@ -1,0 +1,8 @@
+38740000 fldgt.s                DJK
+38748000 fldgt.d                DJK
+38750000 fldle.s                DJK
+38758000 fldle.d                DJK
+38760000 fstgt.s                DJK
+38768000 fstgt.d                DJK
+38770000 fstle.s                DJK
+38778000 fstle.d                DJK

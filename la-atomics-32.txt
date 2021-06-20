@@ -1,0 +1,16 @@
+20000000 ll.w                   DJSk14
+21000000 sc.w                   DJSk14
+38600000 amswap.w               DJK
+38610000 amadd.w                DJK
+38620000 amand.w                DJK
+38630000 amor.w                 DJK
+38640000 amxor.w                DJK
+38650000 ammax.w                DJK
+38660000 ammin.w                DJK
+38690000 amswap_db.w            DJK
+386a0000 amadd_db.w             DJK
+386b0000 amand_db.w             DJK
+386c0000 amor_db.w              DJK
+386d0000 amxor_db.w             DJK
+386e0000 ammax_db.w             DJK
+386f0000 ammin_db.w             DJK
