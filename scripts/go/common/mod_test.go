@@ -122,5 +122,9 @@ func TestInsnFormat(t *testing.T) {
 
 		actualRepr := tc.x.CanonicalRepr()
 		assert.Equal(t, tc.expectedCanonicalRepr, actualRepr)
+
+		roundtrip, err := ParseInsnFormat(actualRepr)
+		assert.NoError(t, err)
+		assert.Equal(t, &tc.x, roundtrip, "canonical repr should survive round-trip")
 	}
 }
