@@ -171,6 +171,14 @@ func (a *Arg) Bitmask() uint32 {
 	return result
 }
 
+func (a *Arg) TotalWidth() uint {
+	var result uint
+	for _, s := range a.Slots {
+		result += s.Width
+	}
+	return result
+}
+
 func (a *Arg) String() string {
 	if a == nil {
 		return "<nil Arg>"
