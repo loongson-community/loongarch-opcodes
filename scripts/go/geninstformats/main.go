@@ -24,8 +24,11 @@ func main() {
 		return formats[i].CanonicalRepr() < formats[j].CanonicalRepr()
 	})
 
+	gox.SetDebug(true)
 	pkg := gox.NewPackage("", "loong", nil)
+	prepareScope(pkg)
 	for _, f := range formats {
+		emitValidatorForFormat(pkg, f)
 		emitEncoderForFormat(pkg, f)
 	}
 
@@ -59,7 +62,143 @@ func gatherFormats(paths []string) ([]*common.InsnFormat, error) {
 	return result, nil
 }
 
-var tyUint32 = types.Universe.Lookup("uint32").Type().(*types.Basic)
+var (
+	tyInt    = types.Universe.Lookup("int").Type().(*types.Basic)
+	tyUint32 = types.Universe.Lookup("uint32").Type().(*types.Basic)
+	tyError  = types.Universe.Lookup("error").Type()
+)
+
+func prepareScope(pkg *gox.Package) {
+	// func wantIntReg(uint32) error
+	pkg.NewFunc(
+		nil,
+		"wantIntReg",
+		gox.NewTuple(pkg.NewParam("", tyUint32)),
+		gox.NewTuple(pkg.NewParam("", tyError)),
+		false,
+	)
+
+	// func wantFPReg(uint32) error
+	pkg.NewFunc(
+		nil,
+		"wantFPReg",
+		gox.NewTuple(pkg.NewParam("", tyUint32)),
+		gox.NewTuple(pkg.NewParam("", tyError)),
+		false,
+	)
+
+	// func wantFCCReg(uint32) error
+	pkg.NewFunc(
+		nil,
+		"wantFCCReg",
+		gox.NewTuple(pkg.NewParam("", tyUint32)),
+		gox.NewTuple(pkg.NewParam("", tyError)),
+		false,
+	)
+
+	// func wantSignedImm(uint32, int) error
+	pkg.NewFunc(
+		nil,
+		"wantSignedImm",
+		gox.NewTuple(pkg.NewParam("", tyUint32), pkg.NewParam("", tyInt)),
+		gox.NewTuple(pkg.NewParam("", tyError)),
+		false,
+	)
+
+	// func wantUnsignedImm(uint32, int) error
+	pkg.NewFunc(
+		nil,
+		"wantUnsignedImm",
+		gox.NewTuple(pkg.NewParam("", tyUint32), pkg.NewParam("", tyInt)),
+		gox.NewTuple(pkg.NewParam("", tyError)),
+		false,
+	)
+}
+
+func emitValidatorForFormat(pkg *gox.Package, f *common.InsnFormat) {
+	formatName := f.CanonicalRepr()
+	funcName := "validate" + formatName
+
+	returnParam := pkg.NewParam("", tyError)
+	returnTuple := gox.NewTuple(returnParam)
+
+	params := make([]*gox.Param, len(f.Args))
+	for i, a := range f.Args {
+		params[i] = pkg.NewParam(strings.ToLower(a.CanonicalRepr()), tyUint32)
+	}
+	paramsTuple := gox.NewTuple(params...)
+
+	// func validateXXX(params...) error {
+	bldr := pkg.NewFunc(nil, funcName, paramsTuple, returnTuple, false).BodyStart(pkg)
+
+	ctxRef := func(name string) gox.Ref {
+		_, o := pkg.CB().Scope().LookupParent(name, token.NoPos)
+		return o
+	}
+
+	// things to emit:
+	//
+	// for every arg X:
+	//     if err := want<arg type>("argX", argX); err != nil {
+	//         return err
+	//     }
+	for argIdx, a := range f.Args {
+		argParam := params[argIdx]
+
+		bldr = bldr.If()
+		bldr = bldr.DefineVarStart("err")
+
+		switch a.Kind {
+		case common.ArgKindIntReg:
+			// wantIntReg(argX)
+			bldr = bldr.Val(pkg.Ref("wantIntReg")).
+				Val(argParam).
+				Call(1)
+
+		case common.ArgKindFPReg:
+			// wantFPReg(argX)
+			bldr = bldr.Val(pkg.Ref("wantFPReg")).
+				Val(argParam).
+				Call(1)
+
+		case common.ArgKindFCCReg:
+			// wantFCCReg(argX)
+			bldr = bldr.Val(pkg.Ref("wantFCCReg")).
+				Val(argParam).
+				Call(1)
+
+		case common.ArgKindSignedImm,
+			common.ArgKindUnsignedImm:
+			// want[Un]signedImm(argX, width)
+			var wantFuncName string
+			if a.Kind == common.ArgKindSignedImm {
+				wantFuncName = "wantSignedImm"
+			} else {
+				wantFuncName = "wantUnsignedImm"
+			}
+
+			bldr = bldr.Val(pkg.Ref(wantFuncName)).
+				Val(argParam).
+				Val(int(a.TotalWidth())).
+				Call(2)
+		}
+
+		bldr = bldr.EndInit(1)
+
+		errRef := ctxRef("err")
+
+		bldr = bldr.Val(errRef).Val(nil).BinaryOp(token.EQL) // XXX Val(nil) doesn't work
+		bldr = bldr.Then()
+		bldr = bldr.Val(errRef).Return(1).EndStmt()
+		bldr = bldr.End()
+	}
+
+	// return nil
+	bldr = bldr.Val(nil).Return(1).EndStmt()
+
+	// }
+	_ = bldr.End()
+}
 
 func emitEncoderForFormat(pkg *gox.Package, f *common.InsnFormat) {
 	formatName := f.CanonicalRepr()
