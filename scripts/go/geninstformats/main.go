@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"go/format"
 	"os"
 	"sort"
 	"strings"
@@ -27,18 +29,25 @@ func main() {
 		return formats[i].CanonicalRepr() < formats[j].CanonicalRepr()
 	})
 
-	fmt.Printf("package loong\n\n")
-	fmt.Printf("import \"cmd/internal/obj\"\n\n")
+	var ectx emitterCtx
 
-	emitInsnFormatTypes(formats)
+	ectx.emit("package loong\n\n")
+	ectx.emit("import \"cmd/internal/obj\"\n\n")
+
+	emitInsnFormatTypes(&ectx, formats)
 
 	for _, f := range formats {
-		emitValidatorForFormat(f)
-		emitEncoderForFormat(f)
+		emitValidatorForFormat(&ectx, f)
+		emitEncoderForFormat(&ectx, f)
 	}
 
-	emitInsnEncodings(descs)
+	emitInsnEncodings(&ectx, descs)
+
+	result := ectx.finalize()
+	os.Stdout.Write(result)
 }
+
+////////////////////////////////////////////////////////////////////////////
 
 func readInsnDescs(paths []string) ([]*common.InsnDescription, error) {
 	var result []*common.InsnDescription
@@ -69,15 +78,36 @@ func gatherFormats(descs []*common.InsnDescription) []*common.InsnFormat {
 	return result
 }
 
-func emitInsnFormatTypes(fmts []*common.InsnFormat) {
-	fmt.Printf("type insnFormat int\n\nconst (\n")
-	fmt.Printf("\tinsnFormatUnknown insnEncoding = iota\n")
+////////////////////////////////////////////////////////////////////////////
 
-	for _, f := range fmts {
-		fmt.Printf("\tinsnFormat%s\n", f.CanonicalRepr())
+type emitterCtx struct {
+	buf bytes.Buffer
+}
+
+func (c *emitterCtx) emit(format string, a ...interface{}) {
+	fmt.Fprintf(&c.buf, format, a...)
+}
+
+func (c *emitterCtx) finalize() []byte {
+	result, err := format.Source(c.buf.Bytes())
+	if err != nil {
+		panic(err)
 	}
 
-	fmt.Printf(")\n\n")
+	return result
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+func emitInsnFormatTypes(ectx *emitterCtx, fmts []*common.InsnFormat) {
+	ectx.emit("type insnFormat int\n\nconst (\n")
+	ectx.emit("\tinsnFormatUnknown insnEncoding = iota\n")
+
+	for _, f := range fmts {
+		ectx.emit("\tinsnFormat%s\n", f.CanonicalRepr())
+	}
+
+	ectx.emit(")\n\n")
 }
 
 func goOpcodeNameForInsn(mnemonic string) string {
@@ -88,18 +118,18 @@ func goOpcodeNameForInsn(mnemonic string) string {
 	return "A" + tmp
 }
 
-func emitInsnEncodings(descs []*common.InsnDescription) {
-	fmt.Printf("type encoding struct {\n")
-	fmt.Printf("\tbits uint32\n")
-	fmt.Printf("\tfmt  insnFormat\n")
-	fmt.Printf("}\n\n")
-	fmt.Printf("var encodings = [ALAST & obj.AMask]encoding{\n")
+func emitInsnEncodings(ectx *emitterCtx, descs []*common.InsnDescription) {
+	ectx.emit("type encoding struct {\n")
+	ectx.emit("\tbits uint32\n")
+	ectx.emit("\tfmt  insnFormat\n")
+	ectx.emit("}\n\n")
+	ectx.emit("var encodings = [ALAST & obj.AMask]encoding{\n")
 
 	for _, d := range descs {
 		goOpcodeName := goOpcodeNameForInsn(d.Mnemonic)
 		formatName := "insnFormat" + d.Format.CanonicalRepr()
 
-		fmt.Printf(
+		ectx.emit(
 			"\t%s & obj.AMask: {bits: 0x%08x, fmt: %s},\n",
 			goOpcodeName,
 			d.Word,
@@ -107,10 +137,10 @@ func emitInsnEncodings(descs []*common.InsnDescription) {
 		)
 	}
 
-	fmt.Printf("}\n")
+	ectx.emit("}\n")
 }
 
-func emitValidatorForFormat(f *common.InsnFormat) {
+func emitValidatorForFormat(ectx *emitterCtx, f *common.InsnFormat) {
 	formatName := f.CanonicalRepr()
 	funcName := "validate" + formatName
 
@@ -119,15 +149,15 @@ func emitValidatorForFormat(f *common.InsnFormat) {
 		argNames[i] = strings.ToLower(a.CanonicalRepr())
 	}
 
-	fmt.Printf("func %s(", funcName)
+	ectx.emit("func %s(", funcName)
 	for i, p := range argNames {
 		var sep string
 		if i > 0 {
 			sep = ", "
 		}
-		fmt.Printf("%s%s uint32", sep, p)
+		ectx.emit("%s%s uint32", sep, p)
 	}
-	fmt.Printf(") error {\n")
+	ectx.emit(") error {\n")
 
 	// things to emit:
 	//
@@ -138,17 +168,17 @@ func emitValidatorForFormat(f *common.InsnFormat) {
 	for argIdx, a := range f.Args {
 		argParamName := argNames[argIdx]
 
-		fmt.Printf("\tif err := ")
+		ectx.emit("\tif err := ")
 
 		switch a.Kind {
 		case common.ArgKindIntReg:
-			fmt.Printf("wantIntReg(%s)", argParamName)
+			ectx.emit("wantIntReg(%s)", argParamName)
 
 		case common.ArgKindFPReg:
-			fmt.Printf("wantFPReg(%s)", argParamName)
+			ectx.emit("wantFPReg(%s)", argParamName)
 
 		case common.ArgKindFCCReg:
-			fmt.Printf("wantFCCReg(%s)", argParamName)
+			ectx.emit("wantFCCReg(%s)", argParamName)
 
 		case common.ArgKindSignedImm,
 			common.ArgKindUnsignedImm:
@@ -160,16 +190,16 @@ func emitValidatorForFormat(f *common.InsnFormat) {
 				wantFuncName = "wantUnsignedImm"
 			}
 
-			fmt.Printf("%s(%s, %d)", wantFuncName, argParamName, a.TotalWidth())
+			ectx.emit("%s(%s, %d)", wantFuncName, argParamName, a.TotalWidth())
 		}
 
-		fmt.Printf("; err != nil {\n\t\treturn err\n\t}\n")
+		ectx.emit("; err != nil {\n\t\treturn err\n\t}\n")
 	}
 
-	fmt.Printf("\treturn nil\n}\n\n")
+	ectx.emit("\treturn nil\n}\n\n")
 }
 
-func emitEncoderForFormat(f *common.InsnFormat) {
+func emitEncoderForFormat(ectx *emitterCtx, f *common.InsnFormat) {
 	formatName := f.CanonicalRepr()
 	funcName := "encode" + formatName
 
@@ -179,11 +209,11 @@ func emitEncoderForFormat(f *common.InsnFormat) {
 	}
 
 	// func encodeXXX(bits uint32, params...) uint32 {
-	fmt.Printf("func %s(bits uint32", funcName)
+	ectx.emit("func %s(bits uint32", funcName)
 	for _, p := range argNames {
-		fmt.Printf(", %s uint32", p)
+		ectx.emit(", %s uint32", p)
 	}
-	fmt.Printf(") uint32 {\n")
+	ectx.emit(") uint32 {\n")
 
 	// things to emit:
 	//
@@ -198,12 +228,12 @@ func emitEncoderForFormat(f *common.InsnFormat) {
 		argParamName := argNames[argIdx]
 
 		if len(a.Slots) == 1 {
-			fmt.Printf("\tbits |= %s", argParamName)
+			ectx.emit("\tbits |= %s", argParamName)
 			offset := int(a.Slots[0].Offset)
 			if offset != 0 {
-				fmt.Printf(" << %d", offset)
+				ectx.emit(" << %d", offset)
 			}
-			fmt.Printf("\n")
+			ectx.emit("\n")
 		} else {
 			// remainingBits is shift amount to extract the current slot from arg
 			//
@@ -228,16 +258,16 @@ func emitEncoderForFormat(f *common.InsnFormat) {
 				remainingBits -= int(s.Width)
 				mask := int((1 << s.Width) - 1)
 
-				fmt.Printf("\tbits |= %s", argParamName)
+				ectx.emit("\tbits |= %s", argParamName)
 
 				if remainingBits > 0 {
-					fmt.Printf(" >> %d", remainingBits)
+					ectx.emit(" >> %d", remainingBits)
 				}
 
-				fmt.Printf(" & %#x\n", mask)
+				ectx.emit(" & %#x\n", mask)
 			}
 		}
 	}
 
-	fmt.Printf("\treturn bits\n}\n\n")
+	ectx.emit("\treturn bits\n}\n\n")
 }
