@@ -62,11 +62,6 @@ func gatherFormats(paths []string) ([]*common.InsnFormat, error) {
 var tyUint32 = types.Universe.Lookup("uint32").Type().(*types.Basic)
 
 func emitEncoderForFormat(pkg *gox.Package, f *common.InsnFormat) {
-	ctxRef := func(name string) gox.Ref {
-		return pkg.CB().Scope().Lookup(name)
-	}
-	_ = ctxRef
-
 	formatName := f.CanonicalRepr()
 	funcName := "encode" + formatName
 
