@@ -32,14 +32,16 @@ type ArgKind int
 const (
 	ArgKindUnknown     ArgKind = 0
 	ArgKindReg         ArgKind = 1
-	ArgKindFCCReg      ArgKind = 2
-	ArgKindSignedImm   ArgKind = 3
-	ArgKindUnsignedImm ArgKind = 4
+	ArgKindFPReg       ArgKind = 2
+	ArgKindFCCReg      ArgKind = 3
+	ArgKindSignedImm   ArgKind = 4
+	ArgKindUnsignedImm ArgKind = 5
 )
 
 func (k ArgKind) Validate() error {
 	switch k {
 	case ArgKindReg,
+		ArgKindFPReg,
 		ArgKindFCCReg,
 		ArgKindSignedImm,
 		ArgKindUnsignedImm:
@@ -126,7 +128,7 @@ func (a *Arg) Validate() error {
 	}
 
 	switch a.Kind {
-	case ArgKindReg:
+	case ArgKindReg, ArgKindFPReg:
 		if len(a.Slots) != 1 {
 			return errors.New("len(slots) != 1 for a register arg")
 		}
@@ -201,6 +203,10 @@ func (a *Arg) CanonicalRepr() string {
 	switch a.Kind {
 	case ArgKindReg:
 		sb.WriteByte(offsetCharsUpper[a.Slots[0].Offset])
+
+	case ArgKindFPReg:
+		sb.WriteRune('F')
+		sb.WriteByte(offsetCharsLower[a.Slots[0].Offset])
 
 	case ArgKindFCCReg:
 		sb.WriteRune('C')

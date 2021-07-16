@@ -53,8 +53,9 @@ insn-format  =/ imm-slots
 insn-format  =/ reg-slots imm-slots
 
 reg-slots    = 1*reg
-reg          = normal-reg / fcc-reg
-normal-reg   = "D" / "J" / "K" / "A"
+reg          = int-reg / fp-reg / fcc-reg
+int-reg      = "D" / "J" / "K" / "A"
+fp-reg       = "F" index
 fcc-reg      = "C" index
 
 index-length = index length

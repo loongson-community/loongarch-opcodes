@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-var insnRE = regexp.MustCompile(`^([0-9a-f]{8}) ([a-z][0-9a-z_.]*) +(EMPTY|[0-9DJKACSUdjkam]+)$`)
+var insnRE = regexp.MustCompile(`^([0-9a-f]{8}) ([a-z][0-9a-z_.]*) +(EMPTY|[0-9DJKACFSUdjkam]+)$`)
 
 func ParseInsnDescriptionLine(line string) (*InsnDescription, error) {
 	matches := insnRE.FindStringSubmatch(line)
@@ -98,13 +98,13 @@ func (l *insnFormatLexer) consumeArg() (*Arg, error) {
 
 	switch prefixCh {
 	case 'D':
-		return makeRegArg(0), nil
+		return makeRegArg(0, ArgKindReg), nil
 	case 'J':
-		return makeRegArg(5), nil
+		return makeRegArg(5, ArgKindReg), nil
 	case 'K':
-		return makeRegArg(10), nil
+		return makeRegArg(10, ArgKindReg), nil
 	case 'A':
-		return makeRegArg(15), nil
+		return makeRegArg(15, ArgKindReg), nil
 
 	case 'C':
 		offsetCh := l.eat()
@@ -114,6 +114,15 @@ func (l *insnFormatLexer) consumeArg() (*Arg, error) {
 		}
 
 		return makeFCCRegArg(offset), nil
+
+	case 'F':
+		offsetCh := l.eat()
+		offset, err := parseOffsetCh(offsetCh)
+		if err != nil {
+			return nil, err
+		}
+
+		return makeRegArg(offset, ArgKindFPReg), nil
 
 	case 'S', 'U':
 		var kind ArgKind
@@ -218,9 +227,9 @@ func parseOffsetCh(ch rune) (uint, error) {
 	return 0, fmt.Errorf("invalid offset char %s", strconv.QuoteRune(ch))
 }
 
-func makeRegArg(offset uint) *Arg {
+func makeRegArg(offset uint, kind ArgKind) *Arg {
 	return &Arg{
-		Kind: ArgKindReg,
+		Kind: kind,
 		Slots: []*Slot{
 			{Offset: offset, Width: 5},
 		},
