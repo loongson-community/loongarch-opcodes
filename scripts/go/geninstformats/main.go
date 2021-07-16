@@ -1,13 +1,10 @@
 package main
 
 import (
-	"go/token"
-	"go/types"
+	"fmt"
 	"os"
 	"sort"
 	"strings"
-
-	"github.com/goplus/gox"
 
 	"github.com/loongson-community/loongarch-opcodes/scripts/go/common"
 )
@@ -24,17 +21,10 @@ func main() {
 		return formats[i].CanonicalRepr() < formats[j].CanonicalRepr()
 	})
 
-	gox.SetDebug(true)
-	pkg := gox.NewPackage("", "loong", nil)
-	prepareScope(pkg)
+	fmt.Printf("package loong\n\n")
 	for _, f := range formats {
-		emitValidatorForFormat(pkg, f)
-		emitEncoderForFormat(pkg, f)
-	}
-
-	err = gox.WriteTo(os.Stdout, pkg)
-	if err != nil {
-		panic(err)
+		emitValidatorForFormat(f)
+		emitEncoderForFormat(f)
 	}
 }
 
@@ -62,79 +52,24 @@ func gatherFormats(paths []string) ([]*common.InsnFormat, error) {
 	return result, nil
 }
 
-var (
-	tyInt    = types.Universe.Lookup("int").Type().(*types.Basic)
-	tyUint32 = types.Universe.Lookup("uint32").Type().(*types.Basic)
-	tyError  = types.Universe.Lookup("error").Type()
-)
-
-func prepareScope(pkg *gox.Package) {
-	// func wantIntReg(uint32) error
-	pkg.NewFunc(
-		nil,
-		"wantIntReg",
-		gox.NewTuple(pkg.NewParam("", tyUint32)),
-		gox.NewTuple(pkg.NewParam("", tyError)),
-		false,
-	)
-
-	// func wantFPReg(uint32) error
-	pkg.NewFunc(
-		nil,
-		"wantFPReg",
-		gox.NewTuple(pkg.NewParam("", tyUint32)),
-		gox.NewTuple(pkg.NewParam("", tyError)),
-		false,
-	)
-
-	// func wantFCCReg(uint32) error
-	pkg.NewFunc(
-		nil,
-		"wantFCCReg",
-		gox.NewTuple(pkg.NewParam("", tyUint32)),
-		gox.NewTuple(pkg.NewParam("", tyError)),
-		false,
-	)
-
-	// func wantSignedImm(uint32, int) error
-	pkg.NewFunc(
-		nil,
-		"wantSignedImm",
-		gox.NewTuple(pkg.NewParam("", tyUint32), pkg.NewParam("", tyInt)),
-		gox.NewTuple(pkg.NewParam("", tyError)),
-		false,
-	)
-
-	// func wantUnsignedImm(uint32, int) error
-	pkg.NewFunc(
-		nil,
-		"wantUnsignedImm",
-		gox.NewTuple(pkg.NewParam("", tyUint32), pkg.NewParam("", tyInt)),
-		gox.NewTuple(pkg.NewParam("", tyError)),
-		false,
-	)
-}
-
-func emitValidatorForFormat(pkg *gox.Package, f *common.InsnFormat) {
+func emitValidatorForFormat(f *common.InsnFormat) {
 	formatName := f.CanonicalRepr()
 	funcName := "validate" + formatName
 
-	returnParam := pkg.NewParam("", tyError)
-	returnTuple := gox.NewTuple(returnParam)
-
-	params := make([]*gox.Param, len(f.Args))
+	argNames := make([]string, len(f.Args))
 	for i, a := range f.Args {
-		params[i] = pkg.NewParam(strings.ToLower(a.CanonicalRepr()), tyUint32)
+		argNames[i] = strings.ToLower(a.CanonicalRepr())
 	}
-	paramsTuple := gox.NewTuple(params...)
 
-	// func validateXXX(params...) error {
-	bldr := pkg.NewFunc(nil, funcName, paramsTuple, returnTuple, false).BodyStart(pkg)
-
-	ctxRef := func(name string) gox.Ref {
-		_, o := pkg.CB().Scope().LookupParent(name, token.NoPos)
-		return o
+	fmt.Printf("func %s(", funcName)
+	for i, p := range argNames {
+		var sep string
+		if i > 0 {
+			sep = ", "
+		}
+		fmt.Printf("%s%s uint32", sep, p)
 	}
+	fmt.Printf(") error {\n")
 
 	// things to emit:
 	//
@@ -143,29 +78,19 @@ func emitValidatorForFormat(pkg *gox.Package, f *common.InsnFormat) {
 	//         return err
 	//     }
 	for argIdx, a := range f.Args {
-		argParam := params[argIdx]
+		argParamName := argNames[argIdx]
 
-		bldr = bldr.If()
-		bldr = bldr.DefineVarStart("err")
+		fmt.Printf("\tif err := ")
 
 		switch a.Kind {
 		case common.ArgKindIntReg:
-			// wantIntReg(argX)
-			bldr = bldr.Val(pkg.Ref("wantIntReg")).
-				Val(argParam).
-				Call(1)
+			fmt.Printf("wantIntReg(%s)", argParamName)
 
 		case common.ArgKindFPReg:
-			// wantFPReg(argX)
-			bldr = bldr.Val(pkg.Ref("wantFPReg")).
-				Val(argParam).
-				Call(1)
+			fmt.Printf("wantFPReg(%s)", argParamName)
 
 		case common.ArgKindFCCReg:
-			// wantFCCReg(argX)
-			bldr = bldr.Val(pkg.Ref("wantFCCReg")).
-				Val(argParam).
-				Call(1)
+			fmt.Printf("wantFCCReg(%s)", argParamName)
 
 		case common.ArgKindSignedImm,
 			common.ArgKindUnsignedImm:
@@ -177,45 +102,30 @@ func emitValidatorForFormat(pkg *gox.Package, f *common.InsnFormat) {
 				wantFuncName = "wantUnsignedImm"
 			}
 
-			bldr = bldr.Val(pkg.Ref(wantFuncName)).
-				Val(argParam).
-				Val(int(a.TotalWidth())).
-				Call(2)
+			fmt.Printf("%s(%s, %d)", wantFuncName, argParamName, a.TotalWidth())
 		}
 
-		bldr = bldr.EndInit(1)
-
-		errRef := ctxRef("err")
-
-		bldr = bldr.Val(errRef).Val(nil).BinaryOp(token.EQL) // XXX Val(nil) doesn't work
-		bldr = bldr.Then()
-		bldr = bldr.Val(errRef).Return(1).EndStmt()
-		bldr = bldr.End()
+		fmt.Printf("; err != nil {\n\t\treturn err\n\t}\n")
 	}
 
-	// return nil
-	bldr = bldr.Val(nil).Return(1).EndStmt()
-
-	// }
-	_ = bldr.End()
+	fmt.Printf("\treturn nil\n}\n\n")
 }
 
-func emitEncoderForFormat(pkg *gox.Package, f *common.InsnFormat) {
+func emitEncoderForFormat(f *common.InsnFormat) {
 	formatName := f.CanonicalRepr()
 	funcName := "encode" + formatName
 
-	returnParam := pkg.NewParam("", tyUint32)
-	returnTuple := gox.NewTuple(returnParam)
-
-	params := make([]*gox.Param, len(f.Args)+1)
-	params[0] = pkg.NewParam("bits", tyUint32)
+	argNames := make([]string, len(f.Args))
 	for i, a := range f.Args {
-		params[i+1] = pkg.NewParam(strings.ToLower(a.CanonicalRepr()), tyUint32)
+		argNames[i] = strings.ToLower(a.CanonicalRepr())
 	}
-	paramsTuple := gox.NewTuple(params...)
 
 	// func encodeXXX(bits uint32, params...) uint32 {
-	bldr := pkg.NewFunc(nil, funcName, paramsTuple, returnTuple, false).BodyStart(pkg)
+	fmt.Printf("func %s(bits uint32", funcName)
+	for _, p := range argNames {
+		fmt.Printf(", %s uint32", p)
+	}
+	fmt.Printf(") uint32 {\n")
 
 	// things to emit:
 	//
@@ -226,33 +136,16 @@ func emitEncoderForFormat(pkg *gox.Package, f *common.InsnFormat) {
 	//     else for every slot in arg:
 	//         slot value = (extract from argX)
 	//         bits |= slot value << slot offset
-	//
-	// seems gox doesn't have in-place assignments, so some duplication is necessary
 	for argIdx, a := range f.Args {
-		bitsParam := params[0]
-		argParam := params[argIdx+1]
+		argParamName := argNames[argIdx]
 
 		if len(a.Slots) == 1 {
+			fmt.Printf("\tbits |= %s", argParamName)
 			offset := int(a.Slots[0].Offset)
-			// bits = bits | (argX << offset)
-			// lvalue
-			bldr = bldr.VarRef(bitsParam)
-
-			// rvalue expr
-			// stack: bits argX
-			bldr = bldr.Val(bitsParam).
-				Val(argParam)
-
 			if offset != 0 {
-				// stack: bits (argX << offset)
-				bldr = bldr.Val(offset).BinaryOp(token.SHL)
+				fmt.Printf(" << %d", offset)
 			}
-
-			// stack: (bits | processedArgX)
-			bldr = bldr.BinaryOp(token.OR)
-
-			// assign
-			bldr = bldr.Assign(1)
+			fmt.Printf("\n")
 		} else {
 			// remainingBits is shift amount to extract the current slot from arg
 			//
@@ -277,33 +170,16 @@ func emitEncoderForFormat(pkg *gox.Package, f *common.InsnFormat) {
 				remainingBits -= int(s.Width)
 				mask := int((1 << s.Width) - 1)
 
-				// lvalue
-				bldr = bldr.VarRef(bitsParam)
-
-				// rvalue expr
-				// stack: bits argX
-				bldr = bldr.Val(bitsParam).Val(argParam)
+				fmt.Printf("\tbits |= %s", argParamName)
 
 				if remainingBits > 0 {
-					// stack: bits (argX >> remainingBits)
-					bldr = bldr.Val(remainingBits).BinaryOp(token.SHR)
+					fmt.Printf(" >> %d", remainingBits)
 				}
 
-				// stack: bits ((tmp above) & mask)
-				bldr = bldr.Val(mask).BinaryOp(token.AND)
-
-				// stack: (bits | above)
-				bldr = bldr.BinaryOp(token.OR)
-
-				// assign
-				bldr = bldr.Assign(1)
+				fmt.Printf(" & %#x\n", mask)
 			}
 		}
 	}
 
-	// return bits
-	bldr = bldr.Val(params[0]).Return(1).EndStmt()
-
-	// }
-	_ = bldr.End()
+	fmt.Printf("\treturn bits\n}\n\n")
 }
