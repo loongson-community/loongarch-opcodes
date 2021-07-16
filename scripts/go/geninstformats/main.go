@@ -12,35 +12,52 @@ import (
 func main() {
 	inputs := os.Args[1:]
 
-	formats, err := gatherFormats(inputs)
+	descs, err := readInsnDescs(inputs)
 	if err != nil {
 		panic(err)
 	}
+
+	formats := gatherFormats(descs)
+
+	sort.Slice(descs, func(i int, j int) bool {
+		return descs[i].Word < descs[j].Word
+	})
 
 	sort.Slice(formats, func(i int, j int) bool {
 		return formats[i].CanonicalRepr() < formats[j].CanonicalRepr()
 	})
 
 	fmt.Printf("package loong\n\n")
+	fmt.Printf("import \"cmd/internal/obj\"\n\n")
+
+	emitInsnFormatTypes(formats)
+
 	for _, f := range formats {
 		emitValidatorForFormat(f)
 		emitEncoderForFormat(f)
 	}
+
+	emitInsnEncodings(descs)
 }
 
-func gatherFormats(paths []string) ([]*common.InsnFormat, error) {
-	formatsSet := make(map[string]*common.InsnFormat)
+func readInsnDescs(paths []string) ([]*common.InsnDescription, error) {
+	var result []*common.InsnDescription
 	for _, path := range paths {
 		descs, err := common.ReadInsnDescriptionFile(path)
 		if err != nil {
 			return nil, err
 		}
+		result = append(result, descs...)
+	}
+	return result, nil
+}
 
-		for _, d := range descs {
-			canonicalFormatName := d.Format.CanonicalRepr()
-			if _, ok := formatsSet[canonicalFormatName]; !ok {
-				formatsSet[canonicalFormatName] = d.Format
-			}
+func gatherFormats(descs []*common.InsnDescription) []*common.InsnFormat {
+	formatsSet := make(map[string]*common.InsnFormat)
+	for _, d := range descs {
+		canonicalFormatName := d.Format.CanonicalRepr()
+		if _, ok := formatsSet[canonicalFormatName]; !ok {
+			formatsSet[canonicalFormatName] = d.Format
 		}
 	}
 
@@ -49,7 +66,48 @@ func gatherFormats(paths []string) ([]*common.InsnFormat, error) {
 		result = append(result, f)
 	}
 
-	return result, nil
+	return result
+}
+
+func emitInsnFormatTypes(fmts []*common.InsnFormat) {
+	fmt.Printf("type insnFormat int\n\nconst (\n")
+	fmt.Printf("\tinsnFormatUnknown insnEncoding = iota\n")
+
+	for _, f := range fmts {
+		fmt.Printf("\tinsnFormat%s\n", f.CanonicalRepr())
+	}
+
+	fmt.Printf(")\n\n")
+}
+
+func goOpcodeNameForInsn(mnemonic string) string {
+	// e.g. slli.w => ASLLIW
+	tmp := strings.ReplaceAll(mnemonic, ".", "")
+	tmp = strings.ReplaceAll(tmp, "_", "")
+	tmp = strings.ToUpper(tmp)
+	return "A" + tmp
+}
+
+func emitInsnEncodings(descs []*common.InsnDescription) {
+	fmt.Printf("type encoding struct {\n")
+	fmt.Printf("\tbits uint32\n")
+	fmt.Printf("\tfmt  insnFormat\n")
+	fmt.Printf("}\n\n")
+	fmt.Printf("var encodings = [ALAST & obj.AMask]encoding{\n")
+
+	for _, d := range descs {
+		goOpcodeName := goOpcodeNameForInsn(d.Mnemonic)
+		formatName := "insnFormat" + d.Format.CanonicalRepr()
+
+		fmt.Printf(
+			"\t%s & obj.AMask: {bits: 0x%08x, fmt: %s},\n",
+			goOpcodeName,
+			d.Word,
+			formatName,
+		)
+	}
+
+	fmt.Printf("}\n")
 }
 
 func emitValidatorForFormat(f *common.InsnFormat) {
