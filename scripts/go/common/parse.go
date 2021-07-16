@@ -98,13 +98,13 @@ func (l *insnFormatLexer) consumeArg() (*Arg, error) {
 
 	switch prefixCh {
 	case 'D':
-		return makeRegArg(0, ArgKindReg), nil
+		return makeRegArg(0, ArgKindIntReg), nil
 	case 'J':
-		return makeRegArg(5, ArgKindReg), nil
+		return makeRegArg(5, ArgKindIntReg), nil
 	case 'K':
-		return makeRegArg(10, ArgKindReg), nil
+		return makeRegArg(10, ArgKindIntReg), nil
 	case 'A':
-		return makeRegArg(15, ArgKindReg), nil
+		return makeRegArg(15, ArgKindIntReg), nil
 
 	case 'C':
 		offsetCh := l.eat()

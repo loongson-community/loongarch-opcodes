@@ -31,8 +31,8 @@ func TestParseInsnDescriptionLine(t *testing.T) {
 				Mnemonic: "ll.w",
 				Format: &InsnFormat{
 					Args: []*Arg{
-						{Kind: ArgKindReg, Slots: []*Slot{{Offset: 0, Width: 5}}},
-						{Kind: ArgKindReg, Slots: []*Slot{{Offset: 5, Width: 5}}},
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 0, Width: 5}}},
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 5, Width: 5}}},
 						{Kind: ArgKindSignedImm, Slots: []*Slot{{Offset: 10, Width: 14}}},
 					},
 				},
@@ -46,7 +46,7 @@ func TestParseInsnDescriptionLine(t *testing.T) {
 				Mnemonic: "preld",
 				Format: &InsnFormat{
 					Args: []*Arg{
-						{Kind: ArgKindReg, Slots: []*Slot{{Offset: 5, Width: 5}}},
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 5, Width: 5}}},
 						{Kind: ArgKindUnsignedImm, Slots: []*Slot{{Offset: 0, Width: 5}}},
 						{Kind: ArgKindSignedImm, Slots: []*Slot{{Offset: 10, Width: 12}}},
 					},
@@ -61,7 +61,7 @@ func TestParseInsnDescriptionLine(t *testing.T) {
 				Mnemonic: "beqz",
 				Format: &InsnFormat{
 					Args: []*Arg{
-						{Kind: ArgKindReg, Slots: []*Slot{{Offset: 5, Width: 5}}},
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 5, Width: 5}}},
 						{Kind: ArgKindSignedImm, Slots: []*Slot{
 							{Offset: 0, Width: 5},
 							{Offset: 10, Width: 16},

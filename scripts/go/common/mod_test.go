@@ -21,7 +21,7 @@ func TestInsnFormat(t *testing.T) {
 			x: InsnFormat{
 				Args: []*Arg{
 					{
-						Kind: ArgKindReg,
+						Kind: ArgKindIntReg,
 						Slots: []*Slot{
 							{Offset: 0, Width: 5},
 						},
@@ -87,13 +87,13 @@ func TestInsnFormat(t *testing.T) {
 			x: InsnFormat{
 				Args: []*Arg{
 					{
-						Kind: ArgKindReg,
+						Kind: ArgKindIntReg,
 						Slots: []*Slot{
 							{Offset: 0, Width: 5},
 						},
 					},
 					{
-						Kind: ArgKindReg,
+						Kind: ArgKindIntReg,
 						Slots: []*Slot{
 							{Offset: 5, Width: 5},
 						},
