@@ -289,3 +289,32 @@ func (f *InsnFormat) CanonicalRepr() string {
 	}
 	return sb.String()
 }
+
+func (f *InsnFormat) ArgsBitmask() uint32 {
+	var mask uint32
+	for _, a := range f.Args {
+		mask |= a.Bitmask()
+	}
+	return mask
+}
+
+func (f *InsnFormat) MatchBitmask() uint32 {
+	return ^f.ArgsBitmask()
+}
+
+func (d *InsnDescription) Validate() error {
+	if d.Mnemonic == "" {
+		return errors.New("empty mnemonic")
+	}
+
+	err := d.Format.Validate()
+	if err != nil {
+		return err
+	}
+
+	if d.Word&d.Format.ArgsBitmask() != 0 {
+		return errors.New("insn word has non-zero bit inside arg slots")
+	}
+
+	return nil
+}

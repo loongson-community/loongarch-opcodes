@@ -30,11 +30,18 @@ func ParseInsnDescriptionLine(line string) (*InsnDescription, error) {
 		return nil, err
 	}
 
-	return &InsnDescription{
+	result := InsnDescription{
 		Word:     word,
 		Mnemonic: mnemonic,
 		Format:   insnFmt,
-	}, nil
+	}
+
+	err = result.Validate()
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
 }
 
 func ParseInsnFormat(input string) (*InsnFormat, error) {
