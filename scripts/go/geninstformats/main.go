@@ -102,7 +102,7 @@ func (c *emitterCtx) finalize() []byte {
 
 func emitInsnFormatTypes(ectx *emitterCtx, fmts []*common.InsnFormat) {
 	ectx.emit("type insnFormat int\n\nconst (\n")
-	ectx.emit("\tinsnFormatUnknown insnEncoding = iota\n")
+	ectx.emit("\tinsnFormatUnknown insnFormat = iota\n")
 
 	for _, f := range fmts {
 		ectx.emit("\tinsnFormat%s\n", f.CanonicalRepr())
