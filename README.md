@@ -74,19 +74,20 @@ This notation has the following advantages:
 * Unambiguous to parse even when capitalized;
 * Properly distinguishes between superficially similar encodings due to design
   warts, for example:
-    - `DJ` and `JK` (presumably both `2R` in official notation), or
+    - `DJ`, `JK`, `FdJ` and `DFj` (presumably all `2R` in official notation), or
     - `DSj20` and `JSd5k16` which are totally different formats, but nearly the
       same in official notation (non-existent `1RI20` and base format `1RI21`).
 
 The field offsets and sizes for the register operand slots are as follows:
 
-|Register slot|Starting bit index|Field size in bits|
-|-------------|------------------|------------------|
-|`D`|0|5|
-|`J`|5|5|
-|`K`|10|5|
-|`A`|15|5|
-|`C`|Specified by the index character|3|
+|Register slot|Starting bit index|Field size in bits|Bank|
+|-------------|------------------|------------------|----|
+|`D`|0|5|Integer|
+|`J`|5|5|Integer|
+|`K`|10|5|Integer|
+|`A`|15|5|Integer|
+|`C`|Specified by the index character|3|FP condition code|
+|`F`|Specified by the index character|5|FP|
 
 The bit index specifiers are as follows:
 
