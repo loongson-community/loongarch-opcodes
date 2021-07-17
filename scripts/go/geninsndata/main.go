@@ -44,10 +44,8 @@ func main() {
 	}
 
 	emitSlotEncoders(&ectx, scs)
-
-	emitInsnEncodings(&ectx, descs)
-
 	emitBigEncoderFn(&ectx, formats)
+	emitInsnEncodings(&ectx, descs)
 
 	result := ectx.finalize()
 	os.Stdout.Write(result)
