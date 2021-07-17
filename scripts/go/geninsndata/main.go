@@ -6,6 +6,7 @@ import (
 	"go/format"
 	"os"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/loongson-community/loongarch-opcodes/scripts/go/common"
@@ -40,7 +41,6 @@ func main() {
 
 	for _, f := range formats {
 		emitValidatorForFormat(&ectx, f)
-		emitEncoderForFormat(&ectx, f)
 	}
 
 	emitSlotEncoders(&ectx, scs)
@@ -141,7 +141,23 @@ func slotCombinationForFmt(f *common.InsnFormat) string {
 	}
 
 	return sb.String()
+}
 
+func slotOffsetFromRune(s rune) int {
+	switch s {
+	case 'D', 'd':
+		return slotD
+	case 'J', 'j':
+		return slotJ
+	case 'K', 'k':
+		return slotK
+	case 'A', 'a':
+		return slotA
+	case 'M', 'm':
+		return slotM
+	default:
+		panic("should never happen")
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -284,79 +300,6 @@ func emitValidatorForFormat(ectx *emitterCtx, f *common.InsnFormat) {
 	ectx.emit("\treturn nil\n}\n\n")
 }
 
-func emitEncoderForFormat(ectx *emitterCtx, f *common.InsnFormat) {
-	formatName := f.CanonicalRepr()
-	funcName := "encode" + formatName
-
-	argNames := make([]string, len(f.Args))
-	for i, a := range f.Args {
-		argNames[i] = strings.ToLower(a.CanonicalRepr())
-	}
-
-	// func encodeXXX(bits uint32, params...) uint32 {
-	ectx.emit("func %s(bits uint32", funcName)
-	for _, p := range argNames {
-		ectx.emit(", %s uint32", p)
-	}
-	ectx.emit(") uint32 {\n")
-
-	// things to emit:
-	//
-	// for every arg X:
-	//     if only one slot:
-	//         bits |= argX << slot offset
-	//
-	//     else for every slot in arg:
-	//         slot value = (extract from argX)
-	//         bits |= slot value << slot offset
-	for argIdx, a := range f.Args {
-		argParamName := argNames[argIdx]
-
-		if len(a.Slots) == 1 {
-			ectx.emit("\tbits |= %s", argParamName)
-			offset := int(a.Slots[0].Offset)
-			if offset != 0 {
-				ectx.emit(" << %d", offset)
-			}
-			ectx.emit("\n")
-		} else {
-			// remainingBits is shift amount to extract the current slot from arg
-			//
-			// take example of Sd5k16:
-			//
-			// Sd5k16 = (MSB) DDDDDKKKKKKKKKKKKKKKK (LSB)
-			//
-			// initially remainingBits = 5+16
-			//
-			// consume from left to right:
-			//
-			// slot d5: remainingBits = 16
-			// thus d5 = (sd5k16 >> 16) & 0b11111
-			// emit bits |= (d5 expr above)
-			//
-			// slot k16: remainingBits = 0
-			// thus k16 = (sd5k16 >> 0) & 0b1111111111111111
-			//          = sd5k16 & 0b1111111111111111
-			// emit bits |= (k16 expr above)
-			remainingBits := int(a.TotalWidth())
-			for _, s := range a.Slots {
-				remainingBits -= int(s.Width)
-				mask := int((1 << s.Width) - 1)
-
-				ectx.emit("\tbits |= %s", argParamName)
-
-				if remainingBits > 0 {
-					ectx.emit(" >> %d", remainingBits)
-				}
-
-				ectx.emit(" & %#x\n", mask)
-			}
-		}
-	}
-
-	ectx.emit("\treturn bits\n}\n\n")
-}
-
 func emitSlotEncoders(ectx *emitterCtx, scs []string) {
 	for _, sc := range scs {
 		emitSlotEncoderFn(ectx, sc)
@@ -385,21 +328,7 @@ func emitSlotEncoderFn(ectx *emitterCtx, sc string) {
 	ectx.emit("return bits")
 
 	for _, s := range scLower {
-		var offset int
-		switch s {
-		case 'd':
-			offset = slotD
-		case 'j':
-			offset = slotJ
-		case 'k':
-			offset = slotK
-		case 'a':
-			offset = slotA
-		case 'm':
-			offset = slotM
-		default:
-			panic("should never happen")
-		}
+		offset := slotOffsetFromRune(s)
 
 		ectx.emit(" | %c", s)
 		if offset > 0 {
@@ -423,12 +352,25 @@ func emitBigEncoderFn(ectx *emitterCtx, fmts []*common.InsnFormat) {
 	for _, f := range fmts {
 		formatName := f.CanonicalRepr()
 		ectx.emit("\tcase insnFormat%s:\n", formatName)
-		ectx.emit("\t\treturn encode%s(enc.bits", formatName)
+
+		// special-case EMPTY
+		if len(f.Args) == 0 {
+			ectx.emit("\t\treturn enc.bits, nil\n")
+			continue
+		}
 
 		argFieldNames := fieldNamesForArgs(f.Args)
+
+		argVarNames := make([]string, len(f.Args))
 		for i, a := range f.Args {
+			argVarNames[i] = strings.ToLower(a.CanonicalRepr())
+		}
+
+		for i, a := range f.Args {
+			varName := argVarNames[i]
 			fieldExpr := "enc." + argFieldNames[i]
-			ectx.emit(", ")
+
+			ectx.emit("%s :=", varName)
 
 			switch a.Kind {
 			case common.ArgKindIntReg:
@@ -439,12 +381,76 @@ func emitBigEncoderFn(ectx *emitterCtx, fmts []*common.InsnFormat) {
 				ectx.emit("regFCC(%s)", fieldExpr)
 			case common.ArgKindSignedImm, common.ArgKindUnsignedImm:
 				ectx.emit("uint32(%s)", fieldExpr)
+			default:
+				panic("unreachable")
 			}
+
+			ectx.emit("\n")
+		}
+
+		// collect slot expressions
+		slotExprs := make(map[uint]string)
+		for argIdx, a := range f.Args {
+			argVarName := argVarNames[argIdx]
+
+			if len(a.Slots) == 1 {
+				slotExprs[a.Slots[0].Offset] = argVarName
+			} else {
+				// remainingBits is shift amount to extract the current slot from arg
+				//
+				// take example of Sd5k16:
+				//
+				// Sd5k16 = (MSB) DDDDDKKKKKKKKKKKKKKKK (LSB)
+				//
+				// initially remainingBits = 5+16
+				//
+				// consume from left to right:
+				//
+				// slot d5: remainingBits = 16
+				// thus d5 = (sd5k16 >> 16) & 0b11111
+				// emit (d5 expr above)
+				//
+				// slot k16: remainingBits = 0
+				// thus k16 = (sd5k16 >> 0) & 0b1111111111111111
+				//          = sd5k16 & 0b1111111111111111
+				// emit (k16 expr above)
+				remainingBits := int(a.TotalWidth())
+				for _, s := range a.Slots {
+					remainingBits -= int(s.Width)
+					mask := int((1 << s.Width) - 1)
+
+					var sb strings.Builder
+					sb.WriteString(argVarName)
+
+					if remainingBits > 0 {
+						sb.WriteString(">>")
+						sb.WriteString(strconv.Itoa(remainingBits))
+					}
+
+					sb.WriteString("&0x")
+					sb.WriteString(strconv.FormatUint(uint64(mask), 16))
+
+					slotExprs[s.Offset] = sb.String()
+				}
+			}
+		}
+
+		sc := slotCombinationForFmt(f)
+		encFnName := slotEncoderFnNameForSc(sc)
+		ectx.emit("return %s(enc.bits", encFnName)
+
+		for _, s := range sc {
+			offset := uint(slotOffsetFromRune(s))
+			slotExpr, ok := slotExprs[offset]
+			if !ok {
+				panic("should never happen")
+			}
+			ectx.emit(", %s", slotExpr)
 		}
 
 		ectx.emit("), nil\n")
 	}
 
-	ectx.emit("\tdefault:\n\t\tpanic(\"should never happen\")\n")
+	ectx.emit("\tdefault:\n\t\tpanic(\"should never happen: unknown insn format\")\n")
 	ectx.emit("\t}\n}\n")
 }
