@@ -44,6 +44,8 @@ func main() {
 
 	emitInsnEncodings(&ectx, descs)
 
+	emitBigEncoderFn(&ectx, formats)
+
 	result := ectx.finalize()
 	os.Stdout.Write(result)
 }
@@ -139,14 +141,6 @@ func emitInsnEncodings(ectx *emitterCtx, descs []*common.InsnDescription) {
 	}
 
 	ectx.emit("}\n")
-
-	ectx.emit(`func encodingDataForAs(as obj.As) *encodingData {
-	if as < obj.ABaseLoong + obj.A_ARCHSPECIFIC || as >= ALAST {
-		return nil
-	}
-	return &encodings[as & obj.AMask]
-}
-`)
 }
 
 func insnFieldNameForRegArg(a *common.Arg) string {
@@ -298,4 +292,43 @@ func emitEncoderForFormat(ectx *emitterCtx, f *common.InsnFormat) {
 	}
 
 	ectx.emit("\treturn bits\n}\n\n")
+}
+
+func emitBigEncoderFn(ectx *emitterCtx, fmts []*common.InsnFormat) {
+	ectx.emit(`func (insn *instruction) encode() (uint32, error) {
+	enc, err := encodingDataForAs(insn.as)
+	if enc == nil {
+		return 0, err
+	}
+
+	switch enc.fmt {
+`)
+
+	for _, f := range fmts {
+		formatName := f.CanonicalRepr()
+		ectx.emit("\tcase insnFormat%s:\n", formatName)
+		ectx.emit("\t\treturn encode%s(enc.bits", formatName)
+
+		argFieldNames := fieldNamesForArgs(f.Args)
+		for i, a := range f.Args {
+			fieldExpr := "enc." + argFieldNames[i]
+			ectx.emit(", ")
+
+			switch a.Kind {
+			case common.ArgKindIntReg:
+				ectx.emit("regInt(%s)", fieldExpr)
+			case common.ArgKindFPReg:
+				ectx.emit("regFP(%s)", fieldExpr)
+			case common.ArgKindFCCReg:
+				ectx.emit("regFCC(%s)", fieldExpr)
+			case common.ArgKindSignedImm, common.ArgKindUnsignedImm:
+				ectx.emit("uint32(%s)", fieldExpr)
+			}
+		}
+
+		ectx.emit("), nil\n")
+	}
+
+	ectx.emit("\tdefault:\n\t\tpanic(\"should never happen\")\n")
+	ectx.emit("\t}\n}\n")
 }
