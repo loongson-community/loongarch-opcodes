@@ -20,6 +20,7 @@ func main() {
 	}
 
 	formats := gatherFormats(descs)
+	scs := gatherDistinctSlotCombinations(formats)
 
 	sort.Slice(descs, func(i int, j int) bool {
 		return descs[i].Word < descs[j].Word
@@ -41,6 +42,8 @@ func main() {
 		emitValidatorForFormat(&ectx, f)
 		emitEncoderForFormat(&ectx, f)
 	}
+
+	emitSlotEncoders(&ectx, scs)
 
 	emitInsnEncodings(&ectx, descs)
 
@@ -79,6 +82,66 @@ func gatherFormats(descs []*common.InsnDescription) []*common.InsnFormat {
 	}
 
 	return result
+}
+
+const (
+	slotD = 0
+	slotJ = 5
+	slotK = 10
+	slotA = 15
+	slotM = 16
+)
+
+func gatherDistinctSlotCombinations(fmts []*common.InsnFormat) []string {
+	slotCombinationsSet := make(map[string]struct{})
+	for _, f := range fmts {
+		// skip EMPTY
+		if len(f.Args) == 0 {
+			continue
+		}
+		slotCombinationsSet[slotCombinationForFmt(f)] = struct{}{}
+	}
+
+	result := make([]string, 0, len(slotCombinationsSet))
+	for sc := range slotCombinationsSet {
+		result = append(result, sc)
+	}
+	sort.Strings(result)
+
+	return result
+}
+
+// slot combination looks like "DJKM"
+func slotCombinationForFmt(f *common.InsnFormat) string {
+
+	var slots []int
+	for _, a := range f.Args {
+		for _, s := range a.Slots {
+			slots = append(slots, int(s.Offset))
+		}
+	}
+	sort.Ints(slots)
+
+	var sb strings.Builder
+	for _, s := range slots {
+		switch s {
+		case slotD:
+			sb.WriteRune('D')
+		case slotJ:
+			sb.WriteRune('J')
+		case slotK:
+			sb.WriteRune('K')
+		case slotA:
+			sb.WriteRune('A')
+		case slotM:
+			sb.WriteRune('M')
+		default:
+			panic("should never happen")
+		}
+	}
+
+	return sb.String()
+
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -145,13 +208,13 @@ func emitInsnEncodings(ectx *emitterCtx, descs []*common.InsnDescription) {
 
 func insnFieldNameForRegArg(a *common.Arg) string {
 	switch a.Slots[0].Offset {
-	case 0:
+	case slotD:
 		return "rd"
-	case 5:
+	case slotJ:
 		return "rj"
-	case 10:
+	case slotK:
 		return "rk"
-	case 15:
+	case slotA:
 		return "ra"
 	default:
 		panic("should never happen")
@@ -292,6 +355,59 @@ func emitEncoderForFormat(ectx *emitterCtx, f *common.InsnFormat) {
 	}
 
 	ectx.emit("\treturn bits\n}\n\n")
+}
+
+func emitSlotEncoders(ectx *emitterCtx, scs []string) {
+	for _, sc := range scs {
+		emitSlotEncoderFn(ectx, sc)
+	}
+}
+
+func slotEncoderFnNameForSc(sc string) string {
+	plural := ""
+	if len(sc) > 1 {
+		plural = "s"
+	}
+
+	return fmt.Sprintf("encode%sSlot%s", sc, plural)
+}
+
+func emitSlotEncoderFn(ectx *emitterCtx, sc string) {
+	funcName := slotEncoderFnNameForSc(sc)
+	scLower := strings.ToLower(sc)
+
+	ectx.emit("func %s(bits uint32", funcName)
+	for _, s := range scLower {
+		ectx.emit(", %c uint32", s)
+	}
+	ectx.emit(") uint32 {\n")
+
+	ectx.emit("return bits")
+
+	for _, s := range scLower {
+		var offset int
+		switch s {
+		case 'd':
+			offset = slotD
+		case 'j':
+			offset = slotJ
+		case 'k':
+			offset = slotK
+		case 'a':
+			offset = slotA
+		case 'm':
+			offset = slotM
+		default:
+			panic("should never happen")
+		}
+
+		ectx.emit(" | %c", s)
+		if offset > 0 {
+			ectx.emit("<<%d", offset)
+		}
+	}
+
+	ectx.emit("\n}\n\n")
 }
 
 func emitBigEncoderFn(ectx *emitterCtx, fmts []*common.InsnFormat) {
