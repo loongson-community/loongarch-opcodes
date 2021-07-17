@@ -139,26 +139,53 @@ func emitInsnEncodings(ectx *emitterCtx, descs []*common.InsnDescription) {
 	}
 
 	ectx.emit("}\n")
+
+	ectx.emit(`func encodingDataForAs(as obj.As) *encodingData {
+	if as < obj.ABaseLoong + obj.A_ARCHSPECIFIC || as >= ALAST {
+		return nil
+	}
+	return &encodings[as & obj.AMask]
+}
+`)
+}
+
+func insnFieldNameForRegArg(a *common.Arg) string {
+	switch a.Slots[0].Offset {
+	case 0:
+		return "rd"
+	case 5:
+		return "rj"
+	case 10:
+		return "rk"
+	case 15:
+		return "ra"
+	default:
+		panic("should never happen")
+	}
+}
+
+func fieldNamesForArgs(args []*common.Arg) []string {
+	argFieldNames := make([]string, len(args))
+	immIdx := 0
+	for i, a := range args {
+		if a.Kind.IsImm() {
+			immIdx++
+			argFieldNames[i] = fmt.Sprintf("imm%d", immIdx)
+		} else {
+			// register operand
+			argFieldNames[i] = insnFieldNameForRegArg(a)
+		}
+	}
+	return argFieldNames
 }
 
 func emitValidatorForFormat(ectx *emitterCtx, f *common.InsnFormat) {
 	formatName := f.CanonicalRepr()
 	funcName := "validate" + formatName
 
-	argNames := make([]string, len(f.Args))
-	for i, a := range f.Args {
-		argNames[i] = strings.ToLower(a.CanonicalRepr())
-	}
+	argFieldNames := fieldNamesForArgs(f.Args)
 
-	ectx.emit("func %s(", funcName)
-	for i, p := range argNames {
-		var sep string
-		if i > 0 {
-			sep = ", "
-		}
-		ectx.emit("%s%s uint32", sep, p)
-	}
-	ectx.emit(") error {\n")
+	ectx.emit("func %s(insn *instruction) error {\n", funcName)
 
 	// things to emit:
 	//
@@ -167,7 +194,7 @@ func emitValidatorForFormat(ectx *emitterCtx, f *common.InsnFormat) {
 	//         return err
 	//     }
 	for argIdx, a := range f.Args {
-		argParamName := argNames[argIdx]
+		argParamName := "insn." + argFieldNames[argIdx]
 
 		ectx.emit("\tif err := ")
 
