@@ -340,7 +340,7 @@ func emitSlotEncoderFn(ectx *emitterCtx, sc string) {
 func emitBigEncoderFn(ectx *emitterCtx, fmts []*common.InsnFormat) {
 	ectx.emit(`func (insn *instruction) encode() (uint32, error) {
 	enc, err := encodingForAs(insn.as)
-	if enc == nil {
+	if err != nil {
 		return 0, err
 	}
 
