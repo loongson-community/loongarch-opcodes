@@ -122,11 +122,11 @@ func goOpcodeNameForInsn(mnemonic string) string {
 }
 
 func emitInsnEncodings(ectx *emitterCtx, descs []*common.InsnDescription) {
-	ectx.emit("type encodingData struct {\n")
+	ectx.emit("type encoding struct {\n")
 	ectx.emit("\tbits uint32\n")
 	ectx.emit("\tfmt  insnFormat\n")
 	ectx.emit("}\n\n")
-	ectx.emit("var encodings = [ALAST & obj.AMask]encodingData{\n")
+	ectx.emit("var encodings = [ALAST & obj.AMask]encoding{\n")
 
 	for _, d := range descs {
 		goOpcodeName := goOpcodeNameForInsn(d.Mnemonic)
@@ -296,7 +296,7 @@ func emitEncoderForFormat(ectx *emitterCtx, f *common.InsnFormat) {
 
 func emitBigEncoderFn(ectx *emitterCtx, fmts []*common.InsnFormat) {
 	ectx.emit(`func (insn *instruction) encode() (uint32, error) {
-	enc, err := encodingDataForAs(insn.as)
+	enc, err := encodingForAs(insn.as)
 	if enc == nil {
 		return 0, err
 	}
