@@ -273,13 +273,13 @@ func emitValidatorForFormat(ectx *emitterCtx, f *common.InsnFormat) {
 
 		switch a.Kind {
 		case common.ArgKindIntReg:
-			ectx.emit("wantIntReg(%s)", argParamName)
+			ectx.emit("wantIntReg(insn.as, %s)", argParamName)
 
 		case common.ArgKindFPReg:
-			ectx.emit("wantFPReg(%s)", argParamName)
+			ectx.emit("wantFPReg(insn.as, %s)", argParamName)
 
 		case common.ArgKindFCCReg:
-			ectx.emit("wantFCCReg(%s)", argParamName)
+			ectx.emit("wantFCCReg(insn.as, %s)", argParamName)
 
 		case common.ArgKindSignedImm,
 			common.ArgKindUnsignedImm:
@@ -291,7 +291,7 @@ func emitValidatorForFormat(ectx *emitterCtx, f *common.InsnFormat) {
 				wantFuncName = "wantUnsignedImm"
 			}
 
-			ectx.emit("%s(%s, %d)", wantFuncName, argParamName, a.TotalWidth())
+			ectx.emit("%s(insn.as, %s, %d)", wantFuncName, argParamName, a.TotalWidth())
 		}
 
 		ectx.emit("; err != nil {\n\t\treturn err\n\t}\n")
