@@ -366,7 +366,7 @@ func emitBigEncoderFn(ectx *emitterCtx, fmts []*common.InsnFormat) {
 
 		for i, a := range f.Args {
 			varName := argVarNames[i]
-			fieldExpr := "enc." + argFieldNames[i]
+			fieldExpr := "insn." + argFieldNames[i]
 
 			ectx.emit("%s :=", varName)
 
