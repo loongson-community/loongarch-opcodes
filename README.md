@@ -25,6 +25,11 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
 * `csrrd` and `csrwr` are removed.
   The two instructions can be seen as special cases of `csrxchg`, so remove
   these for non-overlapping encodings.
+* The FCSR operands of`movfcsr2gr` and `movgr2fcsr` are marked unsigned
+  immediates instead of registers.
+  The FCSR is more like a configuration word than real register in terms of
+  expected usage; but the manual and vendor toolchain all treat the slot as
+  an integer register, which is obviously wrong.
 
 ## Instruction format notation used in this repo
 
