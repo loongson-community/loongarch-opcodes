@@ -44,6 +44,7 @@ func main() {
 		emitValidatorForFormat(&ectx, f)
 	}
 
+	emitValidatorMapping(&ectx, formats)
 	emitSlotEncoders(&ectx, scs)
 	emitBigEncoderFn(&ectx, formats)
 	emitInsnConsts(&ectx, descs)
@@ -273,9 +274,24 @@ func fieldNamesForArgs(args []*common.Arg) []string {
 	return argFieldNames
 }
 
+func verifierFnNameForFormat(f *common.InsnFormat) string {
+	return "validate" + f.CanonicalRepr()
+}
+
+func emitValidatorMapping(ectx *emitterCtx, fmts []*common.InsnFormat) {
+	ectx.emit("var validators = [...]func(*instruction) error {\n")
+
+	for _, f := range fmts {
+		formatName := f.CanonicalRepr()
+		verifierFnName := verifierFnNameForFormat(f)
+		ectx.emit("\tinsnFormat%s: %s,\n", formatName, verifierFnName)
+	}
+
+	ectx.emit("\t}\n\n")
+}
+
 func emitValidatorForFormat(ectx *emitterCtx, f *common.InsnFormat) {
-	formatName := f.CanonicalRepr()
-	funcName := "validate" + formatName
+	funcName := verifierFnNameForFormat(f)
 
 	argFieldNames := fieldNamesForArgs(f.Args)
 
