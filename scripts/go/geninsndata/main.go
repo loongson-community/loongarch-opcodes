@@ -315,7 +315,7 @@ func emitSlotEncoderFn(ectx *common.EmitterCtx, sc string) {
 }
 
 func emitBigEncoderFn(ectx *common.EmitterCtx, fmts []*common.InsnFormat) {
-	ectx.Emit(`func (insn *instruction) encode() (uint32, error) {
+	ectx.Emit(`func (insn *instruction) encodeReal() (uint32, error) {
 	enc, err := encodingForAs(insn.as)
 	if err != nil {
 		return 0, err
@@ -426,6 +426,6 @@ func emitBigEncoderFn(ectx *common.EmitterCtx, fmts []*common.InsnFormat) {
 		ectx.Emit("), nil\n")
 	}
 
-	ectx.Emit("\tdefault:\n\t\tpanic(\"should never happen: unknown insn format\")\n")
+	ectx.Emit("\tdefault:\n\t\tpanic(\"should never happen: unknown format for real insn\")\n")
 	ectx.Emit("\t}\n}\n")
 }
