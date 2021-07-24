@@ -1,7 +1,7 @@
-00006000 rdtimel.w              DJ
-00006400 rdtimeh.w              DJ
+00006000 rdtimel.w              DJ              @primary
+00006400 rdtimeh.w              DJ              @primary
 00006800 rdtime.d               DJ
 00006c00 cpucfg                 DJ
-002a0000 break                  Ud15
+002a0000 break                  Ud15            @primary
 002a8000 dbgcall                Ud15
-002b0000 syscall                Ud15
+002b0000 syscall                Ud15            @primary

@@ -1,47 +1,47 @@
 00005800 ext.w.h                DJ
 00005c00 ext.w.b                DJ
-00100000 add.w                  DJK
-00110000 sub.w                  DJK
-00120000 slt                    DJK
-00128000 sltu                   DJK
+00100000 add.w                  DJK             @primary
+00110000 sub.w                  DJK             @primary
+00120000 slt                    DJK             @primary
+00128000 sltu                   DJK             @primary
 00130000 maskeqz                DJK
 00138000 masknez                DJK
-00140000 nor                    DJK
-00148000 and                    DJK
-00150000 or                     DJK
-00158000 xor                    DJK
-00160000 orn                    DJK
-00168000 andn                   DJK
-00170000 sll.w                  DJK
-00178000 srl.w                  DJK
-00180000 sra.w                  DJK
+00140000 nor                    DJK             @primary
+00148000 and                    DJK             @primary
+00150000 or                     DJK             @primary
+00158000 xor                    DJK             @primary
+00160000 orn                    DJK             @primary
+00168000 andn                   DJK             @primary
+00170000 sll.w                  DJK             @primary
+00178000 srl.w                  DJK             @primary
+00180000 sra.w                  DJK             @primary
 001b0000 rotr.w                 DJK
-00408000 slli.w                 DJUk5
-00448000 srli.w                 DJUk5
-00488000 srai.w                 DJUk5
+00408000 slli.w                 DJUk5           @primary
+00448000 srli.w                 DJUk5           @primary
+00488000 srai.w                 DJUk5           @primary
 004c8000 rotri.w                DJUk5
-02000000 slti                   DJSk12
-02400000 sltui                  DJSk12
-02800000 addi.w                 DJSk12
-03400000 andi                   DJUk12
-03800000 ori                    DJUk12
-03c00000 xori                   DJUk12
-14000000 lu12i.w                DSj20
-18000000 pcaddi                 DSj20
+02000000 slti                   DJSk12          @primary
+02400000 sltui                  DJSk12          @primary
+02800000 addi.w                 DJSk12          @primary
+03400000 andi                   DJUk12          @primary
+03800000 ori                    DJUk12          @primary
+03c00000 xori                   DJUk12          @primary
+14000000 lu12i.w                DSj20           @primary
+18000000 pcaddi                 DSj20           @primary
 1a000000 pcalau12i              DSj20
-1c000000 pcaddu12i              DSj20
+1c000000 pcaddu12i              DSj20           @primary
 1e000000 pcaddu18i              DSj20
 24000000 ldptr.w                DJSk14
 25000000 stptr.w                DJSk14
-28000000 ld.b                   DJSk12
-28400000 ld.h                   DJSk12
-28800000 ld.w                   DJSk12
-29000000 st.b                   DJSk12
-29400000 st.h                   DJSk12
-29800000 st.w                   DJSk12
-2a000000 ld.bu                  DJSk12
-2a400000 ld.hu                  DJSk12
-2ac00000 preld                  JUd5Sk12
+28000000 ld.b                   DJSk12          @primary
+28400000 ld.h                   DJSk12          @primary
+28800000 ld.w                   DJSk12          @primary
+29000000 st.b                   DJSk12          @primary
+29400000 st.h                   DJSk12          @primary
+29800000 st.w                   DJSk12          @primary
+2a000000 ld.bu                  DJSk12          @primary
+2a400000 ld.hu                  DJSk12          @primary
+2ac00000 preld                  JUd5Sk12        @primary
 38000000 ldx.b                  DJK
 38040000 ldx.h                  DJK
 38080000 ldx.w                  DJK
@@ -51,16 +51,16 @@
 38200000 ldx.bu                 DJK
 38240000 ldx.hu                 DJK
 382c0000 preldx                 JKUd5
-38720000 dbar                   Ud15
-38728000 ibar                   Ud15
+38720000 dbar                   Ud15            @primary
+38728000 ibar                   Ud15            @primary
 40000000 beqz                   JSd5k16
 44000000 bnez                   JSd5k16
-4c000000 jirl                   DJSk16
-50000000 b                      Sd10k16
-54000000 bl                     Sd10k16
-58000000 beq                    DJSk16
-5c000000 bne                    DJSk16
-60000000 bgt                    DJSk16
-64000000 ble                    DJSk16
-68000000 bgtu                   DJSk16
-6c000000 bleu                   DJSk16
+4c000000 jirl                   DJSk16          @primary
+50000000 b                      Sd10k16         @primary
+54000000 bl                     Sd10k16         @primary
+58000000 beq                    DJSk16          @primary
+5c000000 bne                    DJSk16          @primary
+60000000 bgt                    DJSk16          @primary
+64000000 ble                    DJSk16          @primary
+68000000 bgtu                   DJSk16          @primary
+6c000000 bleu                   DJSk16          @primary

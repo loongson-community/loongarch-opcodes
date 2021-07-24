@@ -1,5 +1,5 @@
-04000000 csrxchg                DJUk14
-06000000 cacop                  JUd5Sk12
+04000000 csrxchg                DJUk14          @primary
+06000000 cacop                  JUd5Sk12        @primary
 06400000 lddir                  DJUk8
 06440000 ldpte                  JUk8
 06480000 iocsrrd.b              DJ
@@ -12,10 +12,10 @@
 06481c00 iocsrwr.d              DJ
 06482000 tlbclr                 EMPTY
 06482400 tlbflush               EMPTY
-06482800 tlbsrch                EMPTY
-06482c00 tlbrd                  EMPTY
-06483000 tlbwr                  EMPTY
-06483400 tlbfill                EMPTY
-06483800 eret                   EMPTY
-06488000 idle                   Ud15
-06498000 tlbinv                 JKUd5
+06482800 tlbsrch                EMPTY           @primary
+06482c00 tlbrd                  EMPTY           @primary
+06483000 tlbwr                  EMPTY           @primary
+06483400 tlbfill                EMPTY           @primary
+06483800 eret                   EMPTY           @primary
+06488000 idle                   Ud15            @primary
+06498000 tlbinv                 JKUd5           @primary
