@@ -7,7 +7,8 @@ import (
 	"strconv"
 )
 
-var insnRE = regexp.MustCompile(`^([0-9a-f]{8}) ([a-z][0-9a-z_.]*) +(EMPTY|[0-9DJKACFSUdjkam]+)$`)
+var insnRE = regexp.MustCompile(`^([0-9a-f]{8}) ([a-z][0-9a-z_.]*) +(EMPTY|[0-9DJKACFSUdjkam]+)((?: *@[0-9A-Za-z]+)*)$`)
+var attribRE = regexp.MustCompile(`@[0-9A-Za-z]+`)
 
 func ParseInsnDescriptionLine(line string) (*InsnDescription, error) {
 	matches := insnRE.FindStringSubmatch(line)
@@ -18,6 +19,7 @@ func ParseInsnDescriptionLine(line string) (*InsnDescription, error) {
 	wordStr := matches[1]
 	mnemonic := matches[2]
 	insnFmtStr := matches[3]
+	attribsStr := matches[4]
 
 	word64, err := strconv.ParseUint(wordStr, 16, 32)
 	if err != nil {
@@ -30,10 +32,16 @@ func ParseInsnDescriptionLine(line string) (*InsnDescription, error) {
 		return nil, err
 	}
 
+	attribs, err := parseInsnAttribs(attribsStr)
+	if err != nil {
+		return nil, err
+	}
+
 	result := InsnDescription{
 		Word:     word,
 		Mnemonic: mnemonic,
 		Format:   insnFmt,
+		Attribs:  attribs,
 	}
 
 	err = result.Validate()
@@ -42,6 +50,20 @@ func ParseInsnDescriptionLine(line string) (*InsnDescription, error) {
 	}
 
 	return &result, nil
+}
+
+func parseInsnAttribs(input string) (map[string]bool, error) {
+	matches := attribRE.FindAllString(input, -1)
+	if matches == nil {
+		return map[string]bool{}, nil
+	}
+
+	result := make(map[string]bool, len(matches))
+	for _, s := range matches {
+		result[s[1:]] = true
+	}
+
+	return result, nil
 }
 
 func ParseInsnFormat(input string) (*InsnFormat, error) {

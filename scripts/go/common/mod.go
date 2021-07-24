@@ -11,6 +11,7 @@ type InsnDescription struct {
 	Word     uint32
 	Mnemonic string
 	Format   *InsnFormat
+	Attribs  map[string]bool
 }
 
 type InsnFormat struct {
