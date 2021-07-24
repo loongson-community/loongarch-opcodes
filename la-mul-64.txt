@@ -1,0 +1,9 @@
+001d8000 mul.d                  DJK
+001e0000 mulh.d                 DJK
+001e8000 mulh.du                DJK
+001f0000 mulw.d.w               DJK
+001f8000 mulw.d.wu              DJK
+00220000 div.d                  DJK
+00228000 mod.d                  DJK
+00230000 div.du                 DJK
+00238000 mod.du                 DJK
