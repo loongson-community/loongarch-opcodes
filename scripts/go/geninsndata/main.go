@@ -158,6 +158,37 @@ func emitInsnFormatTypes(ectx *common.EmitterCtx, fmts []*common.InsnFormat) {
 	}
 
 	ectx.Emit(")\n\n")
+
+	emitInsnFormatArityFn(ectx, fmts)
+}
+
+func emitInsnFormatArityFn(
+	ectx *common.EmitterCtx,
+	fmts []*common.InsnFormat,
+) {
+	arityMap := make(map[int][]*common.InsnFormat)
+	for _, f := range fmts {
+		arity := len(f.Args)
+		arityMap[arity] = append(arityMap[arity], f)
+	}
+
+	ectx.Emit("func (f insnFormat) arity() int {\n")
+	ectx.Emit("\tswitch f {\n")
+	for arity := 0; arity < 5; arity++ {
+		cases := arityMap[arity]
+
+		ectx.Emit("\tcase ")
+		for i, f := range cases {
+			sep := ","
+			if i == len(cases)-1 {
+				sep = ":"
+			}
+			ectx.Emit("insnFormat%s%s\n", f.CanonicalRepr(), sep)
+		}
+		ectx.Emit("\t\treturn %d\n", arity)
+	}
+	ectx.Emit("\t}\n\n\tpanic(\"unknown insn format\")\n")
+	ectx.Emit("}\n\n")
 }
 
 func emitInsnEncodings(ectx *common.EmitterCtx, descs []*common.InsnDescription) {
