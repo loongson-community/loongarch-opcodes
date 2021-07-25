@@ -386,7 +386,8 @@ func emitBigEncoderFn(ectx *common.EmitterCtx, fmts []*common.InsnFormat) {
 			case common.ArgKindFCCReg:
 				ectx.Emit("regFCC(%s)", fieldExpr)
 			case common.ArgKindSignedImm, common.ArgKindUnsignedImm:
-				ectx.Emit("uint32(%s)", fieldExpr)
+				widthMask := (1 << a.TotalWidth()) - 1
+				ectx.Emit("uint32(%s) & 0x%x", fieldExpr, widthMask)
 			default:
 				panic("unreachable")
 			}
