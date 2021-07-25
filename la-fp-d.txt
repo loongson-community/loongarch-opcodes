@@ -20,10 +20,6 @@
 0114b800 movfr2gr.d             DFj
 01191800 fcvt.s.d               FdFj
 01192400 fcvt.d.s               FdFj
-2b800000 fld.d                  FdJSk12
-2bc00000 fst.d                  FdJSk12
-38340000 fldx.d                 FdJK
-383c0000 fstx.d                 FdJK
 011a0800 ftintrm.w.d            FdFj
 011a2800 ftintrm.l.d            FdFj
 011a4800 ftintrp.w.d            FdFj
@@ -63,3 +59,7 @@
 0c2a8000 fcmp.sor.d             CdFjFk
 0c2c0000 fcmp.cune.d            CdFjFk
 0c2c8000 fcmp.sune.d            CdFjFk
+2b800000 fld.d                  FdJSk12
+2bc00000 fst.d                  FdJSk12
+38340000 fldx.d                 FdJK
+383c0000 fstx.d                 FdJK
