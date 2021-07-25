@@ -1,5 +1,8 @@
 00005800 ext.w.h                DJ
 00005c00 ext.w.b                DJ
+00006000 rdtimel.w              DJ              @primary
+00006400 rdtimeh.w              DJ              @primary
+00006c00 cpucfg                 DJ
 00100000 add.w                  DJK             @primary
 00110000 sub.w                  DJK             @primary
 00120000 slt                    DJK             @primary
@@ -16,6 +19,9 @@
 00178000 srl.w                  DJK             @primary
 00180000 sra.w                  DJK             @primary
 001b0000 rotr.w                 DJK
+002a0000 break                  Ud15            @primary
+002a8000 dbgcall                Ud15
+002b0000 syscall                Ud15            @primary
 00408000 slli.w                 DJUk5           @primary
 00448000 srli.w                 DJUk5           @primary
 00488000 srai.w                 DJUk5           @primary
