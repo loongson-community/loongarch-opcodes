@@ -3,16 +3,12 @@
 38780000 ldgt.b                 DJK
 38788000 ldgt.h                 DJK
 38790000 ldgt.w                 DJK
-38798000 ldgt.d                 DJK
 387a0000 ldle.b                 DJK
 387a8000 ldle.h                 DJK
 387b0000 ldle.w                 DJK
-387b8000 ldle.d                 DJK
 387c0000 stgt.b                 DJK
 387c8000 stgt.h                 DJK
 387d0000 stgt.w                 DJK
-387d8000 stgt.d                 DJK
 387e0000 stle.b                 DJK
 387e8000 stle.h                 DJK
 387f0000 stle.w                 DJK
-387f8000 stle.d                 DJK
