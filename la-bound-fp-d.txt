@@ -1,0 +1,4 @@
+38748000 fldgt.d                FdJK
+38758000 fldle.d                FdJK
+38768000 fstgt.d                FdJK
+38778000 fstle.d                FdJK

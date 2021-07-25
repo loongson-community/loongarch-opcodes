@@ -1,8 +1,4 @@
 38740000 fldgt.s                FdJK
-38748000 fldgt.d                FdJK
 38750000 fldle.s                FdJK
-38758000 fldle.d                FdJK
 38760000 fstgt.s                FdJK
-38768000 fstgt.d                FdJK
 38770000 fstle.s                FdJK
-38778000 fstle.d                FdJK
