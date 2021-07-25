@@ -1,5 +1,5 @@
-00010000 asrtle.d               JK
-00018000 asrtgt.d               JK
+00010000 asrtle                 JK
+00018000 asrtgt                 JK
 38780000 ldgt.b                 DJK
 38788000 ldgt.h                 DJK
 38790000 ldgt.w                 DJK

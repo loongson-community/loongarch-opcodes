@@ -30,6 +30,9 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
   The FCSR is more like a configuration word than real register in terms of
   expected usage; but the manual and vendor toolchain all treat the slot as
   an integer register, which is obviously wrong.
+* `asrt[le,gt].d` have the suffix removed.
+  According to the manual, there's no mention of operand width anywhere,
+  so remove the suffix unless more information is provided.
 
 ## Instruction format notation used in this repo
 
@@ -42,7 +45,7 @@ shortcomings that make it difficult for downstream to consume as is:
   downstream to come up with ad-hoc names themselves;
 * Exact encodings of instructions can differ even with identical assembly syntax,
   making the original notation ambiguous to use.
-  For example, while `asrtle.d` takes two register operands, they are not the
+  For example, while `asrtle` takes two register operands, they are not the
   usual `rd, rj` but `rj, rk`. Is this `2R`, variant of `2R` or a special case
   of `3R`?
 
