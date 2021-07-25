@@ -200,6 +200,26 @@ func generateTestCase(d *common.InsnDescription) testcaseData {
 		}
 	}
 
+	// reorder args for peculiar insns and/or formats
+	switch d.Mnemonic {
+	case "movgr2fcsr":
+		// have immediate at output operand position...
+		args = []testcaseArg{
+			args[1],
+			args[0],
+		}
+
+	case "cacop", "preld":
+		// format JUd5Sk12 means order of rj, code, offset
+		// expected Go assembly is like CACOP offset, rj, code
+		// the arguments are reversed when printed, so reorder to [code, rj, offset]
+		args = []testcaseArg{
+			args[1],
+			args[0],
+			args[2],
+		}
+	}
+
 	return testcaseData{
 		mnemonic:         common.GoAnameForInsn(d.Mnemonic)[1:], // strip the "A" prefix
 		args:             args,
