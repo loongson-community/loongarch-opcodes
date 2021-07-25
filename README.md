@@ -9,28 +9,41 @@ from Loongson, then slightly modified to fix some perceived inconsistencies.
 Some instruction mnemonics are changed, some syntactic sugar are dropped:
 
 * `dbcl` is renamed to `dbgcall`.
+
   The reason why the shorter name is chosen is unclear, but `syscall` remains
   unchanged so the change actually made the naming inconsistent.
+
 * `b[lt,ge][u]` are renamed to `b[gt,le][u]` with corresponding operand order swapped.
+
   All other two-register instructions have the operand in `rd, rj` order, except
   these jump instructions. To preserve semantics the names have to be tweaked
   accordingly. Also all other instructions with comparison semantics adopt the
   `gt/le` distinction, such as the boundary checks, so `lt/ge` is not consistent
   either.
+
 * `ertn` is renamed to `eret`.
+
   Not using `ret` for "return" is hard to understand, personally I think it's
   better to stick with widely accepted naming conventions.
+
 * `invtlb` is renamed to `tlbinv`.
+
   All TLB manipulation instructions start with `tlb` except this one.
+
 * `csrrd` and `csrwr` are removed.
+
   The two instructions can be seen as special cases of `csrxchg`, so remove
   these for non-overlapping encodings.
+
 * The FCSR operands of`movfcsr2gr` and `movgr2fcsr` are marked unsigned
   immediates instead of registers.
+
   The FCSR is more like a configuration word than real register in terms of
   expected usage; but the manual and vendor toolchain all treat the slot as
   an integer register, which is obviously wrong.
+
 * `asrt[le,gt].d` have the suffix removed.
+
   According to the manual, there's no mention of operand width anywhere,
   so remove the suffix unless more information is provided.
 
@@ -45,6 +58,7 @@ shortcomings that make it difficult for downstream to consume as is:
   downstream to come up with ad-hoc names themselves;
 * Exact encodings of instructions can differ even with identical assembly syntax,
   making the original notation ambiguous to use.
+
   For example, while `asrtle` takes two register operands, they are not the
   usual `rd, rj` but `rj, rk`. Is this `2R`, variant of `2R` or a special case
   of `3R`?
