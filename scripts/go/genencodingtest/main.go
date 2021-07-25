@@ -208,16 +208,6 @@ func generateTestCase(d *common.InsnDescription) testcaseData {
 			args[1],
 			args[0],
 		}
-
-	case "cacop", "preld":
-		// format JUd5Sk12 means order of rj, code, offset
-		// expected Go assembly is like CACOP offset, rj, code
-		// the arguments are reversed when printed, so reorder to [code, rj, offset]
-		args = []testcaseArg{
-			args[1],
-			args[0],
-			args[2],
-		}
 	}
 
 	return testcaseData{
