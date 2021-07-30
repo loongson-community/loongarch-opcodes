@@ -36,11 +36,13 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
   these for non-overlapping encodings.
 
 * The FCSR operands of`movfcsr2gr` and `movgr2fcsr` are marked unsigned
-  immediates instead of registers.
+  immediates instead of registers; the mnemonics are renamed to `fcsrrd` and
+  `fcsrwr` as well.
 
   The FCSR is more like a configuration word than real register in terms of
   expected usage; but the manual and vendor toolchain all treat the slot as
-  an integer register, which is obviously wrong.
+  an integer register, which is obviously wrong. Instruction naming is
+  adjusted accordingly (to make the FCSR more resemble CSR).
 
 * `asrt[le,gt].d` have the suffix removed.
 

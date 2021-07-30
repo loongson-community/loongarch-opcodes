@@ -1,5 +1,5 @@
-0114c000 movgr2fcsr             JUd5
-0114c800 movfcsr2gr             DUj5
+0114c000 fcsrwr                 JUd5
+0114c800 fcsrrd                 DUj5
 0114d000 movfr2cf               CdFj
 0114d400 movcf2fr               FdCj
 0114d800 movgr2cf               CdJ
