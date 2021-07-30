@@ -202,12 +202,7 @@ func generateTestCase(d *common.InsnDescription) testcaseData {
 
 	// reorder args for peculiar insns and/or formats
 	switch d.Mnemonic {
-	case "movgr2fcsr":
-		// have immediate at output operand position...
-		args = []testcaseArg{
-			args[1],
-			args[0],
-		}
+	// currently no cases
 	}
 
 	return testcaseData{
