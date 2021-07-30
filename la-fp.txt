@@ -1,9 +1,9 @@
 0114c000 fcsrwr                 JUd5
 0114c800 fcsrrd                 DUj5
-0114d000 movfr2cf               CdFj
-0114d400 movcf2fr               FdCj
-0114d800 movgr2cf               CdJ
-0114dc00 movcf2gr               DCj
+0114d000 movfr2fcc              CdFj
+0114d400 movfcc2fr              FdCj
+0114d800 movgr2fcc              CdJ
+0114dc00 movfcc2gr              DCj
 0d000000 fsel                   FdFjFkCa
 48000000 bceqz                  CjSd5k16
 48000100 bcnez                  CjSd5k16

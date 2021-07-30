@@ -44,6 +44,13 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
   an integer register, which is obviously wrong. Instruction naming is
   adjusted accordingly (to make the FCSR more resemble CSR).
 
+* Instructions that operate on FCCs have the `cf` part renamed to `fcc` in
+  their mnemonics.
+
+  Other parts of the manual, especially the register names, refer to the bank
+  of 1-bit FP predicates as `fcc`, but mnemonics have `cf`, which is
+  inconsistent.
+
 * `asrt[le,gt].d` have the suffix removed.
 
   According to the manual, there's no mention of operand width anywhere,
