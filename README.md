@@ -56,6 +56,14 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
   According to the manual, there's no mention of operand width anywhere,
   so remove the suffix unless more information is provided.
 
+* `rdtime` instructions are renamed `rdtick`.
+
+  Similarly named instructions exist in RISC-V as well; the LoongArch
+  instructions return cycle counter data, instead of converted UNIX
+  timestamp value, so their semantics are actually closer to RISC-V `rdtick`,
+  and not `rdtime`. To avoid misleading people with RISC-V backgrounds, the
+  instructions are renamed in hopes of lowering learning cost.
+
 ## Instruction format notation used in this repo
 
 The instruction format notation used in the official documentation has several

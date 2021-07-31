@@ -1,7 +1,7 @@
 00005800 ext.w.h                DJ
 00005c00 ext.w.b                DJ
-00006000 rdtimel.w              DJ              @primary
-00006400 rdtimeh.w              DJ              @primary
+00006000 rdtickl.w              DJ              @primary
+00006400 rdtickh.w              DJ              @primary
 00006c00 cpucfg                 DJ
 00100000 add.w                  DJK             @primary
 00110000 sub.w                  DJK             @primary

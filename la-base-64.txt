@@ -1,4 +1,4 @@
-00006800 rdtime.d               DJ
+00006800 rdtick.d               DJ
 00108000 add.d                  DJK
 00118000 sub.d                  DJK
 00188000 sll.d                  DJK
