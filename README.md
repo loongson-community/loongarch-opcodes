@@ -64,6 +64,18 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
   and not `rdtime`. To avoid misleading people with RISC-V backgrounds, the
   instructions are renamed in hopes of lowering learning cost.
 
+* `[ld,st]ptr` are renamed `[ld,st]ox4` (Load/Store; Offset x4 or Indexed by 4).
+
+  The instructions are created with accelerating GOT accesses in mind;
+  they got their current semantics because the GOT is an array of pointers,
+  and pointers are at least 32-bit aligned, meaning the array offsets must be
+  at least multiples of 4.
+
+  However, the operation `rd = *(rj + imm << 2)` itself is completely generic,
+  and has nothing to do with pointers. So, rename the instructions to hopefully
+  avoid having to include the background material (the paragraph above) to
+  every LoongArch learner.
+
 ## Instruction format notation used in this repo
 
 The instruction format notation used in the official documentation has several

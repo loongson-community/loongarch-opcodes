@@ -37,8 +37,8 @@
 1a000000 pcalau12i              DSj20
 1c000000 pcaddu12i              DSj20           @primary
 1e000000 pcaddu18i              DSj20
-24000000 ldptr.w                DJSk14
-25000000 stptr.w                DJSk14
+24000000 ldox4.w                DJSk14
+25000000 stox4.w                DJSk14
 28000000 ld.b                   DJSk12          @primary
 28400000 ld.h                   DJSk12          @primary
 28800000 ld.w                   DJSk12          @primary
