@@ -80,7 +80,8 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
 
   According to the manual these actually sign-extend to full native width
   (GRLEN), regardless of whether GRLEN is 32 or not. Also the previous name is
-  not too informative either -- "ext" could as well be "zero-extend" too.
+  not too informative either -- "ext" could as well be "zero-extend" or
+  "extract" too, and that's bound to confuse people.
 
 ## Instruction format notation used in this repo
 
