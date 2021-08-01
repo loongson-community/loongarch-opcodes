@@ -6,7 +6,6 @@ import (
 	"math/rand"
 	"os"
 	"sort"
-	"strings"
 
 	"github.com/loongson-community/loongarch-opcodes/scripts/go/common"
 )
@@ -28,11 +27,6 @@ func main() {
 	}
 
 	for _, d := range descs {
-		// atomic instructions may be special cases in Go assembly
-		if strings.HasPrefix(d.Mnemonic, "am") {
-			continue
-		}
-
 		// test cases for jumps are to be manually written so skip those too
 		switch d.Mnemonic {
 		case "beqz", "bnez", "bceqz", "bcnez",
