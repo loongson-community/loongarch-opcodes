@@ -1,5 +1,5 @@
-00005800 ext.w.h                DJ
-00005c00 ext.w.b                DJ
+00005800 sext.h                 DJ
+00005c00 sext.b                 DJ
 00006000 rdtickl.w              DJ              @primary
 00006400 rdtickh.w              DJ              @primary
 00006c00 cpucfg                 DJ

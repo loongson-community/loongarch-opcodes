@@ -76,6 +76,12 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
   avoid having to include the background material (the paragraph above) to
   every LoongArch learner.
 
+* `ext.w.[bh]` are renamed `sext.[bh]`.
+
+  According to the manual these actually sign-extend to full native width
+  (GRLEN), regardless of whether GRLEN is 32 or not. Also the previous name is
+  not too informative either -- "ext" could as well be "zero-extend" too.
+
 ## Instruction format notation used in this repo
 
 The instruction format notation used in the official documentation has several
