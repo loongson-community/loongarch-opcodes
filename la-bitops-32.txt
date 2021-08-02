@@ -3,8 +3,8 @@
 00001800 cto.w                  DJ
 00001c00 ctz.w                  DJ
 00003000 revb.2h                DJ
-00004800 bitrev.4b              DJ
-00005000 bitrev.w               DJ
+00004800 revbit.4b              DJ
+00005000 revbit.w               DJ
 00040000 alsl.w                 DJKUa2
 00080000 bytepick.w             DJKUa2
 00240000 crc.w.b.w              DJK

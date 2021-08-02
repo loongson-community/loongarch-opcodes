@@ -7,8 +7,8 @@
 00003c00 revb.d                 DJ
 00004000 revh.2w                DJ
 00004400 revh.d                 DJ
-00004c00 bitrev.8b              DJ
-00005400 bitrev.d               DJ
+00004c00 revbit.8b              DJ
+00005400 revbit.d               DJ
 00060000 alsl.wu                DJKUa2
 000c0000 bytepick.d             DJKUa3
 00258000 crc.w.d.w              DJK

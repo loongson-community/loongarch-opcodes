@@ -83,6 +83,11 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
   not too informative either -- "ext" could as well be "zero-extend" or
   "extract" too, and that's bound to confuse people.
 
+* `bitrev` instructions are renamed `revbit`.
+
+  Byte/halfword-unit-reversing instructions are `revb` and `revh` respectively,
+  so unify the naming.
+
 ## Instruction format notation used in this repo
 
 The instruction format notation used in the official documentation has several
