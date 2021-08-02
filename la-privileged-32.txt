@@ -14,6 +14,6 @@
 06482c00 tlbrd                  EMPTY           @primary
 06483000 tlbwr                  EMPTY           @primary
 06483400 tlbfill                EMPTY           @primary
-06483800 eret                   EMPTY           @primary
+06483800 eret                   EMPTY           @orig_name=ertn @primary
 06488000 idle                   Ud15            @primary
-06498000 tlbinv                 JKUd5           @primary
+06498000 tlbinv                 JKUd5           @orig_name=invtlb @primary

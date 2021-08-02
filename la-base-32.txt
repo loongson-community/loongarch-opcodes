@@ -1,7 +1,7 @@
-00005800 sext.h                 DJ
-00005c00 sext.b                 DJ
-00006000 rdtickl.w              DJ              @primary
-00006400 rdtickh.w              DJ              @primary
+00005800 sext.h                 DJ              @orig_name=ext.w.h
+00005c00 sext.b                 DJ              @orig_name=ext.w.b
+00006000 rdtickl.w              DJ              @orig_name=rdtimel.w @primary
+00006400 rdtickh.w              DJ              @orig_name=rdtimeh.w @primary
 00006c00 cpucfg                 DJ
 00100000 add.w                  DJK             @primary
 00110000 sub.w                  DJK             @primary
@@ -20,7 +20,7 @@
 00180000 sra.w                  DJK             @primary
 001b0000 rotr.w                 DJK
 002a0000 break                  Ud15            @primary
-002a8000 dbgcall                Ud15
+002a8000 dbgcall                Ud15            @orig_name=dbcl
 002b0000 syscall                Ud15            @primary
 00408000 slli.w                 DJUk5           @primary
 00448000 srli.w                 DJUk5           @primary
@@ -37,8 +37,8 @@
 1a000000 pcalau12i              DSj20
 1c000000 pcaddu12i              DSj20           @primary
 1e000000 pcaddu18i              DSj20
-24000000 ldox4.w                DJSk14
-25000000 stox4.w                DJSk14
+24000000 ldox4.w                DJSk14          @orig_name=ldptr.w
+25000000 stox4.w                DJSk14          @orig_name=stptr.w
 28000000 ld.b                   DJSk12          @primary
 28400000 ld.h                   DJSk12          @primary
 28800000 ld.w                   DJSk12          @primary
