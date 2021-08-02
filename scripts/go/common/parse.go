@@ -5,10 +5,11 @@ import (
 	"fmt"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
-var insnRE = regexp.MustCompile(`^([0-9a-f]{8}) ([a-z][0-9a-z_.]*) +(EMPTY|[0-9DJKACFSUdjkam]+)((?: *@[0-9A-Za-z]+)*)$`)
-var attribRE = regexp.MustCompile(`@[0-9A-Za-z]+`)
+var insnRE = regexp.MustCompile(`^([0-9a-f]{8}) ([a-z][0-9a-z_.]*) +(EMPTY|[0-9DJKACFSUdjkam]+)((?: *@[0-9A-Za-z_.=]+)*)$`)
+var attribRE = regexp.MustCompile(`@[0-9A-Za-z_.]+(?:=[0-9A-Za-z_.]*)?`)
 
 func ParseInsnDescriptionLine(line string) (*InsnDescription, error) {
 	matches := insnRE.FindStringSubmatch(line)
@@ -52,15 +53,23 @@ func ParseInsnDescriptionLine(line string) (*InsnDescription, error) {
 	return &result, nil
 }
 
-func parseInsnAttribs(input string) (map[string]bool, error) {
+func parseInsnAttribs(input string) (map[string]string, error) {
 	matches := attribRE.FindAllString(input, -1)
 	if matches == nil {
-		return map[string]bool{}, nil
+		return map[string]string{}, nil
 	}
 
-	result := make(map[string]bool, len(matches))
+	result := make(map[string]string, len(matches))
 	for _, s := range matches {
-		result[s[1:]] = true
+		sepIdx := strings.Index(s, "=")
+		if sepIdx != -1 {
+			// @key=value form
+			result[s[1:sepIdx]] = s[sepIdx+1:]
+			continue
+		}
+
+		// @key form
+		result[s[1:]] = "true"
 	}
 
 	return result, nil

@@ -21,7 +21,7 @@ func TestParseInsnDescriptionLine(t *testing.T) {
 				Format: &InsnFormat{
 					Args: nil,
 				},
-				Attribs: map[string]bool{},
+				Attribs: map[string]string{},
 			},
 		},
 		{
@@ -37,7 +37,7 @@ func TestParseInsnDescriptionLine(t *testing.T) {
 						{Kind: ArgKindSignedImm, Slots: []*Slot{{Offset: 10, Width: 14}}},
 					},
 				},
-				Attribs: map[string]bool{},
+				Attribs: map[string]string{},
 			},
 		},
 		{
@@ -53,7 +53,7 @@ func TestParseInsnDescriptionLine(t *testing.T) {
 						{Kind: ArgKindSignedImm, Slots: []*Slot{{Offset: 10, Width: 12}}},
 					},
 				},
-				Attribs: map[string]bool{},
+				Attribs: map[string]string{},
 			},
 		},
 		{
@@ -71,11 +71,11 @@ func TestParseInsnDescriptionLine(t *testing.T) {
 						}},
 					},
 				},
-				Attribs: map[string]bool{},
+				Attribs: map[string]string{},
 			},
 		},
 		{
-			x:  "20000000 ll.w                   DJSk14     @32 @atomics @primary",
+			x:  "20000000 ll.w                   DJSk14     @32 @atomics @primary @foo=amswap_db.d",
 			ok: true,
 			expected: &InsnDescription{
 				Word:     0x20000000,
@@ -87,10 +87,11 @@ func TestParseInsnDescriptionLine(t *testing.T) {
 						{Kind: ArgKindSignedImm, Slots: []*Slot{{Offset: 10, Width: 14}}},
 					},
 				},
-				Attribs: map[string]bool{
-					"32":      true,
-					"atomics": true,
-					"primary": true,
+				Attribs: map[string]string{
+					"32":      "true",
+					"atomics": "true",
+					"primary": "true",
+					"foo":     "amswap_db.d",
 				},
 			},
 		},
