@@ -88,6 +88,11 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
   Byte/halfword-unit-reversing instructions are `revb` and `revh` respectively,
   so unify the naming.
 
+* `lu32i.d` `lu52i.d` are renamed `cu32i.d` `cu52i.d`.
+
+  `lu12i.w` empties low bits, but `lu32i.d` and `lu52i.d` keeps low bits. So
+  change the "load" part to "concatenate/connect" to distinguish.
+
 ## Instruction format notation used in this repo
 
 The instruction format notation used in the official documentation has several

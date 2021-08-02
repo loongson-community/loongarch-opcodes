@@ -10,9 +10,9 @@
 00490000 srai.d                 DJUk6
 004d0000 rotri.d                DJUk6
 02c00000 addi.d                 DJSk12
-03000000 lu52i.d                DJSk12
+03000000 cu52i.d                DJSk12          @orig_name=lu52i.d
 10000000 addu16i.d              DJSk16
-16000000 lu32i.d                DSj20
+16000000 cu32i.d                DSj20           @orig_name=lu32i.d
 26000000 ldox4.d                DJSk14          @orig_name=ldptr.d
 27000000 stox4.d                DJSk14          @orig_name=stptr.d
 28c00000 ld.d                   DJSk12
