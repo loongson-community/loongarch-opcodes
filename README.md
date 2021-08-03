@@ -99,6 +99,11 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
   `pcaddu12i` and `pcaddu18i`, but the `u2` part is curiously missing. Fix the
   inconsistency.
 
+* `alsl.*` are renamed `sladd.*`.
+
+  It's not clear what full name "alsl" actually stands for, so rename to
+  reflect the semantics -- "Shift-Left/ScaLed Add".
+
 ## Instruction format notation used in this repo
 
 The instruction format notation used in the official documentation has several
