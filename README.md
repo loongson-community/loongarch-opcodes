@@ -104,6 +104,14 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
   It's not clear what full name "alsl" actually stands for, so rename to
   reflect the semantics -- "Shift-Left/ScaLed Add".
 
+* `bytepick.*` are renamed `catpick.*`.
+
+  The original names give a false impression of somehow returning or operating
+  on a single byte, while in fact it was only *byte*-indexed. Real operation is
+  more like first *concatenating* two suffix-sized values then *picking* one
+  suffix-sized value out from middle. Besides, cats inside the manuals are
+  certainly nice...
+
 ## Instruction format notation used in this repo
 
 The instruction format notation used in the official documentation has several

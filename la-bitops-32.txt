@@ -6,7 +6,7 @@
 00004800 revbit.4b              DJ              @orig_name=bitrev.4b
 00005000 revbit.w               DJ              @orig_name=bitrev.w
 00040000 sladd.w                DJKUa2          @orig_name=alsl.w
-00080000 bytepick.w             DJKUa2
+00080000 catpick.w              DJKUa2          @orig_name=bytepick.w
 00240000 crc.w.b.w              DJK
 00248000 crc.w.h.w              DJK
 00250000 crc.w.w.w              DJK
