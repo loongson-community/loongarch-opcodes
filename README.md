@@ -93,6 +93,12 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
   `lu12i.w` empties low bits, but `lu32i.d` and `lu52i.d` keeps low bits. So
   change the "load" part to "concatenate/connect" to distinguish.
 
+* `pcaddi` is renamed `pcaddu2i`.
+
+  It left-shifts the immediate by 2 before adding, just like its friends
+  `pcaddu12i` and `pcaddu18i`, but the `u2` part is curiously missing. Fix the
+  inconsistency.
+
 ## Instruction format notation used in this repo
 
 The instruction format notation used in the official documentation has several
