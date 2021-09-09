@@ -356,7 +356,7 @@ func emitFmtEncoderFn(ectx *common.EmitterCtx, f *common.InsnFormat) {
 
 	sc := slotCombinationForFmt(f)
 	encFnName := slotEncoderFnNameForSc(sc)
-	ectx.Emit("    return %s(enc.bits", encFnName)
+	ectx.Emit("    return %s(opc", encFnName)
 
 	for _, s := range sc {
 		offset := uint(slotOffsetFromRune(s))
