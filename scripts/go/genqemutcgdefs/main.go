@@ -339,14 +339,18 @@ func emitFmtEncoderFn(ectx *common.EmitterCtx, f *common.InsnFormat) {
 				mask := int((1 << s.Width) - 1)
 
 				var sb strings.Builder
-				sb.WriteString(argVarName)
 
 				if remainingBits > 0 {
-					sb.WriteString(">>")
+					sb.WriteRune('(')
+					sb.WriteString(argVarName)
+					sb.WriteString(" >> ")
 					sb.WriteString(strconv.Itoa(remainingBits))
+					sb.WriteRune(')')
+				} else {
+					sb.WriteString(argVarName)
 				}
 
-				sb.WriteString("&0x")
+				sb.WriteString(" & 0x")
 				sb.WriteString(strconv.FormatUint(uint64(mask), 16))
 
 				slotExprs[s.Offset] = sb.String()
