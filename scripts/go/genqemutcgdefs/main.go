@@ -252,11 +252,20 @@ func emitSlotEncoderFn(ectx *common.EmitterCtx, sc string) {
 	funcName := slotEncoderFnNameForSc(sc)
 	scLower := strings.ToLower(sc)
 
-	ectx.Emit("\nstatic int32_t %s(LoongArchInsn opc", funcName)
-	for _, s := range scLower {
-		ectx.Emit(", uint32_t %c", s)
+	emitHeader := func(isPrototype bool) {
+		ectx.Emit("\nstatic int32_t %s(LoongArchInsn opc", funcName)
+		for _, s := range scLower {
+			ectx.Emit(", uint32_t %c", s)
+		}
+		if isPrototype {
+			ectx.Emit(") %s;\n", attribUnused)
+		} else {
+			ectx.Emit(")\n{\n")
+		}
 	}
-	ectx.Emit(") %s\n{\n", attribUnused)
+
+	emitHeader(true)
+	emitHeader(false)
 
 	ectx.Emit("    return opc")
 
@@ -284,11 +293,20 @@ func emitFmtEncoderFn(ectx *common.EmitterCtx, f *common.InsnFormat) {
 
 	argFieldDescs := fieldDescsForArgs(f.Args)
 
-	ectx.Emit("\nstatic int32_t %s(LoongArchInsn opc", fmtEncoderFnNameForInsnFormat(f))
-	for i := range f.Args {
-		ectx.Emit(", %s %s", argFieldDescs[i].typ, argFieldDescs[i].name)
+	emitHeader := func(isPrototype bool) {
+		ectx.Emit("\nstatic int32_t %s(LoongArchInsn opc", fmtEncoderFnNameForInsnFormat(f))
+		for i := range f.Args {
+			ectx.Emit(", %s %s", argFieldDescs[i].typ, argFieldDescs[i].name)
+		}
+		if isPrototype {
+			ectx.Emit(") %s;\n", attribUnused)
+		} else {
+			ectx.Emit(")\n{\n")
+		}
 	}
-	ectx.Emit(") %s\n{\n", attribUnused)
+
+	emitHeader(true)
+	emitHeader(false)
 
 	for i, a := range f.Args {
 		varName := argFieldDescs[i].name
@@ -410,19 +428,27 @@ func emitTCGEmitterForInsn(ectx *common.EmitterCtx, d *common.InsnDescription) {
 	// function header
 	declFirstLinePrefix := fmt.Sprintf("static void tcg_out_%s(", opcLower)
 
-	ectx.Emit("%sTCGContext *s", declFirstLinePrefix)
+	emitHeader := func(isPrototype bool) {
+		ectx.Emit("%sTCGContext *s", declFirstLinePrefix)
+		for _, fd := range argFieldDescs {
+			ectx.Emit(", %s %s", fd.typ, fd.name)
+		}
+		if isPrototype {
+			ectx.Emit(") %s;\n\n", attribUnused)
+		} else {
+			ectx.Emit(")\n{\n")
+		}
+	}
+
+	emitHeader(true)
+	emitHeader(false)
+
 	if len(d.Format.Args) == 0 {
 		// special-case EMPTY
-		ectx.Emit(") %s\n{\n", attribUnused)
 		ectx.Emit("    tcg_out32(s, %s);\n", opc)
 		ectx.Emit("}\n")
 		return
 	}
-
-	for _, fd := range argFieldDescs {
-		ectx.Emit(", %s %s", fd.typ, fd.name)
-	}
-	ectx.Emit(") %s\n{\n", attribUnused)
 
 	// body and tail
 	fmtEncoderFnName := fmtEncoderFnNameForInsnFormat(d.Format)
