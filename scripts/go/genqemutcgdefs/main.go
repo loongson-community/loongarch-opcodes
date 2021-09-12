@@ -10,6 +10,8 @@ import (
 	"github.com/loongson-community/loongarch-opcodes/scripts/go/common"
 )
 
+const attribUnused = "__attribute__((unused))"
+
 func main() {
 	inputs := os.Args[1:]
 
@@ -254,7 +256,7 @@ func emitSlotEncoderFn(ectx *common.EmitterCtx, sc string) {
 	for _, s := range scLower {
 		ectx.Emit(", uint32_t %c", s)
 	}
-	ectx.Emit(")\n{\n")
+	ectx.Emit(") %s\n{\n", attribUnused)
 
 	ectx.Emit("    return opc")
 
@@ -286,7 +288,7 @@ func emitFmtEncoderFn(ectx *common.EmitterCtx, f *common.InsnFormat) {
 	for i := range f.Args {
 		ectx.Emit(", %s %s", argFieldDescs[i].typ, argFieldDescs[i].name)
 	}
-	ectx.Emit(")\n{\n")
+	ectx.Emit(") %s\n{\n", attribUnused)
 
 	for i, a := range f.Args {
 		varName := argFieldDescs[i].name
@@ -411,7 +413,7 @@ func emitTCGEmitterForInsn(ectx *common.EmitterCtx, d *common.InsnDescription) {
 	ectx.Emit("%sTCGContext *s", declFirstLinePrefix)
 	if len(d.Format.Args) == 0 {
 		// special-case EMPTY
-		ectx.Emit(")\n{\n")
+		ectx.Emit(")\n%s{\n", attribUnused)
 		ectx.Emit("    tcg_out32(s, %s);\n", opc)
 		ectx.Emit("}\n")
 		return
@@ -420,7 +422,7 @@ func emitTCGEmitterForInsn(ectx *common.EmitterCtx, d *common.InsnDescription) {
 	for _, fd := range argFieldDescs {
 		ectx.Emit(", %s %s", fd.typ, fd.name)
 	}
-	ectx.Emit(")\n{\n")
+	ectx.Emit(")\n%s{\n", attribUnused)
 
 	// body and tail
 	fmtEncoderFnName := fmtEncoderFnNameForInsnFormat(d.Format)
