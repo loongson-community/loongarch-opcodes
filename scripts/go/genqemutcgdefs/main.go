@@ -413,7 +413,7 @@ func emitTCGEmitterForInsn(ectx *common.EmitterCtx, d *common.InsnDescription) {
 	ectx.Emit("%sTCGContext *s", declFirstLinePrefix)
 	if len(d.Format.Args) == 0 {
 		// special-case EMPTY
-		ectx.Emit(")\n%s{\n", attribUnused)
+		ectx.Emit(") %s\n{\n", attribUnused)
 		ectx.Emit("    tcg_out32(s, %s);\n", opc)
 		ectx.Emit("}\n")
 		return
@@ -422,7 +422,7 @@ func emitTCGEmitterForInsn(ectx *common.EmitterCtx, d *common.InsnDescription) {
 	for _, fd := range argFieldDescs {
 		ectx.Emit(", %s %s", fd.typ, fd.name)
 	}
-	ectx.Emit(")\n%s{\n", attribUnused)
+	ectx.Emit(") %s\n{\n", attribUnused)
 
 	// body and tail
 	fmtEncoderFnName := fmtEncoderFnNameForInsnFormat(d.Format)
