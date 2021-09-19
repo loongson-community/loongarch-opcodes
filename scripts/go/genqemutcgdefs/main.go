@@ -1,8 +1,13 @@
 package main
 
 import (
+	"bytes"
+	_ "embed"
 	"fmt"
+	"io/ioutil"
 	"os"
+	"os/exec"
+	"path/filepath"
 	"sort"
 	"strconv"
 	"strings"
@@ -11,6 +16,9 @@ import (
 )
 
 const attribUnused = "__attribute__((unused))"
+
+//go:embed qemu.clang-format
+var qemuStyleFileBytes []byte
 
 func main() {
 	inputs := os.Args[1:]
@@ -60,7 +68,51 @@ func main() {
 	}
 
 	result := ectx.Finalize()
-	os.Stdout.Write(result)
+
+	// format the generated code with clang-format, using the qemu style
+	//
+	// due to clang-format madness (can't customize .clang-format path nor filename),
+	// we have to use a temporary directory for not polluting our repo with
+	// inadequately named file(s)
+	//
+	// see https://bugs.llvm.org/show_bug.cgi?id=20753
+	var formattedResult []byte
+	{
+		tempdir, err := ioutil.TempDir("", "genqemutcgdefs.*")
+		if err != nil {
+			panic(err)
+		}
+		defer os.RemoveAll(tempdir)
+
+		// write the style file there
+		styleFilePath := filepath.Join(tempdir, ".clang-format")
+		err = ioutil.WriteFile(styleFilePath, qemuStyleFileBytes, 0644)
+		if err != nil {
+			panic(err)
+		}
+
+		err = os.Chdir(tempdir)
+		if err != nil {
+			panic(err)
+		}
+
+		clangFormat := exec.Command(
+			"clang-format",
+			"--style=file",
+		)
+		clangFormat.Stdin = bytes.NewBuffer(result)
+		formattedResult, err = clangFormat.Output()
+		if err != nil {
+			exitError, ok := err.(*exec.ExitError)
+			if !ok {
+				panic(err)
+			}
+			fmt.Fprintf(os.Stderr, "fatal: clang-format failed\nstderr:\n%s", string(exitError.Stderr))
+			panic(err)
+		}
+	}
+
+	os.Stdout.Write(formattedResult)
 }
 
 ////////////////////////////////////////////////////////////////////////////
