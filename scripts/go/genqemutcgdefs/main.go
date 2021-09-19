@@ -20,7 +20,7 @@ func main() {
 		panic(err)
 	}
 
-	descs = filterFPInsns(descs)
+	descs = filterUnusedInsns(descs)
 
 	formats := gatherFormats(descs)
 	scs := gatherDistinctSlotCombinations(formats)
@@ -65,21 +65,12 @@ func main() {
 
 ////////////////////////////////////////////////////////////////////////////
 
-func filterFPInsns(descs []*common.InsnDescription) []*common.InsnDescription {
+func filterUnusedInsns(descs []*common.InsnDescription) []*common.InsnDescription {
 	var result []*common.InsnDescription
 	for _, d := range descs {
-		isFPInsn := false
-		for _, a := range d.Format.Args {
-			switch a.Kind {
-			case common.ArgKindFPReg, common.ArgKindFCCReg:
-				isFPInsn = true
-				break
-			}
-		}
-
-		if isFPInsn {
-			// QEMU TCG doesn't emit FP instructions for now, so don't
-			// generate these to reduce code size.
+		if _, ok := d.Attribs["qemu"]; !ok {
+			// QEMU TCG doesn't emit this instruction for now, so ignore this
+			// to reduce code size.
 			continue
 		}
 
