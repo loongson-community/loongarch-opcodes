@@ -1,10 +1,10 @@
 00002000 clo.d                  DJ
-00002400 clz.d                  DJ
+00002400 clz.d                  DJ              @qemu
 00002800 cto.d                  DJ
-00002c00 ctz.d                  DJ
+00002c00 ctz.d                  DJ              @qemu
 00003400 revb.4h                DJ
 00003800 revb.2w                DJ
-00003c00 revb.d                 DJ
+00003c00 revb.d                 DJ              @qemu
 00004000 revh.2w                DJ
 00004400 revh.d                 DJ
 00004c00 revbit.8b              DJ              @orig_name=bitrev.8b
@@ -14,5 +14,5 @@
 00258000 crc.w.d.w              DJK
 00278000 crcc.w.d.w             DJK
 002c0000 sladd.d                DJKUa2          @orig_name=alsl.d
-00800000 bstrins.d              DJUk6Um6
-00c00000 bstrpick.d             DJUk6Um6
+00800000 bstrins.d              DJUk6Um6        @qemu
+00c00000 bstrpick.d             DJUk6Um6        @qemu

@@ -1,52 +1,52 @@
-00005800 sext.h                 DJ              @orig_name=ext.w.h
-00005c00 sext.b                 DJ              @orig_name=ext.w.b
+00005800 sext.h                 DJ              @orig_name=ext.w.h @qemu
+00005c00 sext.b                 DJ              @orig_name=ext.w.b @qemu
 00006000 rdtickl.w              DJ              @orig_name=rdtimel.w @primary
 00006400 rdtickh.w              DJ              @orig_name=rdtimeh.w @primary
 00006c00 cpucfg                 DJ
-00100000 add.w                  DJK             @primary
-00110000 sub.w                  DJK             @primary
-00120000 slt                    DJK             @primary
-00128000 sltu                   DJK             @primary
-00130000 maskeqz                DJK
-00138000 masknez                DJK
-00140000 nor                    DJK             @primary
-00148000 and                    DJK             @primary
-00150000 or                     DJK             @primary
-00158000 xor                    DJK             @primary
-00160000 orn                    DJK             @primary
-00168000 andn                   DJK             @primary
-00170000 sll.w                  DJK             @primary
-00178000 srl.w                  DJK             @primary
-00180000 sra.w                  DJK             @primary
-001b0000 rotr.w                 DJK
+00100000 add.w                  DJK             @primary @qemu
+00110000 sub.w                  DJK             @primary @qemu
+00120000 slt                    DJK             @primary @qemu
+00128000 sltu                   DJK             @primary @qemu
+00130000 maskeqz                DJK             @qemu
+00138000 masknez                DJK             @qemu
+00140000 nor                    DJK             @primary @qemu
+00148000 and                    DJK             @primary @qemu
+00150000 or                     DJK             @primary @qemu
+00158000 xor                    DJK             @primary @qemu
+00160000 orn                    DJK             @primary @qemu
+00168000 andn                   DJK             @primary @qemu
+00170000 sll.w                  DJK             @primary @qemu
+00178000 srl.w                  DJK             @primary @qemu
+00180000 sra.w                  DJK             @primary @qemu
+001b0000 rotr.w                 DJK             @qemu
 002a0000 break                  Ud15            @primary
 002a8000 dbgcall                Ud15            @orig_name=dbcl
 002b0000 syscall                Ud15            @primary
-00408000 slli.w                 DJUk5           @primary
-00448000 srli.w                 DJUk5           @primary
-00488000 srai.w                 DJUk5           @primary
-004c8000 rotri.w                DJUk5
-02000000 slti                   DJSk12          @primary
-02400000 sltui                  DJSk12          @primary
-02800000 addi.w                 DJSk12          @primary
-03400000 andi                   DJUk12          @primary
-03800000 ori                    DJUk12          @primary
-03c00000 xori                   DJUk12          @primary
-14000000 lu12i.w                DSj20           @primary
+00408000 slli.w                 DJUk5           @primary @qemu
+00448000 srli.w                 DJUk5           @primary @qemu
+00488000 srai.w                 DJUk5           @primary @qemu
+004c8000 rotri.w                DJUk5           @qemu
+02000000 slti                   DJSk12          @primary @qemu
+02400000 sltui                  DJSk12          @primary @qemu
+02800000 addi.w                 DJSk12          @primary @qemu
+03400000 andi                   DJUk12          @primary @qemu
+03800000 ori                    DJUk12          @primary @qemu
+03c00000 xori                   DJUk12          @primary @qemu
+14000000 lu12i.w                DSj20           @primary @qemu
 18000000 pcaddu2i               DSj20           @orig_name=pcaddi @primary
 1a000000 pcalau12i              DSj20
-1c000000 pcaddu12i              DSj20           @primary
+1c000000 pcaddu12i              DSj20           @primary @qemu
 1e000000 pcaddu18i              DSj20
 24000000 ldox4.w                DJSk14          @orig_name=ldptr.w
 25000000 stox4.w                DJSk14          @orig_name=stptr.w
-28000000 ld.b                   DJSk12          @primary
-28400000 ld.h                   DJSk12          @primary
-28800000 ld.w                   DJSk12          @primary
-29000000 st.b                   DJSk12          @primary
-29400000 st.h                   DJSk12          @primary
-29800000 st.w                   DJSk12          @primary
-2a000000 ld.bu                  DJSk12          @primary
-2a400000 ld.hu                  DJSk12          @primary
+28000000 ld.b                   DJSk12          @primary @qemu
+28400000 ld.h                   DJSk12          @primary @qemu
+28800000 ld.w                   DJSk12          @primary @qemu
+29000000 st.b                   DJSk12          @primary @qemu
+29400000 st.h                   DJSk12          @primary @qemu
+29800000 st.w                   DJSk12          @primary @qemu
+2a000000 ld.bu                  DJSk12          @primary @qemu
+2a400000 ld.hu                  DJSk12          @primary @qemu
 2ac00000 preld                  JUd5Sk12        @primary
 38000000 ldx.b                  DJK
 38040000 ldx.h                  DJK
@@ -57,16 +57,16 @@
 38200000 ldx.bu                 DJK
 38240000 ldx.hu                 DJK
 382c0000 preldx                 JKUd5
-38720000 dbar                   Ud15            @primary
+38720000 dbar                   Ud15            @primary @qemu
 38728000 ibar                   Ud15            @primary
 40000000 beqz                   JSd5k16
 44000000 bnez                   JSd5k16
-4c000000 jirl                   DJSk16          @primary
-50000000 b                      Sd10k16         @primary
-54000000 bl                     Sd10k16         @primary
-58000000 beq                    DJSk16          @primary
-5c000000 bne                    DJSk16          @primary
-60000000 bgt                    DJSk16          @primary
-64000000 ble                    DJSk16          @primary
-68000000 bgtu                   DJSk16          @primary
-6c000000 bleu                   DJSk16          @primary
+4c000000 jirl                   DJSk16          @primary @qemu
+50000000 b                      Sd10k16         @primary @qemu
+54000000 bl                     Sd10k16         @primary @qemu
+58000000 beq                    DJSk16          @primary @qemu
+5c000000 bne                    DJSk16          @primary @qemu
+60000000 bgt                    DJSk16          @primary @qemu
+64000000 ble                    DJSk16          @primary @qemu
+68000000 bgtu                   DJSk16          @primary @qemu
+6c000000 bleu                   DJSk16          @primary @qemu

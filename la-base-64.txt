@@ -1,23 +1,23 @@
 00006800 rdtick.d               DJ              @orig_name=rdtime.d
-00108000 add.d                  DJK
-00118000 sub.d                  DJK
-00188000 sll.d                  DJK
-00190000 srl.d                  DJK
-00198000 sra.d                  DJK
-001b8000 rotr.d                 DJK
-00410000 slli.d                 DJUk6
-00450000 srli.d                 DJUk6
-00490000 srai.d                 DJUk6
-004d0000 rotri.d                DJUk6
-02c00000 addi.d                 DJSk12
-03000000 cu52i.d                DJSk12          @orig_name=lu52i.d
+00108000 add.d                  DJK             @qemu
+00118000 sub.d                  DJK             @qemu
+00188000 sll.d                  DJK             @qemu
+00190000 srl.d                  DJK             @qemu
+00198000 sra.d                  DJK             @qemu
+001b8000 rotr.d                 DJK             @qemu
+00410000 slli.d                 DJUk6           @qemu
+00450000 srli.d                 DJUk6           @qemu
+00490000 srai.d                 DJUk6           @qemu
+004d0000 rotri.d                DJUk6           @qemu
+02c00000 addi.d                 DJSk12          @qemu
+03000000 cu52i.d                DJSk12          @orig_name=lu52i.d @qemu
 10000000 addu16i.d              DJSk16
-16000000 cu32i.d                DSj20           @orig_name=lu32i.d
+16000000 cu32i.d                DSj20           @orig_name=lu32i.d @qemu
 26000000 ldox4.d                DJSk14          @orig_name=ldptr.d
 27000000 stox4.d                DJSk14          @orig_name=stptr.d
-28c00000 ld.d                   DJSk12
-29c00000 st.d                   DJSk12
-2a800000 ld.wu                  DJSk12
+28c00000 ld.d                   DJSk12          @qemu
+29c00000 st.d                   DJSk12          @qemu
+2a800000 ld.wu                  DJSk12          @qemu
 380c0000 ldx.d                  DJK
 381c0000 stx.d                  DJK
 38280000 ldx.wu                 DJK
