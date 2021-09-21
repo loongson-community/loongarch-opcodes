@@ -377,7 +377,14 @@ func emitFmtEncoderFn(ectx *common.EmitterCtx, f *common.InsnFormat) {
 		argVarName := argFieldDescs[argIdx].name
 
 		if len(a.Slots) == 1 {
-			slotExprs[a.Slots[0].Offset] = argVarName
+			if a.Kind == common.ArgKindSignedImm {
+				// signed imms need masking to convert to unsigned slot value
+				mask := (1 << a.TotalWidth()) - 1
+				slotExprs[a.Slots[0].Offset] = fmt.Sprintf("%s & 0x%x", argVarName, mask)
+			} else {
+				// and pass through everything else
+				slotExprs[a.Slots[0].Offset] = argVarName
+			}
 		} else {
 			// remainingBits is shift amount to extract the current slot from arg
 			//
