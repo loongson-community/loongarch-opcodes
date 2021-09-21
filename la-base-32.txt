@@ -33,7 +33,7 @@
 03800000 ori                    DJUk12          @primary @qemu
 03c00000 xori                   DJUk12          @primary @qemu
 14000000 lu12i.w                DSj20           @primary @qemu
-18000000 pcaddu2i               DSj20           @orig_name=pcaddi @primary
+18000000 pcaddu2i               DSj20           @orig_name=pcaddi @primary @qemu
 1a000000 pcalau12i              DSj20
 1c000000 pcaddu12i              DSj20           @primary @qemu
 1e000000 pcaddu18i              DSj20           @qemu
