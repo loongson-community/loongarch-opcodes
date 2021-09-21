@@ -303,20 +303,11 @@ func emitSlotEncoderFn(ectx *common.EmitterCtx, sc string) {
 	funcName := slotEncoderFnNameForSc(sc)
 	scLower := strings.ToLower(sc)
 
-	emitHeader := func(isPrototype bool) {
-		ectx.Emit("\nstatic int32_t %s(LoongArchInsn opc", funcName)
-		for _, s := range scLower {
-			ectx.Emit(", uint32_t %c", s)
-		}
-		if isPrototype {
-			ectx.Emit(") %s;\n", attribUnused)
-		} else {
-			ectx.Emit(")\n{\n")
-		}
+	ectx.Emit("\nstatic int32_t %s\n%s(LoongArchInsn opc", attribUnused, funcName)
+	for _, s := range scLower {
+		ectx.Emit(", uint32_t %c", s)
 	}
-
-	emitHeader(true)
-	emitHeader(false)
+	ectx.Emit(")\n{\n")
 
 	ectx.Emit("    return opc")
 
@@ -344,20 +335,11 @@ func emitFmtEncoderFn(ectx *common.EmitterCtx, f *common.InsnFormat) {
 
 	argFieldDescs := fieldDescsForArgs(f.Args)
 
-	emitHeader := func(isPrototype bool) {
-		ectx.Emit("\nstatic int32_t %s(LoongArchInsn opc", fmtEncoderFnNameForInsnFormat(f))
-		for i := range f.Args {
-			ectx.Emit(", %s %s", argFieldDescs[i].typ, argFieldDescs[i].name)
-		}
-		if isPrototype {
-			ectx.Emit(") %s;\n", attribUnused)
-		} else {
-			ectx.Emit(")\n{\n")
-		}
+	ectx.Emit("\nstatic int32_t %s\n%s(LoongArchInsn opc", attribUnused, fmtEncoderFnNameForInsnFormat(f))
+	for i := range f.Args {
+		ectx.Emit(", %s %s", argFieldDescs[i].typ, argFieldDescs[i].name)
 	}
-
-	emitHeader(true)
-	emitHeader(false)
+	ectx.Emit(")\n{\n")
 
 	for i, a := range f.Args {
 		varName := argFieldDescs[i].name
@@ -477,22 +459,11 @@ func emitTCGEmitterForInsn(ectx *common.EmitterCtx, d *common.InsnDescription) {
 	ectx.Emit("\n/* Emits the `%s` instruction. */\n", insnSyntaxDescForInsn(d))
 
 	// function header
-	declFirstLinePrefix := fmt.Sprintf("static void tcg_out_%s(", opcLower)
-
-	emitHeader := func(isPrototype bool) {
-		ectx.Emit("%sTCGContext *s", declFirstLinePrefix)
-		for _, fd := range argFieldDescs {
-			ectx.Emit(", %s %s", fd.typ, fd.name)
-		}
-		if isPrototype {
-			ectx.Emit(") %s;\n\n", attribUnused)
-		} else {
-			ectx.Emit(")\n{\n")
-		}
+	ectx.Emit("static void %s\ntcg_out_%s(TCGContext *s", attribUnused, opcLower)
+	for _, fd := range argFieldDescs {
+		ectx.Emit(", %s %s", fd.typ, fd.name)
 	}
-
-	emitHeader(true)
-	emitHeader(false)
+	ectx.Emit(")\n{\n")
 
 	if len(d.Format.Args) == 0 {
 		// special-case EMPTY
