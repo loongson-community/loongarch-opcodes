@@ -3,7 +3,7 @@
 00002800 cto.d                  DJ
 00002c00 ctz.d                  DJ              @qemu
 00003400 revb.4h                DJ
-00003800 revb.2w                DJ
+00003800 revb.2w                DJ              @qemu
 00003c00 revb.d                 DJ              @qemu
 00004000 revh.2w                DJ
 00004400 revh.d                 DJ
