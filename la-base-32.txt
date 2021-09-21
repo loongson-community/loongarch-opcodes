@@ -36,7 +36,7 @@
 18000000 pcaddu2i               DSj20           @orig_name=pcaddi @primary
 1a000000 pcalau12i              DSj20
 1c000000 pcaddu12i              DSj20           @primary @qemu
-1e000000 pcaddu18i              DSj20
+1e000000 pcaddu18i              DSj20           @qemu
 24000000 ldox4.w                DJSk14          @orig_name=ldptr.w
 25000000 stox4.w                DJSk14          @orig_name=stptr.w
 28000000 ld.b                   DJSk12          @primary @qemu
