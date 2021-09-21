@@ -343,21 +343,32 @@ func emitFmtEncoderFn(ectx *common.EmitterCtx, f *common.InsnFormat) {
 
 	for i, a := range f.Args {
 		varName := argFieldDescs[i].name
-		ectx.Emit("    %s ", varName)
+		ectx.Emit("    tcg_debug_assert(")
 
 		switch a.Kind {
-		case common.ArgKindIntReg, common.ArgKindFPReg:
-			ectx.Emit("&= 0x1f")
-		case common.ArgKindFCCReg:
-			ectx.Emit("&= 0x7")
-		case common.ArgKindSignedImm, common.ArgKindUnsignedImm:
-			widthMask := (1 << a.TotalWidth()) - 1
-			ectx.Emit("&= 0x%x", widthMask)
+		case common.ArgKindIntReg,
+			common.ArgKindFPReg,
+			common.ArgKindFCCReg:
+			// 0 <= x <= max
+			max := (1 << a.TotalWidth()) - 1
+			ectx.Emit("%s >= 0 && %s <= 0x%x", varName, varName, max)
+
+		case common.ArgKindSignedImm:
+			// -min <= x <= max
+			max := (1 << (a.TotalWidth() - 1)) - 1
+			negativeMin := max + 1
+			ectx.Emit("%s >= -0x%x && %s <= 0x%x", varName, negativeMin, varName, max)
+
+		case common.ArgKindUnsignedImm:
+			// x <= max
+			max := (1 << a.TotalWidth()) - 1
+			ectx.Emit("%s <= 0x%x", varName, max)
+
 		default:
 			panic("unreachable")
 		}
 
-		ectx.Emit(";\n")
+		ectx.Emit(");\n")
 	}
 
 	// collect slot expressions
