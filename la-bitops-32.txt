@@ -2,7 +2,7 @@
 00001400 clz.w                  DJ              @qemu
 00001800 cto.w                  DJ
 00001c00 ctz.w                  DJ              @qemu
-00003000 revb.2h                DJ
+00003000 revb.2h                DJ              @qemu
 00004800 revbit.4b              DJ              @orig_name=bitrev.4b
 00005000 revbit.w               DJ              @orig_name=bitrev.w
 00040000 sladd.w                DJKUa2          @orig_name=alsl.w
