@@ -21,7 +21,13 @@ const attribUnused = "__attribute__((unused))"
 var qemuStyleFileBytes []byte
 
 func main() {
-	inputs := os.Args[1:]
+	// unconditionally take all instruction description files,
+	// filtering is done by individually attaching @qemu attribute for
+	// insns we want to use
+	inputs, err := filepath.Glob("../../*.txt")
+	if err != nil {
+		panic(err)
+	}
 
 	descs, err := common.ReadInsnDescs(inputs)
 	if err != nil {
