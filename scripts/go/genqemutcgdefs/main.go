@@ -476,7 +476,7 @@ func emitTCGEmitterForInsn(ectx *common.EmitterCtx, d *common.InsnDescription) {
 	argFieldDescs := fieldDescsForArgs(d.Format.Args)
 
 	// docstring line
-	ectx.Emit("\n/* Emits the `%s` instruction. */\n", insnSyntaxDescForInsn(d))
+	ectx.Emit("\n/* Emits the `%s` instruction.  */\n", insnSyntaxDescForInsn(d))
 
 	// function header
 	ectx.Emit("static void %s\ntcg_out_%s(TCGContext *s", attribUnused, opcLower)
