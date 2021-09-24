@@ -48,14 +48,14 @@
 2a000000 ld.bu                  DJSk12          @primary @qemu
 2a400000 ld.hu                  DJSk12          @primary @qemu
 2ac00000 preld                  JUd5Sk12        @primary
-38000000 ldx.b                  DJK
-38040000 ldx.h                  DJK
-38080000 ldx.w                  DJK
-38100000 stx.b                  DJK
-38140000 stx.h                  DJK
-38180000 stx.w                  DJK
-38200000 ldx.bu                 DJK
-38240000 ldx.hu                 DJK
+38000000 ldx.b                  DJK             @qemu
+38040000 ldx.h                  DJK             @qemu
+38080000 ldx.w                  DJK             @qemu
+38100000 stx.b                  DJK             @qemu
+38140000 stx.h                  DJK             @qemu
+38180000 stx.w                  DJK             @qemu
+38200000 ldx.bu                 DJK             @qemu
+38240000 ldx.hu                 DJK             @qemu
 382c0000 preldx                 JKUd5
 38720000 dbar                   Ud15            @primary @qemu
 38728000 ibar                   Ud15            @primary

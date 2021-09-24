@@ -18,6 +18,6 @@
 28c00000 ld.d                   DJSk12          @qemu
 29c00000 st.d                   DJSk12          @qemu
 2a800000 ld.wu                  DJSk12          @qemu
-380c0000 ldx.d                  DJK
-381c0000 stx.d                  DJK
-38280000 ldx.wu                 DJK
+380c0000 ldx.d                  DJK             @qemu
+381c0000 stx.d                  DJK             @qemu
+38280000 ldx.wu                 DJK             @qemu
