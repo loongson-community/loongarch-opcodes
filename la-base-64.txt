@@ -1,4 +1,4 @@
-00006800 rdtick.d               DJ              @orig_name=rdtime.d
+00006800 rdtime.d               DJ
 00108000 add.d                  DJK             @qemu
 00118000 sub.d                  DJK             @qemu
 00188000 sll.d                  DJK             @qemu

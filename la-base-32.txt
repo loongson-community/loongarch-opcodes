@@ -1,7 +1,7 @@
 00005800 sext.h                 DJ              @orig_name=ext.w.h @qemu
 00005c00 sext.b                 DJ              @orig_name=ext.w.b @qemu
-00006000 rdtickl.w              DJ              @orig_name=rdtimel.w @primary
-00006400 rdtickh.w              DJ              @orig_name=rdtimeh.w @primary
+00006000 rdtimel.w              DJ              @primary
+00006400 rdtimeh.w              DJ              @primary
 00006c00 cpucfg                 DJ
 00100000 add.w                  DJK             @primary @qemu
 00110000 sub.w                  DJK             @primary @qemu
