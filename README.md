@@ -132,13 +132,15 @@ insn-format  =/ imm-slots
 insn-format  =/ reg-slots imm-slots
 
 reg-slots    = 1*reg
-reg          = int-reg / fp-reg / fcc-reg
+reg          = int-reg / fp-reg / fcc-reg / lsx-reg / lasx-reg
 int-reg      = "D" / "J" / "K" / "A"
 fp-reg       = "F" index
 fcc-reg      = "C" index
+lsx-reg      = "V" index
+lasx-reg     = "X" index
 
 index-length = index length
-index        = "d" / "j" / "k" / "a" / "m"
+index        = "d" / "j" / "k" / "a" / "m" / "n"
 length       = 1*DIGIT
 
 imm-slots    = 1*imm
@@ -179,6 +181,8 @@ The field offsets and sizes for the register operand slots are as follows:
 |`A`|15|5|Integer|
 |`C`|Specified by the index character|3|FP condition code|
 |`F`|Specified by the index character|5|FP|
+|`V`|Specified by the index character|5|LSX / 128-bit SIMD|
+|`X`|Specified by the index character|5|LASX / 256-bit SIMD|
 
 The bit index specifiers are as follows:
 
@@ -189,6 +193,7 @@ The bit index specifiers are as follows:
 |`k`|10|
 |`a`|15|
 |`m`|16|
+|`n`|18|
 
 In some formats, a long immediate is broken into multiple fields. The individual
 fields are to be concatenated from left (MSB direction) to right (LSB direction)
