@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-var insnRE = regexp.MustCompile(`^([0-9a-f]{8}) ([a-z][0-9a-z_.]*) +(EMPTY|[0-9DJKACFSUdjkam]+)((?: *@[0-9A-Za-z_.=]+)*)$`)
+var insnRE = regexp.MustCompile(`^([0-9a-f]{8}) ([a-z][0-9a-z_.]*) +(EMPTY|[0-9DJKACFVXSUdjkamn]+)((?: *@[0-9A-Za-z_.=]+)*)$`)
 var attribRE = regexp.MustCompile(`@[0-9A-Za-z_.]+(?:=[0-9A-Za-z_.]*)?`)
 
 const origFmtKey = "orig_fmt"
@@ -174,6 +174,24 @@ func (l *insnFormatLexer) consumeArg() (*Arg, error) {
 
 		return makeRegArg(offset, ArgKindFPReg), nil
 
+	case 'V':
+		offsetCh := l.eat()
+		offset, err := parseOffsetCh(offsetCh)
+		if err != nil {
+			return nil, err
+		}
+
+		return makeRegArg(offset, ArgKindVReg), nil
+
+	case 'X':
+		offsetCh := l.eat()
+		offset, err := parseOffsetCh(offsetCh)
+		if err != nil {
+			return nil, err
+		}
+
+		return makeRegArg(offset, ArgKindXReg), nil
+
 	case 'S', 'U':
 		var kind ArgKind
 		if prefixCh == 'S' {
@@ -300,6 +318,8 @@ func parseOffsetCh(ch rune) (uint, error) {
 		return 15, nil
 	case 'm':
 		return 16, nil
+	case 'n':
+		return 18, nil
 	}
 
 	return 0, fmt.Errorf("invalid offset char %s", strconv.QuoteRune(ch))

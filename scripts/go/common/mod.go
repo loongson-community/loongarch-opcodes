@@ -63,8 +63,10 @@ const (
 	ArgKindIntReg      ArgKind = 1
 	ArgKindFPReg       ArgKind = 2
 	ArgKindFCCReg      ArgKind = 3
-	ArgKindSignedImm   ArgKind = 4
-	ArgKindUnsignedImm ArgKind = 5
+	ArgKindVReg        ArgKind = 4
+	ArgKindXReg        ArgKind = 5
+	ArgKindSignedImm   ArgKind = 6
+	ArgKindUnsignedImm ArgKind = 7
 )
 
 func (k ArgKind) Validate() error {
@@ -72,6 +74,8 @@ func (k ArgKind) Validate() error {
 	case ArgKindIntReg,
 		ArgKindFPReg,
 		ArgKindFCCReg,
+		ArgKindVReg,
+		ArgKindXReg,
 		ArgKindSignedImm,
 		ArgKindUnsignedImm:
 		return nil
@@ -157,7 +161,7 @@ func (a *Arg) Validate() error {
 	}
 
 	switch a.Kind {
-	case ArgKindIntReg, ArgKindFPReg:
+	case ArgKindIntReg, ArgKindFPReg, ArgKindVReg, ArgKindXReg:
 		if len(a.Slots) != 1 {
 			return errors.New("len(slots) != 1 for a register arg")
 		}
@@ -224,7 +228,7 @@ func (a *Arg) String() string {
 }
 
 const offsetCharsUpper = "D____J____K____A__________________________"
-const offsetCharsLower = "d____j____k____am_________________________"
+const offsetCharsLower = "d____j____k____am_n_______________________"
 
 func (a *Arg) CanonicalRepr() string {
 	var sb strings.Builder
@@ -239,6 +243,14 @@ func (a *Arg) CanonicalRepr() string {
 
 	case ArgKindFCCReg:
 		sb.WriteRune('C')
+		sb.WriteByte(offsetCharsLower[a.Slots[0].Offset])
+
+	case ArgKindVReg:
+		sb.WriteRune('V')
+		sb.WriteByte(offsetCharsLower[a.Slots[0].Offset])
+
+	case ArgKindXReg:
+		sb.WriteRune('X')
 		sb.WriteByte(offsetCharsLower[a.Slots[0].Offset])
 
 	case ArgKindSignedImm, ArgKindUnsignedImm:

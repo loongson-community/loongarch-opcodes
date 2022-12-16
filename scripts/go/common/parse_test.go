@@ -129,6 +129,39 @@ func TestParseInsnDescriptionLine(t *testing.T) {
 				},
 			},
 		},
+		{
+			x:  "31100000 vstelm.d               VdJSk8Un1",
+			ok: true,
+			expected: &InsnDescription{
+				Word:     0x31100000,
+				Mnemonic: "vstelm.d",
+				Format: &InsnFormat{
+					Args: []*Arg{
+						{Kind: ArgKindVReg, Slots: []*Slot{{Offset: 0, Width: 5}}},
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 5, Width: 5}}},
+						{Kind: ArgKindSignedImm, Slots: []*Slot{{Offset: 10, Width: 8}}},
+						{Kind: ArgKindUnsignedImm, Slots: []*Slot{{Offset: 18, Width: 1}}},
+					},
+				},
+				Attribs: map[string]string{},
+			},
+		},
+		{
+			x:  "2c800000 xvld                   XdJSk12",
+			ok: true,
+			expected: &InsnDescription{
+				Word:     0x2c800000,
+				Mnemonic: "xvld",
+				Format: &InsnFormat{
+					Args: []*Arg{
+						{Kind: ArgKindXReg, Slots: []*Slot{{Offset: 0, Width: 5}}},
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 5, Width: 5}}},
+						{Kind: ArgKindSignedImm, Slots: []*Slot{{Offset: 10, Width: 12}}},
+					},
+				},
+				Attribs: map[string]string{},
+			},
+		},
 	}
 
 	for _, tc := range testcases {
