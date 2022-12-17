@@ -144,6 +144,18 @@ length       = 1*DIGIT
 imm-slots    = 1*imm
 imm          = signedness 1*index-length
 signedness   = "S" / "U"
+
+// extensions to the above, for expressing the "manual syntax"
+manual-insn-format =  "EMPTY"
+manual-insn-format =/ 1*manual-arg
+
+manual-arg   =  reg / manual-imm
+manual-imm   =  imm
+manual-imm   =/ imm postproc
+
+postproc     = "p" pp-frag
+pp-frag      = pp-op 1*DIGIT
+pp-op        = "p" / "s"
 ```
 
 This notation has the following advantages:
@@ -196,3 +208,27 @@ instruction format string can be capitalized without becoming ambiguous, despite
 the index specifiers sharing the same `djka` characters with register operands.
 So for example the `JSd5k16` name above can easily be capitalized into `JSD5K16`
 for adherence to certain coding styles.
+
+## Original format or "Manual syntax" of instructions
+
+In the original LoongArch ISA manual, many instructions' asm syntax is not
+consistent with the above canonicalized notation, but instead are more-or-less
+arbitrary (like with the conditional branches, no reason whatsoever for swapping
+`rd` and `rj`), and/or seem to abandon consistency for arguably ergonomics
+purposes, most commonly by hiding a shifted immediate operand's such nature,
+but there are more.
+
+These original formats are recorded in the optional attribute `orig_fmt`,
+and they conform to the `manual-insn-format` ABNF item described above instead.
+Most notably, this means register operands no longer always come first, hence
+the case-insensitive property is lost for some of the formats; also immediates
+may optionally have to be "postprocessed" for proper disassembly output (or
+"preprocessed" for assembly), they are marked with a `p` followed by one
+postprocess operation.
+
+The possible immediate postprocess operations are listed below:
+
+|Notation|Meaning|
+|--------|-------|
+|`pNN`|`imm + NN`|
+|`sNN`|`imm << NN`|
