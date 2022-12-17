@@ -1,17 +1,17 @@
-00001000 clo.w                  DJ
-00001400 clz.w                  DJ              @qemu
-00001800 cto.w                  DJ
-00001c00 ctz.w                  DJ              @qemu
-00003000 revb.2h                DJ              @qemu
-00004800 revbit.4b              DJ              @orig_name=bitrev.4b
-00005000 revbit.w               DJ              @orig_name=bitrev.w
-00040000 sladd.w                DJKUa2          @orig_name=alsl.w
-00080000 catpick.w              DJKUa2          @orig_name=bytepick.w
+00001000 clo.w                  DJ              @la32
+00001400 clz.w                  DJ              @la32 @qemu
+00001800 cto.w                  DJ              @la32
+00001c00 ctz.w                  DJ              @la32 @qemu
+00003000 revb.2h                DJ              @la32 @qemu
+00004800 revbit.4b              DJ              @orig_name=bitrev.4b @la32
+00005000 revbit.w               DJ              @orig_name=bitrev.w @la32
+00040000 sladd.w                DJKUa2          @orig_name=alsl.w @la32
+00080000 catpick.w              DJKUa2          @orig_name=bytepick.w @la32
 00240000 crc.w.b.w              DJK
 00248000 crc.w.h.w              DJK
 00250000 crc.w.w.w              DJK
 00260000 crcc.w.b.w             DJK
 00268000 crcc.w.h.w             DJK
 00270000 crcc.w.w.w             DJK
-00600000 bstrins.w              DJUk5Um5        @qemu
-00608000 bstrpick.w             DJUk5Um5        @qemu
+00600000 bstrins.w              DJUk5Um5        @la32 @qemu
+00608000 bstrpick.w             DJUk5Um5        @la32 @qemu

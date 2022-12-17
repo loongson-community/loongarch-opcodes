@@ -1,7 +1,7 @@
-001c0000 mul.w                  DJK             @primary @qemu
-001c8000 mulh.w                 DJK             @primary @qemu
-001d0000 mulh.wu                DJK             @primary @qemu
-00200000 div.w                  DJK             @primary @qemu
-00208000 mod.w                  DJK             @primary @qemu
-00210000 div.wu                 DJK             @primary @qemu
-00218000 mod.wu                 DJK             @primary @qemu
+001c0000 mul.w                  DJK             @la32 @primary @qemu
+001c8000 mulh.w                 DJK             @la32 @primary @qemu
+001d0000 mulh.wu                DJK             @la32 @primary @qemu
+00200000 div.w                  DJK             @la32 @primary @qemu
+00208000 mod.w                  DJK             @la32 @primary @qemu
+00210000 div.wu                 DJK             @la32 @primary @qemu
+00218000 mod.wu                 DJK             @la32 @primary @qemu

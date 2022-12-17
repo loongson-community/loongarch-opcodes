@@ -1,5 +1,5 @@
-20000000 ll.w                   DJSk14          @primary
-21000000 sc.w                   DJSk14          @primary
+20000000 ll.w                   DJSk14          @la32 @primary
+21000000 sc.w                   DJSk14          @la32 @primary
 38600000 amswap.w               DJK
 38610000 amadd.w                DJK
 38620000 amand.w                DJK
