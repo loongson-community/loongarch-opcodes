@@ -13,8 +13,8 @@
 03000000 cu52i.d                DJSk12          @orig_name=lu52i.d @qemu
 10000000 addu16i.d              DJSk16          @qemu
 16000000 cu32i.d                DSj20           @orig_name=lu32i.d @qemu
-26000000 ldox4.d                DJSk14          @orig_name=ldptr.d
-27000000 stox4.d                DJSk14          @orig_name=stptr.d
+26000000 ldox4.d                DJSk14          @orig_name=ldptr.d @orig_fmt=DJSk14ps2
+27000000 stox4.d                DJSk14          @orig_name=stptr.d @orig_fmt=DJSk14ps2
 28c00000 ld.d                   DJSk12          @qemu
 29c00000 st.d                   DJSk12          @qemu
 2a800000 ld.wu                  DJSk12          @qemu

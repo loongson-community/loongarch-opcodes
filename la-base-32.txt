@@ -37,8 +37,8 @@
 1a000000 pcalau12i              DSj20           @la32 @qemu
 1c000000 pcaddu12i              DSj20           @la32 @primary @qemu
 1e000000 pcaddu18i              DSj20           @qemu
-24000000 ldox4.w                DJSk14          @orig_name=ldptr.w
-25000000 stox4.w                DJSk14          @orig_name=stptr.w
+24000000 ldox4.w                DJSk14          @orig_name=ldptr.w @orig_fmt=DJSk14ps2
+25000000 stox4.w                DJSk14          @orig_name=stptr.w @orig_fmt=DJSk14ps2
 28000000 ld.b                   DJSk12          @la32 @primary @qemu
 28400000 ld.h                   DJSk12          @la32 @primary @qemu
 28800000 ld.w                   DJSk12          @la32 @primary @qemu
@@ -47,7 +47,7 @@
 29800000 st.w                   DJSk12          @la32 @primary @qemu
 2a000000 ld.bu                  DJSk12          @la32 @primary @qemu
 2a400000 ld.hu                  DJSk12          @la32 @primary @qemu
-2ac00000 preld                  JUd5Sk12        @la32 @primary
+2ac00000 preld                  JUd5Sk12        @orig_fmt=Ud5JSk12 @la32 @primary
 38000000 ldx.b                  DJK             @qemu
 38040000 ldx.h                  DJK             @qemu
 38080000 ldx.w                  DJK             @qemu
@@ -56,17 +56,17 @@
 38180000 stx.w                  DJK             @qemu
 38200000 ldx.bu                 DJK             @qemu
 38240000 ldx.hu                 DJK             @qemu
-382c0000 preldx                 JKUd5
+382c0000 preldx                 JKUd5           @orig_fmt=Ud5JK
 38720000 dbar                   Ud15            @la32 @primary @qemu
 38728000 ibar                   Ud15            @la32 @primary
-40000000 beqz                   JSd5k16         @la32
-44000000 bnez                   JSd5k16         @la32
-4c000000 jirl                   DJSk16          @la32 @primary @qemu
-50000000 b                      Sd10k16         @la32 @primary @qemu
-54000000 bl                     Sd10k16         @la32 @primary @qemu
-58000000 beq                    DJSk16          @la32 @primary @qemu
-5c000000 bne                    DJSk16          @la32 @primary @qemu
-60000000 bgt                    DJSk16          @la32 @primary @qemu
-64000000 ble                    DJSk16          @la32 @primary @qemu
-68000000 bgtu                   DJSk16          @la32 @primary @qemu
-6c000000 bleu                   DJSk16          @la32 @primary @qemu
+40000000 beqz                   JSd5k16         @orig_fmt=JSd5k16ps2 @la32
+44000000 bnez                   JSd5k16         @orig_fmt=JSd5k16ps2 @la32
+4c000000 jirl                   DJSk16          @orig_fmt=DJSk16ps2 @la32 @primary @qemu
+50000000 b                      Sd10k16         @orig_fmt=Sd10k16ps2 @la32 @primary @qemu
+54000000 bl                     Sd10k16         @orig_fmt=Sd10k16ps2 @la32 @primary @qemu
+58000000 beq                    DJSk16          @orig_fmt=JDSk16ps2 @la32 @primary @qemu
+5c000000 bne                    DJSk16          @orig_fmt=JDSk16ps2 @la32 @primary @qemu
+60000000 bgt                    DJSk16          @orig_name=blt @orig_fmt=JDSk16ps2 @la32 @primary @qemu
+64000000 ble                    DJSk16          @orig_name=bge @orig_fmt=JDSk16ps2 @la32 @primary @qemu
+68000000 bgtu                   DJSk16          @orig_name=bltu @orig_fmt=JDSk16ps2 @la32 @primary @qemu
+6c000000 bleu                   DJSk16          @orig_name=bgeu @orig_fmt=JDSk16ps2 @la32 @primary @qemu

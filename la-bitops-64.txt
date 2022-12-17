@@ -9,10 +9,10 @@
 00004400 revh.d                 DJ
 00004c00 revbit.8b              DJ              @orig_name=bitrev.8b
 00005400 revbit.d               DJ              @orig_name=bitrev.d
-00060000 sladd.wu               DJKUa2          @orig_name=alsl.wu
+00060000 sladd.wu               DJKUa2          @orig_name=alsl.wu @orig_fmt=DJKUa2pp1
 000c0000 catpick.d              DJKUa3          @orig_name=bytepick.d
 00258000 crc.w.d.w              DJK
 00278000 crcc.w.d.w             DJK
-002c0000 sladd.d                DJKUa2          @orig_name=alsl.d
-00800000 bstrins.d              DJUk6Um6        @qemu
-00c00000 bstrpick.d             DJUk6Um6        @qemu
+002c0000 sladd.d                DJKUa2          @orig_name=alsl.d @orig_fmt=DJKUa2pp1
+00800000 bstrins.d              DJUk6Um6        @orig_fmt=DJUm6Uk6 @qemu
+00c00000 bstrpick.d             DJUk6Um6        @orig_fmt=DJUm6Uk6 @qemu

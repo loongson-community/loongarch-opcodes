@@ -5,5 +5,5 @@
 0114d800 movgr2fcc              CdJ             @orig_name=movgr2cf
 0114dc00 movfcc2gr              DCj             @orig_name=movcf2gr
 0d000000 fsel                   FdFjFkCa
-48000000 bceqz                  CjSd5k16
-48000100 bcnez                  CjSd5k16
+48000000 bceqz                  CjSd5k16        @orig_fmt=CjSd5k16ps2
+48000100 bcnez                  CjSd5k16        @orig_fmt=CjSd5k16ps2
