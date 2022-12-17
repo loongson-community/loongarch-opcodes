@@ -11,6 +11,8 @@ import (
 var insnRE = regexp.MustCompile(`^([0-9a-f]{8}) ([a-z][0-9a-z_.]*) +(EMPTY|[0-9DJKACFSUdjkam]+)((?: *@[0-9A-Za-z_.=]+)*)$`)
 var attribRE = regexp.MustCompile(`@[0-9A-Za-z_.]+(?:=[0-9A-Za-z_.]*)?`)
 
+const origFmtKey = "orig_fmt"
+
 func ParseInsnDescriptionLine(line string) (*InsnDescription, error) {
 	matches := insnRE.FindStringSubmatch(line)
 	if matches == nil {
@@ -38,11 +40,21 @@ func ParseInsnDescriptionLine(line string) (*InsnDescription, error) {
 		return nil, err
 	}
 
+	var origFmt *InsnFormat
+	if origFmtStr, ok := attribs[origFmtKey]; ok {
+		origFmt, err = ParseInsnFormat(origFmtStr)
+		if err != nil {
+			return nil, err
+		}
+		delete(attribs, origFmtKey)
+	}
+
 	result := InsnDescription{
-		Word:     word,
-		Mnemonic: mnemonic,
-		Format:   insnFmt,
-		Attribs:  attribs,
+		Word:       word,
+		Mnemonic:   mnemonic,
+		Format:     insnFmt,
+		OrigFormat: origFmt,
+		Attribs:    attribs,
 	}
 
 	err = result.Validate()
@@ -175,9 +187,15 @@ func (l *insnFormatLexer) consumeArg() (*Arg, error) {
 			return nil, err
 		}
 
+		post, err := l.maybeConsumePostprocessOp()
+		if err != nil {
+			return nil, err
+		}
+
 		return &Arg{
 			Kind:  kind,
 			Slots: slots,
+			Post:  post,
 		}, nil
 	}
 
@@ -248,6 +266,28 @@ func (l *insnFormatLexer) consumeUint() uint {
 	return result
 }
 
+func (l *insnFormatLexer) maybeConsumePostprocessOp() (PostprocessOp, error) {
+	ch, wouldEOF := l.peek()
+	if wouldEOF || ch != 'p' {
+		return PostprocessOp{}, nil
+	}
+	_ = l.eat()
+
+	// "p" / "s"
+	ch = l.eat()
+	kind, err := parsePostprocessOpKindCh(ch)
+	if err != nil {
+		return PostprocessOp{}, err
+	}
+
+	amt := l.consumeUint()
+
+	return PostprocessOp{
+		Kind:   kind,
+		Amount: int(amt),
+	}, nil
+}
+
 func parseOffsetCh(ch rune) (uint, error) {
 	switch ch {
 	case 'd':
@@ -263,6 +303,17 @@ func parseOffsetCh(ch rune) (uint, error) {
 	}
 
 	return 0, fmt.Errorf("invalid offset char %s", strconv.QuoteRune(ch))
+}
+
+func parsePostprocessOpKindCh(ch rune) (PostprocessOpKind, error) {
+	switch ch {
+	case 'p':
+		return PostprocessOpKindAdd, nil
+	case 's':
+		return PostprocessOpKindShl, nil
+	}
+
+	return PostprocessOpKindNone, fmt.Errorf("invalid postprocess op kind char %s", strconv.QuoteRune(ch))
 }
 
 func makeRegArg(offset uint, kind ArgKind) *Arg {

@@ -8,10 +8,11 @@ import (
 )
 
 type InsnDescription struct {
-	Word     uint32
-	Mnemonic string
-	Format   *InsnFormat
-	Attribs  map[string]string
+	Word       uint32
+	Mnemonic   string
+	Format     *InsnFormat
+	OrigFormat *InsnFormat
+	Attribs    map[string]string
 }
 
 type InsnFormat struct {
@@ -21,11 +22,38 @@ type InsnFormat struct {
 type Arg struct {
 	Kind  ArgKind
 	Slots []*Slot
+	Post  PostprocessOp
 }
 
 type Slot struct {
 	Offset uint
 	Width  uint
+}
+
+type PostprocessOp struct {
+	Kind   PostprocessOpKind
+	Amount int
+}
+
+type PostprocessOpKind int
+
+const (
+	PostprocessOpKindNone PostprocessOpKind = 0
+	PostprocessOpKindAdd  PostprocessOpKind = 1
+	PostprocessOpKindShl  PostprocessOpKind = 2
+)
+
+func (k *PostprocessOp) CanonicalRepr() string {
+	switch k.Kind {
+	case PostprocessOpKindNone:
+		return ""
+	case PostprocessOpKindAdd:
+		return "p" + strconv.Itoa(k.Amount)
+	case PostprocessOpKindShl:
+		return "s" + strconv.Itoa(k.Amount)
+	default:
+		panic("unreachable")
+	}
 }
 
 type ArgKind int
@@ -228,10 +256,23 @@ func (a *Arg) CanonicalRepr() string {
 		panic("unreachable")
 	}
 
+	if a.Post.Kind != PostprocessOpKindNone {
+		sb.WriteRune('p')
+		sb.WriteString(a.Post.CanonicalRepr())
+	}
+
 	return sb.String()
 }
 
 func (f *InsnFormat) Validate() error {
+	return f.validate(false)
+}
+
+func (f *InsnFormat) ValidateManualSyntax() error {
+	return f.validate(true)
+}
+
+func (f *InsnFormat) validate(manualSyntax bool) error {
 	regsParsingFinished := false
 	var seenArgsMask uint32
 	for _, a := range f.Args {
@@ -247,7 +288,12 @@ func (f *InsnFormat) Validate() error {
 
 		seenArgsMask |= mask
 
-		// register args must come before immediates
+		// register args must come before immediates for canonicalized syntax
+		// skip the check in case we're validating manual syntax repr
+		if manualSyntax {
+			continue
+		}
+
 		isImm := a.Kind.IsImm()
 		if !regsParsingFinished {
 			if isImm {

@@ -75,7 +75,7 @@ func TestParseInsnDescriptionLine(t *testing.T) {
 			},
 		},
 		{
-			x:  "20000000 ll.w                   DJSk14     @32 @atomics @primary @foo=amswap_db.d",
+			x:  "20000000 ll.w                   DJSk14     @orig_fmt=DJSk14ps2 @32 @atomics @primary @foo=amswap_db.d",
 			ok: true,
 			expected: &InsnDescription{
 				Word:     0x20000000,
@@ -87,11 +87,45 @@ func TestParseInsnDescriptionLine(t *testing.T) {
 						{Kind: ArgKindSignedImm, Slots: []*Slot{{Offset: 10, Width: 14}}},
 					},
 				},
+				OrigFormat: &InsnFormat{
+					Args: []*Arg{
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 0, Width: 5}}},
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 5, Width: 5}}},
+						{Kind: ArgKindSignedImm, Slots: []*Slot{{Offset: 10, Width: 14}}, Post: PostprocessOp{Kind: PostprocessOpKindShl, Amount: 2}},
+					},
+				},
 				Attribs: map[string]string{
 					"32":      "true",
 					"atomics": "true",
 					"primary": "true",
 					"foo":     "amswap_db.d",
+				},
+			},
+		},
+		{
+			x:  "002c0000 sladd.d                DJKUa2          @orig_name=alsl.d @orig_fmt=DJKUa2pp1",
+			ok: true,
+			expected: &InsnDescription{
+				Word:     0x002c0000,
+				Mnemonic: "sladd.d",
+				Format: &InsnFormat{
+					Args: []*Arg{
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 0, Width: 5}}},
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 5, Width: 5}}},
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 10, Width: 5}}},
+						{Kind: ArgKindUnsignedImm, Slots: []*Slot{{Offset: 15, Width: 2}}},
+					},
+				},
+				OrigFormat: &InsnFormat{
+					Args: []*Arg{
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 0, Width: 5}}},
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 5, Width: 5}}},
+						{Kind: ArgKindIntReg, Slots: []*Slot{{Offset: 10, Width: 5}}},
+						{Kind: ArgKindUnsignedImm, Slots: []*Slot{{Offset: 15, Width: 2}}, Post: PostprocessOp{Kind: PostprocessOpKindAdd, Amount: 1}},
+					},
+				},
+				Attribs: map[string]string{
+					"orig_name": "alsl.d",
 				},
 			},
 		},
