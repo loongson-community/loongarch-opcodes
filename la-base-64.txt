@@ -11,7 +11,7 @@
 004d0000 rotri.d                DJUk6           @qemu
 02c00000 addi.d                 DJSk12          @qemu
 03000000 cu52i.d                DJSk12          @orig_name=lu52i.d @qemu
-10000000 addu16i.d              DJSk16
+10000000 addu16i.d              DJSk16          @qemu
 16000000 cu32i.d                DSj20           @orig_name=lu32i.d @qemu
 26000000 ldox4.d                DJSk14          @orig_name=ldptr.d
 27000000 stox4.d                DJSk14          @orig_name=stptr.d
