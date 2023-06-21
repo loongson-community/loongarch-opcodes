@@ -12,13 +12,13 @@
 0d500000 vshuf.b                VdVjVkVa
 2c000000 vld                    VdJSk12
 2c400000 vst                    VdJSk12
-30100000 vldrepl.d              VdJSk9
-30200000 vldrepl.w              VdJSk10
-30400000 vldrepl.h              VdJSk11
+30100000 vldrepl.d              VdJSk9          @orig_fmt=VdJSk9ps3
+30200000 vldrepl.w              VdJSk10         @orig_fmt=VdJSk10ps2
+30400000 vldrepl.h              VdJSk11         @orig_fmt=VdJSk11ps1
 30800000 vldrepl.b              VdJSk12
-31100000 vstelm.d               VdJSk8Un1
-31200000 vstelm.w               VdJSk8Un2
-31400000 vstelm.h               VdJSk8Un3
+31100000 vstelm.d               VdJSk8Un1       @orig_fmt=VdJSk8ps3Un1
+31200000 vstelm.w               VdJSk8Un2       @orig_fmt=VdJSk8ps2Un2
+31400000 vstelm.h               VdJSk8Un3       @orig_fmt=VdJSk8ps1Un3
 31800000 vstelm.b               VdJSk8Un4
 38400000 vldx                   VdJK
 38440000 vstx                   VdJK
