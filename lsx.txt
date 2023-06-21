@@ -12,8 +12,6 @@
 0d500000 vshuf.b                VdVjVkVa
 2c000000 vld                    VdJSk12
 2c400000 vst                    VdJSk12
-2c800000 xvld                   XdJSk12
-2cc00000 xvst                   XdJSk12
 30100000 vldrepl.d              VdJSk9
 30200000 vldrepl.w              VdJSk10
 30400000 vldrepl.h              VdJSk11
