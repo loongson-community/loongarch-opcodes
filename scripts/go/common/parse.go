@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-var insnRE = regexp.MustCompile(`^([0-9a-f]{8}) ([a-z][0-9a-z_.]*) +(EMPTY|[0-9DJKACFVXSUdjkamn]+)((?: *@[0-9A-Za-z_.=]+)*)$`)
+var insnRE = regexp.MustCompile(`^([0-9a-f]{8}) ([a-z][0-9a-z_.]*) +(EMPTY|[0-9DJKACFVXSTUdjkamn]+)((?: *@[0-9A-Za-z_.=]+)*)$`)
 var attribRE = regexp.MustCompile(`@[0-9A-Za-z_.]+(?:=[0-9A-Za-z_.]*)?`)
 
 const origFmtKey = "orig_fmt"
@@ -173,6 +173,15 @@ func (l *insnFormatLexer) consumeArg() (*Arg, error) {
 		}
 
 		return makeRegArg(offset, ArgKindFPReg), nil
+
+	case 'T':
+		offsetCh := l.eat()
+		offset, err := parseOffsetCh(offsetCh)
+		if err != nil {
+			return nil, err
+		}
+
+		return makeScratchRegArg(offset), nil
 
 	case 'V':
 		offsetCh := l.eat()
@@ -350,6 +359,15 @@ func makeFCCRegArg(offset uint) *Arg {
 		Kind: ArgKindFCCReg,
 		Slots: []*Slot{
 			{Offset: offset, Width: 3},
+		},
+	}
+}
+
+func makeScratchRegArg(offset uint) *Arg {
+	return &Arg{
+		Kind: ArgKindScratchReg,
+		Slots: []*Slot{
+			{Offset: offset, Width: 2},
 		},
 	}
 }

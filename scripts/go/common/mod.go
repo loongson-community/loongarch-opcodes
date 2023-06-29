@@ -63,10 +63,11 @@ const (
 	ArgKindIntReg      ArgKind = 1
 	ArgKindFPReg       ArgKind = 2
 	ArgKindFCCReg      ArgKind = 3
-	ArgKindVReg        ArgKind = 4
-	ArgKindXReg        ArgKind = 5
-	ArgKindSignedImm   ArgKind = 6
-	ArgKindUnsignedImm ArgKind = 7
+	ArgKindScratchReg  ArgKind = 4
+	ArgKindVReg        ArgKind = 5
+	ArgKindXReg        ArgKind = 6
+	ArgKindSignedImm   ArgKind = 7
+	ArgKindUnsignedImm ArgKind = 8
 )
 
 func (k ArgKind) Validate() error {
@@ -74,6 +75,7 @@ func (k ArgKind) Validate() error {
 	case ArgKindIntReg,
 		ArgKindFPReg,
 		ArgKindFCCReg,
+		ArgKindScratchReg,
 		ArgKindVReg,
 		ArgKindXReg,
 		ArgKindSignedImm,
@@ -178,6 +180,15 @@ func (a *Arg) Validate() error {
 		if a.Slots[0].Width != 3 {
 			return errors.New("slot width not 3 for a FCC register arg")
 		}
+
+	case ArgKindScratchReg:
+		if len(a.Slots) != 1 {
+			return errors.New("len(slots) != 1 for a scratch register arg")
+		}
+
+		if a.Slots[0].Width != 2 {
+			return errors.New("slot width not 2 for a scratch register arg")
+		}
 	}
 
 	var seenSlotsMask uint32
@@ -243,6 +254,10 @@ func (a *Arg) CanonicalRepr() string {
 
 	case ArgKindFCCReg:
 		sb.WriteRune('C')
+		sb.WriteByte(offsetCharsLower[a.Slots[0].Offset])
+
+	case ArgKindScratchReg:
+		sb.WriteRune('T')
 		sb.WriteByte(offsetCharsLower[a.Slots[0].Offset])
 
 	case ArgKindVReg:

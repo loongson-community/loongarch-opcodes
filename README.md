@@ -8,9 +8,9 @@ from Loongson, then slightly modified to fix some perceived inconsistencies.
 
 Some instruction mnemonics are changed, some syntactic sugar are dropped:
 
-* `dbcl` is renamed to `dbgcall`.
+* `dbcl` is renamed to `dbgcall`, and `hvcl` to `hypcall`.
 
-  The reason why the shorter name is chosen is unclear, but `syscall` remains
+  The reason why the shorter names are chosen is unclear, but `syscall` remains
   unchanged so the change actually made the naming inconsistent.
 
 * `b[lt,ge][u]` are renamed to `b[gt,le][u]` with corresponding operand order swapped.
@@ -30,10 +30,11 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
 
   All TLB manipulation instructions start with `tlb` except this one.
 
-* `csrrd` and `csrwr` are removed.
+* `csrrd`, `csrwr`, `gcsrrd` and `gcsrwr` are removed.
 
-  The two instructions can be seen as special cases of `csrxchg`, so remove
-  these for non-overlapping encodings.
+  The `csrrd` and `csrwr` instructions can, to some degree, be seen as special
+  cases or "specializations" of `csrxchg`, so remove these in favor of
+  non-overlapping encodings. `gcsrrd` and `gcsrwr` are similar.
 
 * The FCSR operands of`movfcsr2gr` and `movgr2fcsr` are marked unsigned
   immediates instead of registers; the mnemonics are renamed to `fcsrrd` and
@@ -50,6 +51,15 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
   Other parts of the manual, especially the register names, refer to the bank
   of 1-bit FP predicates as `fcc`, but mnemonics have `cf`, which is
   inconsistent.
+
+* Naming symmetry is restored for several LBT instructions.
+
+  In general, transfer between register banks are named `movXX2YY`, but the
+  two transfers between GPRs and LBT scratch registers are officially named
+  `gr2scr` and `scr2gr`: `mov` is prepended to restore consistency. Similarly,
+  x86 and ARM translation assists are almost always named `x86foo` and `armfoo`
+  respectively, but annoyingly some are named `setx86foo` and `setarmfoo`;
+  ordering is also fixed for them.
 
 * `asrt[le,gt].d` have the suffix removed.
 
@@ -136,6 +146,7 @@ reg          = int-reg / fp-reg / fcc-reg / lsx-reg / lasx-reg
 int-reg      = "D" / "J" / "K" / "A"
 fp-reg       = "F" index
 fcc-reg      = "C" index
+scratch-reg  = "T" index
 lsx-reg      = "V" index
 lasx-reg     = "X" index
 
@@ -181,6 +192,7 @@ The field offsets and sizes for the register operand slots are as follows:
 |`A`|15|5|Integer|
 |`C`|Specified by the index character|3|FP condition code|
 |`F`|Specified by the index character|5|FP|
+|`T`|Specified by the index character|2|LBT scratch|
 |`V`|Specified by the index character|5|LSX / 128-bit SIMD|
 |`X`|Specified by the index character|5|LASX / 256-bit SIMD|
 
