@@ -1,8 +1,8 @@
-05000000 gcsrxchg               DJUk14
-06482001 gtlbclr                EMPTY
-06482401 gtlbflush              EMPTY
-06482801 gtlbsrch               EMPTY
-06482c01 gtlbrd                 EMPTY
-06483001 gtlbwr                 EMPTY
-06483401 gtlbfill               EMPTY
-002b8000 hypcall                Ud15            @orig_name=hvcl
+05000000 gcsrxchg               DJUk14          @lvz
+06482001 gtlbclr                EMPTY           @lvz
+06482401 gtlbflush              EMPTY           @lvz
+06482801 gtlbsrch               EMPTY           @lvz
+06482c01 gtlbrd                 EMPTY           @lvz
+06483001 gtlbwr                 EMPTY           @lvz
+06483401 gtlbfill               EMPTY           @lvz
+002b8000 hypcall                Ud15            @lvz @orig_name=hvcl

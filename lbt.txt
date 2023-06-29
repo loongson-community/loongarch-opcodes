@@ -1,176 +1,176 @@
-00000800 movgr2scr              TdJ             @orig_name=gr2scr
-00000c00 movscr2gr              DTj             @orig_name=scr2gr
-00007000 x86mttop               Uj3
-00007400 x86mftop               D
-00007800 x86setloope            DJ              @orig_name=setx86loope
-00007c00 x86setloopne           DJ              @orig_name=setx86loopne
-00008000 x86inc.b               J
-00008001 x86inc.h               J
-00008002 x86inc.w               J
-00008003 x86inc.d               J
-00008004 x86dec.b               J
-00008005 x86dec.h               J
-00008006 x86dec.w               J
-00008007 x86dec.d               J
-00008008 x86settm               EMPTY
-00008009 x86inctop              EMPTY
-00008028 x86clrtm               EMPTY
-00008029 x86dectop              EMPTY
-001a0000 rotr.b                 DJK
-001a8000 rotr.h                 DJK
-00290000 addu12i.w              DJSk5
-00298000 addu12i.d              DJSk5
-00300000 adc.b                  DJK
-00308000 adc.h                  DJK
-00310000 adc.w                  DJK
-00318000 adc.d                  DJK
-00320000 sbc.b                  DJK
-00328000 sbc.h                  DJK
-00330000 sbc.w                  DJK
-00338000 sbc.d                  DJK
-00340000 rcr.b                  DJK
-00348000 rcr.h                  DJK
-00350000 rcr.w                  DJK
-00358000 rcr.d                  DJK
-00364000 armmove                DJUk4
-00368000 x86setj                DUk4            @orig_name=setx86j
-0036c000 armsetj                DUk4            @orig_name=setarmj
-00370010 armadd.w               JKUd4
-00378010 armsub.w               JKUd4
-00380010 armadc.w               JKUd4
-00388010 armsbc.w               JKUd4
-00390010 armand.w               JKUd4
-00398010 armor.w                JKUd4
-003a0010 armxor.w               JKUd4
-003a8010 armsll.w               JKUd4
-003b0010 armsrl.w               JKUd4
-003b8010 armsra.w               JKUd4
-003c0010 armrotr.w              JKUd4
-003c8010 armslli.w              JUd4Uk5         @orig_fmt=JUk5Ud4
-003d0010 armsrli.w              JUd4Uk5         @orig_fmt=JUk5Ud4
-003d8010 armsrai.w              JUd4Uk5         @orig_fmt=JUk5Ud4
-003e0010 armrotri.w             JUd4Uk5         @orig_fmt=JUk5Ud4
-003e8000 x86mul.b               JK
-003e8001 x86mul.h               JK
-003e8002 x86mul.w               JK
-003e8003 x86mul.d               JK
-003e8004 x86mul.bu              JK
-003e8005 x86mul.hu              JK
-003e8006 x86mul.wu              JK
-003e8007 x86mul.du              JK
-003f0000 x86add.wu              JK
-003f0001 x86add.du              JK
-003f0002 x86sub.wu              JK
-003f0003 x86sub.du              JK
-003f0004 x86add.b               JK
-003f0005 x86add.h               JK
-003f0006 x86add.w               JK
-003f0007 x86add.d               JK
-003f0008 x86sub.b               JK
-003f0009 x86sub.h               JK
-003f000a x86sub.w               JK
-003f000b x86sub.d               JK
-003f000c x86adc.b               JK
-003f000d x86adc.h               JK
-003f000e x86adc.w               JK
-003f000f x86adc.d               JK
-003f0010 x86sbc.b               JK
-003f0011 x86sbc.h               JK
-003f0012 x86sbc.w               JK
-003f0013 x86sbc.d               JK
-003f0014 x86sll.b               JK
-003f0015 x86sll.h               JK
-003f0016 x86sll.w               JK
-003f0017 x86sll.d               JK
-003f0018 x86srl.b               JK
-003f0019 x86srl.h               JK
-003f001a x86srl.w               JK
-003f001b x86srl.d               JK
-003f001c x86sra.b               JK
-003f001d x86sra.h               JK
-003f001e x86sra.w               JK
-003f001f x86sra.d               JK
-003f8000 x86rotr.b              JK
-003f8001 x86rotr.h              JK
-003f8002 x86rotr.d              JK
-003f8003 x86rotr.w              JK
-003f8004 x86rotl.b              JK
-003f8005 x86rotl.h              JK
-003f8006 x86rotl.w              JK
-003f8007 x86rotl.d              JK
-003f8008 x86rcr.b               JK
-003f8009 x86rcr.h               JK
-003f800a x86rcr.w               JK
-003f800b x86rcr.d               JK
-003f800c x86rcl.b               JK
-003f800d x86rcl.h               JK
-003f800e x86rcl.w               JK
-003f800f x86rcl.d               JK
-003f8010 x86and.b               JK
-003f8011 x86and.h               JK
-003f8012 x86and.w               JK
-003f8013 x86and.d               JK
-003f8014 x86or.b                JK
-003f8015 x86or.h                JK
-003f8016 x86or.w                JK
-003f8017 x86or.d                JK
-003f8018 x86xor.b               JK
-003f8019 x86xor.h               JK
-003f801a x86xor.w               JK
-003f801b x86xor.d               JK
-003fc01c armnot.w               JUk4
-003fc01d armmov.w               JUk4
-003fc01e armmov.d               JUk4
-003fc01f armrrx.w               JUk4
-004c2000 rotri.b                DJUk3
-004c4000 rotri.h                DJUk4
-00502000 rcri.b                 DJUk3
-00504000 rcri.h                 DJUk4
-00508000 rcri.w                 DJUk5
-00510000 rcri.d                 DJUk6
-00542000 x86slli.b              JUk3
-00542004 x86srli.b              JUk3
-00542008 x86srai.b              JUk3
-0054200c x86rotri.b             JUk3
-00542010 x86rcri.b              JUk3
-00542014 x86rotli.b             JUk3
-00542018 x86rcli.b              JUk3
-00544001 x86slli.h              JUk4
-00544005 x86srli.h              JUk4
-00544009 x86srai.h              JUk4
-0054400d x86rotri.h             JUk4
-00544011 x86rcri.h              JUk4
-00544015 x86rotli.h             JUk4
-00544019 x86rcli.h              JUk4
-00548002 x86slli.w              JUk5
-00548006 x86srli.w              JUk5
-0054800a x86srai.w              JUk5
-0054800e x86rotri.w             JUk5
-00548012 x86rcri.w              JUk5
-00548016 x86rotli.w             JUk5
-0054801a x86rcli.w              JUk5
-00550003 x86slli.d              JUk6
-00550007 x86srli.d              JUk6
-0055000b x86srai.d              JUk6
-0055000f x86rotri.d             JUk6
-00550013 x86rcri.d              JUk6
-00550017 x86rotli.d             JUk6
-0055001b x86rcli.d              JUk6
-00580000 x86settag              DUj5Uk8
-005c0000 x86mfflag              DUk8
-005c0020 x86mtflag              DUk8
-005c0040 armmfflag              DUk8
-005c0060 armmtflag              DUk8
-0114e000 fcvt.ld.d              FdFj
-0114e400 fcvt.ud.d              FdFj
-01150000 fcvt.d.ld              FdFjFk
-2e000000 ldl.w                  DJSk12
-2e400000 ldr.w                  DJSk12
-2e800000 ldl.d                  DJSk12
-2ec00000 ldr.d                  DJSk12
-2f000000 stl.w                  DJSk12
-2f400000 str.w                  DJSk12
-2f800000 stl.d                  DJSk12
-2fc00000 str.d                  DJSk12
-48000200 jiscr0                 Sd5k16          @orig_fmt=Sd5k16ps2
-48000300 jiscr1                 Sd5k16          @orig_fmt=Sd5k16ps2
+00000800 movgr2scr              TdJ             @lbt @orig_name=gr2scr
+00000c00 movscr2gr              DTj             @lbt @orig_name=scr2gr
+00007000 x86mttop               Uj3             @lbt
+00007400 x86mftop               D               @lbt
+00007800 x86setloope            DJ              @lbt @orig_name=setx86loope
+00007c00 x86setloopne           DJ              @lbt @orig_name=setx86loopne
+00008000 x86inc.b               J               @lbt
+00008001 x86inc.h               J               @lbt
+00008002 x86inc.w               J               @lbt
+00008003 x86inc.d               J               @lbt
+00008004 x86dec.b               J               @lbt
+00008005 x86dec.h               J               @lbt
+00008006 x86dec.w               J               @lbt
+00008007 x86dec.d               J               @lbt
+00008008 x86settm               EMPTY           @lbt
+00008009 x86inctop              EMPTY           @lbt
+00008028 x86clrtm               EMPTY           @lbt
+00008029 x86dectop              EMPTY           @lbt
+001a0000 rotr.b                 DJK             @lbt
+001a8000 rotr.h                 DJK             @lbt
+00290000 addu12i.w              DJSk5           @lbt
+00298000 addu12i.d              DJSk5           @lbt
+00300000 adc.b                  DJK             @lbt
+00308000 adc.h                  DJK             @lbt
+00310000 adc.w                  DJK             @lbt
+00318000 adc.d                  DJK             @lbt
+00320000 sbc.b                  DJK             @lbt
+00328000 sbc.h                  DJK             @lbt
+00330000 sbc.w                  DJK             @lbt
+00338000 sbc.d                  DJK             @lbt
+00340000 rcr.b                  DJK             @lbt
+00348000 rcr.h                  DJK             @lbt
+00350000 rcr.w                  DJK             @lbt
+00358000 rcr.d                  DJK             @lbt
+00364000 armmove                DJUk4           @lbt
+00368000 x86setj                DUk4            @lbt @orig_name=setx86j
+0036c000 armsetj                DUk4            @lbt @orig_name=setarmj
+00370010 armadd.w               JKUd4           @lbt
+00378010 armsub.w               JKUd4           @lbt
+00380010 armadc.w               JKUd4           @lbt
+00388010 armsbc.w               JKUd4           @lbt
+00390010 armand.w               JKUd4           @lbt
+00398010 armor.w                JKUd4           @lbt
+003a0010 armxor.w               JKUd4           @lbt
+003a8010 armsll.w               JKUd4           @lbt
+003b0010 armsrl.w               JKUd4           @lbt
+003b8010 armsra.w               JKUd4           @lbt
+003c0010 armrotr.w              JKUd4           @lbt
+003c8010 armslli.w              JUd4Uk5         @lbt @orig_fmt=JUk5Ud4
+003d0010 armsrli.w              JUd4Uk5         @lbt @orig_fmt=JUk5Ud4
+003d8010 armsrai.w              JUd4Uk5         @lbt @orig_fmt=JUk5Ud4
+003e0010 armrotri.w             JUd4Uk5         @lbt @orig_fmt=JUk5Ud4
+003e8000 x86mul.b               JK              @lbt
+003e8001 x86mul.h               JK              @lbt
+003e8002 x86mul.w               JK              @lbt
+003e8003 x86mul.d               JK              @lbt
+003e8004 x86mul.bu              JK              @lbt
+003e8005 x86mul.hu              JK              @lbt
+003e8006 x86mul.wu              JK              @lbt
+003e8007 x86mul.du              JK              @lbt
+003f0000 x86add.wu              JK              @lbt
+003f0001 x86add.du              JK              @lbt
+003f0002 x86sub.wu              JK              @lbt
+003f0003 x86sub.du              JK              @lbt
+003f0004 x86add.b               JK              @lbt
+003f0005 x86add.h               JK              @lbt
+003f0006 x86add.w               JK              @lbt
+003f0007 x86add.d               JK              @lbt
+003f0008 x86sub.b               JK              @lbt
+003f0009 x86sub.h               JK              @lbt
+003f000a x86sub.w               JK              @lbt
+003f000b x86sub.d               JK              @lbt
+003f000c x86adc.b               JK              @lbt
+003f000d x86adc.h               JK              @lbt
+003f000e x86adc.w               JK              @lbt
+003f000f x86adc.d               JK              @lbt
+003f0010 x86sbc.b               JK              @lbt
+003f0011 x86sbc.h               JK              @lbt
+003f0012 x86sbc.w               JK              @lbt
+003f0013 x86sbc.d               JK              @lbt
+003f0014 x86sll.b               JK              @lbt
+003f0015 x86sll.h               JK              @lbt
+003f0016 x86sll.w               JK              @lbt
+003f0017 x86sll.d               JK              @lbt
+003f0018 x86srl.b               JK              @lbt
+003f0019 x86srl.h               JK              @lbt
+003f001a x86srl.w               JK              @lbt
+003f001b x86srl.d               JK              @lbt
+003f001c x86sra.b               JK              @lbt
+003f001d x86sra.h               JK              @lbt
+003f001e x86sra.w               JK              @lbt
+003f001f x86sra.d               JK              @lbt
+003f8000 x86rotr.b              JK              @lbt
+003f8001 x86rotr.h              JK              @lbt
+003f8002 x86rotr.d              JK              @lbt
+003f8003 x86rotr.w              JK              @lbt
+003f8004 x86rotl.b              JK              @lbt
+003f8005 x86rotl.h              JK              @lbt
+003f8006 x86rotl.w              JK              @lbt
+003f8007 x86rotl.d              JK              @lbt
+003f8008 x86rcr.b               JK              @lbt
+003f8009 x86rcr.h               JK              @lbt
+003f800a x86rcr.w               JK              @lbt
+003f800b x86rcr.d               JK              @lbt
+003f800c x86rcl.b               JK              @lbt
+003f800d x86rcl.h               JK              @lbt
+003f800e x86rcl.w               JK              @lbt
+003f800f x86rcl.d               JK              @lbt
+003f8010 x86and.b               JK              @lbt
+003f8011 x86and.h               JK              @lbt
+003f8012 x86and.w               JK              @lbt
+003f8013 x86and.d               JK              @lbt
+003f8014 x86or.b                JK              @lbt
+003f8015 x86or.h                JK              @lbt
+003f8016 x86or.w                JK              @lbt
+003f8017 x86or.d                JK              @lbt
+003f8018 x86xor.b               JK              @lbt
+003f8019 x86xor.h               JK              @lbt
+003f801a x86xor.w               JK              @lbt
+003f801b x86xor.d               JK              @lbt
+003fc01c armnot.w               JUk4            @lbt
+003fc01d armmov.w               JUk4            @lbt
+003fc01e armmov.d               JUk4            @lbt
+003fc01f armrrx.w               JUk4            @lbt
+004c2000 rotri.b                DJUk3           @lbt
+004c4000 rotri.h                DJUk4           @lbt
+00502000 rcri.b                 DJUk3           @lbt
+00504000 rcri.h                 DJUk4           @lbt
+00508000 rcri.w                 DJUk5           @lbt
+00510000 rcri.d                 DJUk6           @lbt
+00542000 x86slli.b              JUk3            @lbt
+00542004 x86srli.b              JUk3            @lbt
+00542008 x86srai.b              JUk3            @lbt
+0054200c x86rotri.b             JUk3            @lbt
+00542010 x86rcri.b              JUk3            @lbt
+00542014 x86rotli.b             JUk3            @lbt
+00542018 x86rcli.b              JUk3            @lbt
+00544001 x86slli.h              JUk4            @lbt
+00544005 x86srli.h              JUk4            @lbt
+00544009 x86srai.h              JUk4            @lbt
+0054400d x86rotri.h             JUk4            @lbt
+00544011 x86rcri.h              JUk4            @lbt
+00544015 x86rotli.h             JUk4            @lbt
+00544019 x86rcli.h              JUk4            @lbt
+00548002 x86slli.w              JUk5            @lbt
+00548006 x86srli.w              JUk5            @lbt
+0054800a x86srai.w              JUk5            @lbt
+0054800e x86rotri.w             JUk5            @lbt
+00548012 x86rcri.w              JUk5            @lbt
+00548016 x86rotli.w             JUk5            @lbt
+0054801a x86rcli.w              JUk5            @lbt
+00550003 x86slli.d              JUk6            @lbt
+00550007 x86srli.d              JUk6            @lbt
+0055000b x86srai.d              JUk6            @lbt
+0055000f x86rotri.d             JUk6            @lbt
+00550013 x86rcri.d              JUk6            @lbt
+00550017 x86rotli.d             JUk6            @lbt
+0055001b x86rcli.d              JUk6            @lbt
+00580000 x86settag              DUj5Uk8         @lbt
+005c0000 x86mfflag              DUk8            @lbt
+005c0020 x86mtflag              DUk8            @lbt
+005c0040 armmfflag              DUk8            @lbt
+005c0060 armmtflag              DUk8            @lbt
+0114e000 fcvt.ld.d              FdFj            @lbt
+0114e400 fcvt.ud.d              FdFj            @lbt
+01150000 fcvt.d.ld              FdFjFk          @lbt
+2e000000 ldl.w                  DJSk12          @lbt
+2e400000 ldr.w                  DJSk12          @lbt
+2e800000 ldl.d                  DJSk12          @lbt
+2ec00000 ldr.d                  DJSk12          @lbt
+2f000000 stl.w                  DJSk12          @lbt
+2f400000 str.w                  DJSk12          @lbt
+2f800000 stl.d                  DJSk12          @lbt
+2fc00000 str.d                  DJSk12          @lbt
+48000200 jiscr0                 Sd5k16          @lbt @orig_fmt=Sd5k16ps2
+48000300 jiscr1                 Sd5k16          @lbt @orig_fmt=Sd5k16ps2
