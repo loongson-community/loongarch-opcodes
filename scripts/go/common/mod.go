@@ -387,7 +387,11 @@ func (d *InsnDescription) Validate() error {
 	}
 
 	if d.Word&d.Format.ArgsBitmask() != 0 {
-		return errors.New("insn word has non-zero bit inside arg slots")
+		return fmt.Errorf(
+			"insn word has non-zero bit inside arg slots: %08x (%s)",
+			d.Word,
+			d.Format.CanonicalRepr(),
+		)
 	}
 
 	return nil
