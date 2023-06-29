@@ -142,7 +142,7 @@ insn-format  =/ imm-slots
 insn-format  =/ reg-slots imm-slots
 
 reg-slots    = 1*reg
-reg          = int-reg / fp-reg / fcc-reg / lsx-reg / lasx-reg
+reg          = int-reg / fp-reg / fcc-reg / scratch-reg / lsx-reg / lasx-reg
 int-reg      = "D" / "J" / "K" / "A"
 fp-reg       = "F" index
 fcc-reg      = "C" index
