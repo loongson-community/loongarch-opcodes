@@ -1,5 +1,5 @@
-00000800 movgr2scr              TdJ             @lbt @orig_name=gr2scr
-00000c00 movscr2gr              DTj             @lbt @orig_name=scr2gr
+00000800 movgr2scr              TdJ             @lbt
+00000c00 movscr2gr              DTj             @lbt
 00007000 x86mttop               Uj3             @lbt
 00007400 x86mftop               D               @lbt
 00007800 x86setloope            DJ              @lbt @orig_name=setx86loope

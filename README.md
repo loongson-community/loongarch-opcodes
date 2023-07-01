@@ -54,12 +54,15 @@ Some instruction mnemonics are changed, some syntactic sugar are dropped:
 
 * Naming symmetry is restored for several LBT instructions.
 
-  In general, transfer between register banks are named `movXX2YY`, but the
-  two transfers between GPRs and LBT scratch registers are officially named
-  `gr2scr` and `scr2gr`: `mov` is prepended to restore consistency. Similarly,
-  x86 and ARM translation assists are almost always named `x86foo` and `armfoo`
-  respectively, but annoyingly some are named `setx86foo` and `setarmfoo`;
-  ordering is also fixed for them.
+  The x86 and ARM translation assists are almost always named `x86foo` and
+  `armfoo` respectively, but annoyingly some are named `setx86foo` and
+  `setarmfoo`.
+
+  (After [the issue was reported](https://sourceware.org/pipermail/binutils/2023-June/128100.html)
+  I received private confirmation that the names will not be amended but no
+  justification was given; I suppose it was because the `set{x86,arm}foo` ops
+  are not touching the actual LBT "arch" state, but I'm not sure, and here the
+  adjusted names are kept nevertheless for perfect consistency.)
 
 * `asrt[le,gt].d` have the suffix removed.
 
