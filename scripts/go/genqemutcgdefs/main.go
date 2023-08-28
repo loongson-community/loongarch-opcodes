@@ -361,12 +361,16 @@ func emitFmtEncoderFn(ectx *common.EmitterCtx, f *common.InsnFormat) {
 		switch a.Kind {
 		case common.ArgKindIntReg,
 			common.ArgKindFPReg,
-			common.ArgKindFCCReg,
-			common.ArgKindVReg,
-			common.ArgKindXReg:
+			common.ArgKindFCCReg:
 			// 0 <= x <= max
 			max := (1 << a.TotalWidth()) - 1
 			ectx.Emit("%s >= 0 && %s <= 0x%x", varName, varName, max)
+
+		case common.ArgKindVReg,
+			common.ArgKindXReg:
+			// 32 <= x <= 32 + max
+			max := (1 << a.TotalWidth()) - 1
+			ectx.Emit("%s >= 0x20 && %s <= 0x%x", varName, varName, 32 + max)
 
 		case common.ArgKindSignedImm:
 			// -min <= x <= max
@@ -398,7 +402,15 @@ func emitFmtEncoderFn(ectx *common.EmitterCtx, f *common.InsnFormat) {
 				slotExprs[a.Slots[0].Offset] = fmt.Sprintf("%s & 0x%x", argVarName, mask)
 			} else {
 				// and pass through everything else
-				slotExprs[a.Slots[0].Offset] = argVarName
+				switch a.Kind {
+				case common.ArgKindVReg,
+					common.ArgKindXReg:
+					// recover vector register index
+					mask := (1 << a.TotalWidth()) - 1
+					slotExprs[a.Slots[0].Offset] = fmt.Sprintf("%s & 0x%x", argVarName, mask)
+				default:
+					slotExprs[a.Slots[0].Offset] = argVarName
+				}
 			}
 		} else {
 			// remainingBits is shift amount to extract the current slot from arg
