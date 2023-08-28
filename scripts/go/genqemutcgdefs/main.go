@@ -163,6 +163,7 @@ const (
 	slotK = 10
 	slotA = 15
 	slotM = 16
+	slotN = 18
 )
 
 func gatherDistinctSlotCombinations(fmts []*common.InsnFormat) []string {
@@ -208,6 +209,8 @@ func slotCombinationForFmt(f *common.InsnFormat) string {
 			sb.WriteRune('A')
 		case slotM:
 			sb.WriteRune('M')
+		case slotN:
+			sb.WriteRune('N')
 		default:
 			panic("should never happen")
 		}
@@ -228,6 +231,8 @@ func slotOffsetFromRune(s rune) int {
 		return slotA
 	case 'M', 'm':
 		return slotM
+	case 'N', 'n':
+		return slotN
 	default:
 		panic("should never happen")
 	}
@@ -278,7 +283,7 @@ func fieldDescsForArgs(args []*common.Arg) []fieldDesc {
 
 		var typ string
 		switch a.Kind {
-		case common.ArgKindIntReg, common.ArgKindFPReg, common.ArgKindFCCReg:
+		case common.ArgKindIntReg, common.ArgKindFPReg, common.ArgKindFCCReg, common.ArgKindVReg, common.ArgKindXReg:
 			typ = "TCGReg"
 		case common.ArgKindSignedImm:
 			typ = "int32_t"
@@ -356,7 +361,9 @@ func emitFmtEncoderFn(ectx *common.EmitterCtx, f *common.InsnFormat) {
 		switch a.Kind {
 		case common.ArgKindIntReg,
 			common.ArgKindFPReg,
-			common.ArgKindFCCReg:
+			common.ArgKindFCCReg,
+			common.ArgKindVReg,
+			common.ArgKindXReg:
 			// 0 <= x <= max
 			max := (1 << a.TotalWidth()) - 1
 			ectx.Emit("%s >= 0 && %s <= 0x%x", varName, varName, max)
