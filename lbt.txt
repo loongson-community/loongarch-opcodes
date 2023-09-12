@@ -1,5 +1,5 @@
-00000800 movgr2scr              TdJ             @lbt
-00000c00 movscr2gr              DTj             @lbt
+00000800 movgr2scr              TdJ             @lbt @qemu
+00000c00 movscr2gr              DTj             @lbt @qemu
 00007000 x86mttop               Uj3             @lbt
 00007400 x86mftop               D               @lbt
 00007800 x86setloope            DJ              @lbt @orig_name=setx86loope
@@ -16,8 +16,8 @@
 00008009 x86inctop              EMPTY           @lbt
 00008028 x86clrtm               EMPTY           @lbt
 00008029 x86dectop              EMPTY           @lbt
-001a0000 rotr.b                 DJK             @lbt
-001a8000 rotr.h                 DJK             @lbt
+001a0000 rotr.b                 DJK             @lbt @qemu
+001a8000 rotr.h                 DJK             @lbt @qemu
 00290000 addu12i.w              DJSk5           @lbt
 00298000 addu12i.d              DJSk5           @lbt
 00300000 adc.b                  DJK             @lbt
@@ -122,8 +122,8 @@
 003fc01d armmov.w               JUk4            @lbt
 003fc01e armmov.d               JUk4            @lbt
 003fc01f armrrx.w               JUk4            @lbt
-004c2000 rotri.b                DJUk3           @lbt
-004c4000 rotri.h                DJUk4           @lbt
+004c2000 rotri.b                DJUk3           @lbt @qemu
+004c4000 rotri.h                DJUk4           @lbt @qemu
 00502000 rcri.b                 DJUk3           @lbt
 00504000 rcri.h                 DJUk4           @lbt
 00508000 rcri.w                 DJUk5           @lbt
@@ -172,5 +172,5 @@
 2f400000 str.w                  DJSk12          @lbt
 2f800000 stl.d                  DJSk12          @lbt
 2fc00000 str.d                  DJSk12          @lbt
-48000200 jiscr0                 Sd5k16          @lbt @orig_fmt=Sd5k16ps2
-48000300 jiscr1                 Sd5k16          @lbt @orig_fmt=Sd5k16ps2
+48000200 jiscr0                 Sd5k16          @lbt @orig_fmt=Sd5k16ps2 @qemu
+48000300 jiscr1                 Sd5k16          @lbt @orig_fmt=Sd5k16ps2 @qemu

@@ -283,7 +283,12 @@ func fieldDescsForArgs(args []*common.Arg) []fieldDesc {
 
 		var typ string
 		switch a.Kind {
-		case common.ArgKindIntReg, common.ArgKindFPReg, common.ArgKindFCCReg, common.ArgKindVReg, common.ArgKindXReg:
+		case common.ArgKindIntReg,
+			common.ArgKindFPReg,
+			common.ArgKindFCCReg,
+			common.ArgKindScratchReg,
+			common.ArgKindVReg,
+			common.ArgKindXReg:
 			typ = "TCGReg"
 		case common.ArgKindSignedImm:
 			typ = "int32_t"
@@ -361,7 +366,8 @@ func emitFmtEncoderFn(ectx *common.EmitterCtx, f *common.InsnFormat) {
 		switch a.Kind {
 		case common.ArgKindIntReg,
 			common.ArgKindFPReg,
-			common.ArgKindFCCReg:
+			common.ArgKindFCCReg,
+			common.ArgKindScratchReg:
 			// 0 <= x <= max
 			max := (1 << a.TotalWidth()) - 1
 			ectx.Emit("%s >= 0 && %s <= 0x%x", varName, varName, max)
@@ -370,7 +376,7 @@ func emitFmtEncoderFn(ectx *common.EmitterCtx, f *common.InsnFormat) {
 			common.ArgKindXReg:
 			// 32 <= x <= 32 + max
 			max := (1 << a.TotalWidth()) - 1
-			ectx.Emit("%s >= 0x20 && %s <= 0x%x", varName, varName, 32 + max)
+			ectx.Emit("%s >= 0x20 && %s <= 0x%x", varName, varName, 32+max)
 
 		case common.ArgKindSignedImm:
 			// -min <= x <= max
