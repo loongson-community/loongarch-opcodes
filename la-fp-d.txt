@@ -15,6 +15,8 @@
 01144800 fsqrt.d                FdFj
 01145800 frecip.d               FdFj
 01146800 frsqrt.d               FdFj
+01147800 frecipe.d              FdFj            @rev=1p10
+01148800 frsqrte.d              FdFj            @rev=1p10
 01149800 fmov.d                 FdFj
 0114a800 movgr2fr.d             FdJ
 0114b800 movfr2gr.d             DFj

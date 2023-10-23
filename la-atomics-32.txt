@@ -1,5 +1,21 @@
 20000000 ll.w                   DJSk14          @orig_fmt=DJSk14ps2 @la32 @primary
 21000000 sc.w                   DJSk14          @orig_fmt=DJSk14ps2 @la32 @primary
+38578000 llacq.w                DJ              @rev=1p10
+38578400 screl.w                DJ              @rev=1p10
+38580000 amcas.b                DJK             @orig_fmt=DKJ @rev=1p10
+38588000 amcas.h                DJK             @orig_fmt=DKJ @rev=1p10
+38590000 amcas.w                DJK             @orig_fmt=DKJ @rev=1p10
+385a0000 amcas_db.b             DJK             @orig_fmt=DKJ @rev=1p10
+385a8000 amcas_db.h             DJK             @orig_fmt=DKJ @rev=1p10
+385b0000 amcas_db.w             DJK             @orig_fmt=DKJ @rev=1p10
+385c0000 amswap.b               DJK             @orig_fmt=DKJ @rev=1p10
+385c8000 amswap.h               DJK             @orig_fmt=DKJ @rev=1p10
+385d0000 amadd.b                DJK             @orig_fmt=DKJ @rev=1p10
+385d8000 amadd.h                DJK             @orig_fmt=DKJ @rev=1p10
+385e0000 amswap_db.b            DJK             @orig_fmt=DKJ @rev=1p10
+385e8000 amswap_db.h            DJK             @orig_fmt=DKJ @rev=1p10
+385f0000 amadd_db.b             DJK             @orig_fmt=DKJ @rev=1p10
+385f8000 amadd_db.h             DJK             @orig_fmt=DKJ @rev=1p10
 38600000 amswap.w               DJK             @orig_fmt=DKJ
 38610000 amadd.w                DJK             @orig_fmt=DKJ
 38620000 amand.w                DJK             @orig_fmt=DKJ

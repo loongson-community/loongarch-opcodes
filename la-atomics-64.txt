@@ -1,5 +1,10 @@
 22000000 ll.d                   DJSk14          @orig_fmt=DJSk14ps2
 23000000 sc.d                   DJSk14          @orig_fmt=DJSk14ps2
+38570000 sc.q                   DJK             @orig_fmt=DKJ @rev=1p10
+38578800 llacq.d                DJ              @rev=1p10
+38578c00 screl.d                DJ              @rev=1p10
+38598000 amcas.d                DJK             @orig_fmt=DKJ @rev=1p10
+385b8000 amcas_db.d             DJK             @orig_fmt=DKJ @rev=1p10
 38608000 amswap.d               DJK             @orig_fmt=DKJ
 38618000 amadd.d                DJK             @orig_fmt=DKJ
 38628000 amand.d                DJK             @orig_fmt=DKJ
