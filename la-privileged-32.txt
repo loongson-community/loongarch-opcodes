@@ -16,4 +16,5 @@
 06483400 tlbfill                EMPTY           @primary
 06483800 eret                   EMPTY           @orig_name=ertn @primary
 06488000 idle                   Ud15            @primary
+06493000 xxx.unknown.1          EMPTY           @provisional
 06498000 tlbinv                 JKUd5           @orig_name=invtlb @orig_fmt=Ud5JK @primary
