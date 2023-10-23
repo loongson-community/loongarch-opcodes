@@ -524,6 +524,10 @@
 769cf800 xvfrecip.d             XdXj
 769d0400 xvfrsqrt.s             XdXj
 769d0800 xvfrsqrt.d             XdXj
+769d1400 xvfrecipe.s            XdXj            @rev=1p10
+769d1800 xvfrecipe.d            XdXj            @rev=1p10
+769d2400 xvfrsqrte.s            XdXj            @rev=1p10
+769d2800 xvfrsqrte.d            XdXj            @rev=1p10
 769d3400 xvfrint.s              XdXj
 769d3800 xvfrint.d              XdXj
 769d4400 xvfrintrm.s            XdXj
