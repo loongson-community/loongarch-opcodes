@@ -4,6 +4,76 @@ This is unofficial compiled list of currently known LoongArch instructions.
 Instruction name and encoding are taken from published instruction set manual
 from Loongson, then slightly modified to fix some perceived inconsistencies.
 
+## License
+
+Copyright &copy; 2021-2023 Contributors to this project. All rights reserved.
+
+The instruction encoding data tables are licensed under either [CC-BY 4.0 International][CC-BY-4.0]
+or [木兰开放作品许可协议 署名，第 1 版 (Mulan Open Works License Attribution, Version 1)][MulanOWL-BY-1.0].
+
+[CC-BY-4.0]: https://creativecommons.org/licenses/by/4.0/
+[MulanOWL-BY-1.0]: https://license.coscl.org.cn/MulanOWLBYv1
+
+The accompanying programs and supporting code are licensed under either
+[Apache License 2.0][Apache-2.0], [MIT][MIT]
+or [木兰宽松许可证，第 2 版 (Mulan Permissive Software License, Version 2)][MulanPSL-2.0].
+
+[Apache-2.0]: https://spdx.org/licenses/Apache-2.0.html
+[MIT]: https://spdx.org/licenses/MIT.html
+[MulanPSL-2.0]: https://license.coscl.org.cn/MulanPSL2
+
+The license texts are also vendored in the repo:
+
+- [LICENSE.Apache-2.0](./LICENSE.Apache-2.0)
+- [LICENSE.CC-BY-4.0](./LICENSE.CC-BY-4.0)
+- [LICENSE.MIT](./LICENSE.MIT)
+- [LICENSE.MulanOWL-BY-1.0](./LICENSE.MulanOWL-BY-1.0)
+- [LICENSE.MulanPSL-2.0](./LICENSE.MulanPSL-2.0)
+
+<details>
+<summary>Reasoning behind the licensing decisions</summary>
+
+NOTE: The author is not a lawyer, so take the analysis below with extra
+caution. The author believes much of the reasoning are correct however...
+
+The official LoongArch manuals are released by Loongson with all rights
+reserved. So first of all, we believe this project is a fair use of the
+original work because:
+
+* The data collected here is consistent with the reality, with all original
+  content clearly marked and explained. Hence the data tables as a whole
+  pose no risk to compatibility across the ecosystem, and by extension,
+  Loongson's legal interests.
+* We, and likely any potential consumer of the project, work on and/or use
+  project for personal and/or academic purposes. And even if the project is
+  eventually being consumed for commercial uses, no Loongson interest is
+  damaged because no other resource exists that is simultaneously:
+    - not being tied to any specific project, and
+    - easy for machine consumption.
+
+Regarding the copyright holder of the project, it's the contributor to this
+project, because of [《中华人民共和国著作权法》][prc-copyright-law]第十三条、第十四条;
+the Chinese copyright law applies because right now all contributors to
+the project are PRC citizens to our knowledge.
+
+[prc-copyright-law]: https://www.gov.cn/guoqing/2021-10/29/content_5647633.htm
+
+As to why attribution is required for the data tables, instead of simply
+being public domain: according to 《中华人民共和国著作权法》第十条,
+the right of attribution (署名权) is a moral right that cannot be waived.
+So even if [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) is
+applied to the project, in effect it would largely just become CC-BY, and
+with the disadvantage of being harder for people to understand because the
+"fallback path" in the license text must be taken.
+
+As to why the Mulan licenses are allowed as alternative license choices:
+this is because the author wanted to be extra safe regarding the licensing,
+especially in the PRC jurisdiction. After checking the Chinese and English
+texts of the Mulan licenses, the author decided there is little risk adding
+them to the multiple-licensing choices.
+
+</details>
+
 ## Modifications to upstream specs
 
 Some instruction mnemonics are changed, some syntactic sugar are dropped:
