@@ -37,19 +37,35 @@ NOTE: The author is not a lawyer, so take the analysis below with extra
 caution. The author believes much of the reasoning are correct however...
 
 The official LoongArch manuals are released by Loongson with all rights
-reserved. So first of all, we believe this project is a fair use of the
-original work because:
+reserved. So first of all, we believe *this project is a fair use of the
+original work* because:
 
-* The data collected here is consistent with the reality, with all original
-  content clearly marked and explained. Hence the data tables as a whole
-  pose no risk to compatibility across the ecosystem, and by extension,
-  Loongson's legal interests.
-* We, and likely any potential consumer of the project, work on and/or use
-  project for personal and/or academic purposes. And even if the project is
-  eventually being consumed for commercial uses, no Loongson interest is
-  damaged because no other resource exists that is simultaneously:
-    - not being tied to any specific project, and
-    - easy for machine consumption.
+1. The data collected here is consistent with the reality, with all original
+   content clearly marked and explained. Hence the data tables as a whole
+   pose no risk to compatibility across the ecosystem, and by extension,
+   Loongson's legal interests.
+2. We, and likely any potential consumer of the project, work on and/or use
+   project for personal and/or academic purposes.
+3. And even if the project is eventually being consumed for commercial uses,
+   no Loongson interest is damaged because of (1).
+4. There is not any alternative that we know of, that is simultaneously:
+    - not being tied to any specific project (see below), and
+    - easy for machine consumption (the official manual is in PDF only, and
+      the English translation is in AsciiDoc).
+
+There are already several LoongArch instruction encoding tables in existence:
+
+* the array defined in `opcodes/loongarch-opc.c` of Binutils,
+* the TableGen data files in LLVM,
+* the `decodetree` definitions in QEMU, and
+* other ad-hoc definitions in various adapted JIT projects.
+
+They are invariably hard to integrate in projects other the originating one,
+so if one wants proper LoongArch machine code support in another project they
+happen to work on, they would have to either duplicate efforts or leverage
+the `loongarch-opcodes` project -- compared to just giving up and adding no
+LoongArch support, existence of the `loongarch-opcodes` project actually
+*benefits* Loongson.
 
 Regarding the copyright holder of the project, it's the contributor to this
 project, because of [《中华人民共和国著作权法》][prc-copyright-law]第十三条、第十四条;
