@@ -1,5 +1,5 @@
-20000000 ll.w                   DJSk14          @orig_fmt=DJSk14ps2 @la32 @primary
-21000000 sc.w                   DJSk14          @orig_fmt=DJSk14ps2 @la32 @primary
+20000000 ll.w                   DJSk14          @orig_fmt=DJSk14ps2 @la32 @la32r @primary
+21000000 sc.w                   DJSk14          @orig_fmt=DJSk14ps2 @la32 @la32r @primary
 38578000 llacq.w                DJ              @rev=1p10
 38578400 screl.w                DJ              @rev=1p10
 38580000 amcas.b                DJK             @orig_fmt=DKJ @rev=1p10
