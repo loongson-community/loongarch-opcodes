@@ -1,4 +1,4 @@
-38740000 fldgt.s                FdJK
-38750000 fldle.s                FdJK
+38740000 fldgt.s                FdJK            @modify=Fd
+38750000 fldle.s                FdJK            @modify=Fd
 38760000 fstgt.s                FdJK
 38770000 fstle.s                FdJK

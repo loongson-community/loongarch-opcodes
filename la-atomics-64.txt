@@ -1,29 +1,29 @@
-22000000 ll.d                   DJSk14          @orig_fmt=DJSk14ps2
-23000000 sc.d                   DJSk14          @orig_fmt=DJSk14ps2
-38570000 sc.q                   DJK             @orig_fmt=DKJ @rev=1p10
-38578800 llacq.d                DJ              @rev=1p10
-38578c00 screl.d                DJ              @rev=1p10
-38598000 amcas.d                DJK             @orig_fmt=DKJ @rev=1p10
-385b8000 amcas_db.d             DJK             @orig_fmt=DKJ @rev=1p10
-38608000 amswap.d               DJK             @orig_fmt=DKJ
-38618000 amadd.d                DJK             @orig_fmt=DKJ
-38628000 amand.d                DJK             @orig_fmt=DKJ
-38638000 amor.d                 DJK             @orig_fmt=DKJ
-38648000 amxor.d                DJK             @orig_fmt=DKJ
-38658000 ammax.d                DJK             @orig_fmt=DKJ
-38668000 ammin.d                DJK             @orig_fmt=DKJ
-38670000 ammax.wu               DJK             @orig_fmt=DKJ
-38678000 ammax.du               DJK             @orig_fmt=DKJ
-38680000 ammin.wu               DJK             @orig_fmt=DKJ
-38688000 ammin.du               DJK             @orig_fmt=DKJ
-38698000 amswap_db.d            DJK             @orig_fmt=DKJ
-386a8000 amadd_db.d             DJK             @orig_fmt=DKJ
-386b8000 amand_db.d             DJK             @orig_fmt=DKJ
-386c8000 amor_db.d              DJK             @orig_fmt=DKJ
-386d8000 amxor_db.d             DJK             @orig_fmt=DKJ
-386e8000 ammax_db.d             DJK             @orig_fmt=DKJ
-386f8000 ammin_db.d             DJK             @orig_fmt=DKJ
-38700000 ammax_db.wu            DJK             @orig_fmt=DKJ
-38708000 ammax_db.du            DJK             @orig_fmt=DKJ
-38710000 ammin_db.wu            DJK             @orig_fmt=DKJ
-38718000 ammin_db.du            DJK             @orig_fmt=DKJ
+22000000 ll.d                   DJSk14          @orig_fmt=DJSk14ps2 @modify=D
+23000000 sc.d                   DJSk14          @orig_fmt=DJSk14ps2 @modify=D
+38570000 sc.q                   DJK             @orig_fmt=DKJ @rev=1p10 @modify=D
+38578800 llacq.d                DJ              @rev=1p10 @modify=D
+38578c00 screl.d                DJ              @rev=1p10 @modify=D
+38598000 amcas.d                DJK             @orig_fmt=DKJ @rev=1p10 @modify=D
+385b8000 amcas_db.d             DJK             @orig_fmt=DKJ @rev=1p10 @modify=D
+38608000 amswap.d               DJK             @orig_fmt=DKJ @modify=DK
+38618000 amadd.d                DJK             @orig_fmt=DKJ @modify=DK
+38628000 amand.d                DJK             @orig_fmt=DKJ @modify=D
+38638000 amor.d                 DJK             @orig_fmt=DKJ @modify=D
+38648000 amxor.d                DJK             @orig_fmt=DKJ @modify=D
+38658000 ammax.d                DJK             @orig_fmt=DKJ @modify=D
+38668000 ammin.d                DJK             @orig_fmt=DKJ @modify=D
+38670000 ammax.wu               DJK             @orig_fmt=DKJ @modify=D
+38678000 ammax.du               DJK             @orig_fmt=DKJ @modify=D
+38680000 ammin.wu               DJK             @orig_fmt=DKJ @modify=D
+38688000 ammin.du               DJK             @orig_fmt=DKJ @modify=D
+38698000 amswap_db.d            DJK             @orig_fmt=DKJ @modify=D
+386a8000 amadd_db.d             DJK             @orig_fmt=DKJ @modify=D
+386b8000 amand_db.d             DJK             @orig_fmt=DKJ @modify=D
+386c8000 amor_db.d              DJK             @orig_fmt=DKJ @modify=D
+386d8000 amxor_db.d             DJK             @orig_fmt=DKJ @modify=D
+386e8000 ammax_db.d             DJK             @orig_fmt=DKJ @modify=D
+386f8000 ammin_db.d             DJK             @orig_fmt=DKJ @modify=D
+38700000 ammax_db.wu            DJK             @orig_fmt=DKJ @modify=D
+38708000 ammax_db.du            DJK             @orig_fmt=DKJ @modify=D
+38710000 ammin_db.wu            DJK             @orig_fmt=DKJ @modify=D
+38718000 ammin_db.du            DJK             @orig_fmt=DKJ @modify=D

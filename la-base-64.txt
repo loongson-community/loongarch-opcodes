@@ -1,23 +1,23 @@
-00006800 rdtime.d               DJ
-00108000 add.d                  DJK             @qemu
-00118000 sub.d                  DJK             @qemu
-00188000 sll.d                  DJK             @qemu
-00190000 srl.d                  DJK             @qemu
-00198000 sra.d                  DJK             @qemu
-001b8000 rotr.d                 DJK             @qemu
-00410000 slli.d                 DJUk6           @qemu
-00450000 srli.d                 DJUk6           @qemu
-00490000 srai.d                 DJUk6           @qemu
-004d0000 rotri.d                DJUk6           @qemu
-02c00000 addi.d                 DJSk12          @qemu
-03000000 cu52i.d                DJSk12          @orig_name=lu52i.d @qemu
-10000000 addu16i.d              DJSk16          @qemu
-16000000 cu32i.d                DSj20           @orig_name=lu32i.d @qemu
-26000000 ldox4.d                DJSk14          @orig_name=ldptr.d @orig_fmt=DJSk14ps2
+00006800 rdtime.d               DJ              @modify=DJ
+00108000 add.d                  DJK             @qemu @modify=D
+00118000 sub.d                  DJK             @qemu @modify=D
+00188000 sll.d                  DJK             @qemu @modify=D
+00190000 srl.d                  DJK             @qemu @modify=D
+00198000 sra.d                  DJK             @qemu @modify=D
+001b8000 rotr.d                 DJK             @qemu @modify=D
+00410000 slli.d                 DJUk6           @qemu @modify=D
+00450000 srli.d                 DJUk6           @qemu @modify=D
+00490000 srai.d                 DJUk6           @qemu @modify=D
+004d0000 rotri.d                DJUk6           @qemu @modify=D
+02c00000 addi.d                 DJSk12          @qemu @modify=D
+03000000 cu52i.d                DJSk12          @orig_name=lu52i.d @qemu @modify=D
+10000000 addu16i.d              DJSk16          @qemu @modify=D
+16000000 cu32i.d                DSj20           @orig_name=lu32i.d @qemu @modify=D
+26000000 ldox4.d                DJSk14          @orig_name=ldptr.d @orig_fmt=DJSk14ps2 @modify=D
 27000000 stox4.d                DJSk14          @orig_name=stptr.d @orig_fmt=DJSk14ps2
-28c00000 ld.d                   DJSk12          @qemu
+28c00000 ld.d                   DJSk12          @qemu @modify=D
 29c00000 st.d                   DJSk12          @qemu
-2a800000 ld.wu                  DJSk12          @qemu
-380c0000 ldx.d                  DJK             @qemu
+2a800000 ld.wu                  DJSk12          @qemu @modify=D
+380c0000 ldx.d                  DJK             @qemu @modify=D
 381c0000 stx.d                  DJK             @qemu
-38280000 ldx.wu                 DJK             @qemu
+38280000 ldx.wu                 DJK             @qemu @modify=D

@@ -21,6 +21,7 @@ func (c *EmitterCtx) Finalize() []byte {
 		return c.buf.Bytes()
 	}
 
+	print(string(c.buf.Bytes()))
 	result, err := format.Source(c.buf.Bytes())
 	if err != nil {
 		panic(err)

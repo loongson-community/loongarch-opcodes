@@ -1,67 +1,67 @@
-00005800 sext.h                 DJ              @orig_name=ext.w.h @la32 @qemu
-00005c00 sext.b                 DJ              @orig_name=ext.w.b @la32 @qemu
-00006000 rdtimel.w              DJ              @la32 @primary
-00006400 rdtimeh.w              DJ              @la32 @primary
-00006c00 cpucfg                 DJ              @la32
-00100000 add.w                  DJK             @la32 @primary @qemu
-00110000 sub.w                  DJK             @la32 @primary @qemu
-00120000 slt                    DJK             @la32 @primary @qemu
-00128000 sltu                   DJK             @la32 @primary @qemu
-00130000 maskeqz                DJK             @la32 @qemu
-00138000 masknez                DJK             @la32 @qemu
-00140000 nor                    DJK             @la32 @primary @qemu
-00148000 and                    DJK             @la32 @primary @qemu
-00150000 or                     DJK             @la32 @primary @qemu
-00158000 xor                    DJK             @la32 @primary @qemu
-00160000 orn                    DJK             @la32 @primary @qemu
-00168000 andn                   DJK             @la32 @primary @qemu
-00170000 sll.w                  DJK             @la32 @primary @qemu
-00178000 srl.w                  DJK             @la32 @primary @qemu
-00180000 sra.w                  DJK             @la32 @primary @qemu
-001b0000 rotr.w                 DJK             @la32 @qemu
+00005800 sext.h                 DJ              @orig_name=ext.w.h @la32 @qemu @modify=D
+00005c00 sext.b                 DJ              @orig_name=ext.w.b @la32 @qemu @modify=D
+00006000 rdtimel.w              DJ              @la32 @primary @modify=DJ
+00006400 rdtimeh.w              DJ              @la32 @primary @modify=DJ
+00006c00 cpucfg                 DJ              @la32 @modify=D
+00100000 add.w                  DJK             @la32 @primary @qemu @modify=D
+00110000 sub.w                  DJK             @la32 @primary @qemu @modify=D
+00120000 slt                    DJK             @la32 @primary @qemu @modify=D
+00128000 sltu                   DJK             @la32 @primary @qemu @modify=D
+00130000 maskeqz                DJK             @la32 @qemu @modify=D
+00138000 masknez                DJK             @la32 @qemu @modify=D
+00140000 nor                    DJK             @la32 @primary @qemu @modify=D
+00148000 and                    DJK             @la32 @primary @qemu @modify=D
+00150000 or                     DJK             @la32 @primary @qemu @modify=D
+00158000 xor                    DJK             @la32 @primary @qemu @modify=D
+00160000 orn                    DJK             @la32 @primary @qemu @modify=D
+00168000 andn                   DJK             @la32 @primary @qemu @modify=D
+00170000 sll.w                  DJK             @la32 @primary @qemu @modify=D
+00178000 srl.w                  DJK             @la32 @primary @qemu @modify=D
+00180000 sra.w                  DJK             @la32 @primary @qemu @modify=D
+001b0000 rotr.w                 DJK             @la32 @qemu @modify=D
 002a0000 break                  Ud15            @la32 @primary
 002a8000 dbgcall                Ud15            @orig_name=dbcl
 002b0000 syscall                Ud15            @la32 @primary
-00408000 slli.w                 DJUk5           @la32 @primary @qemu
-00448000 srli.w                 DJUk5           @la32 @primary @qemu
-00488000 srai.w                 DJUk5           @la32 @primary @qemu
-004c8000 rotri.w                DJUk5           @la32 @qemu
-02000000 slti                   DJSk12          @la32 @primary @qemu
-02400000 sltui                  DJSk12          @la32 @primary @qemu
-02800000 addi.w                 DJSk12          @la32 @primary @qemu
-03400000 andi                   DJUk12          @la32 @primary @qemu
-03800000 ori                    DJUk12          @la32 @primary @qemu
-03c00000 xori                   DJUk12          @la32 @primary @qemu
-14000000 lu12i.w                DSj20           @la32 @primary @qemu
-18000000 pcaddu2i               DSj20           @orig_name=pcaddi @la32 @primary @qemu
-1a000000 pcalau12i              DSj20           @la32 @qemu
-1c000000 pcaddu12i              DSj20           @la32 @primary @qemu
-1e000000 pcaddu18i              DSj20           @qemu
-24000000 ldox4.w                DJSk14          @orig_name=ldptr.w @orig_fmt=DJSk14ps2
+00408000 slli.w                 DJUk5           @la32 @primary @qemu @modify=D
+00448000 srli.w                 DJUk5           @la32 @primary @qemu @modify=D
+00488000 srai.w                 DJUk5           @la32 @primary @qemu @modify=D
+004c8000 rotri.w                DJUk5           @la32 @qemu @modify=D
+02000000 slti                   DJSk12          @la32 @primary @qemu @modify=D
+02400000 sltui                  DJSk12          @la32 @primary @qemu @modify=D
+02800000 addi.w                 DJSk12          @la32 @primary @qemu @modify=D
+03400000 andi                   DJUk12          @la32 @primary @qemu @modify=D
+03800000 ori                    DJUk12          @la32 @primary @qemu @modify=D
+03c00000 xori                   DJUk12          @la32 @primary @qemu @modify=D
+14000000 lu12i.w                DSj20           @la32 @primary @qemu @modify=D
+18000000 pcaddu2i               DSj20           @orig_name=pcaddi @la32 @primary @qemu @modify=D
+1a000000 pcalau12i              DSj20           @la32 @qemu @modify=D
+1c000000 pcaddu12i              DSj20           @la32 @primary @qemu @modify=D
+1e000000 pcaddu18i              DSj20           @qemu @modify=D
+24000000 ldox4.w                DJSk14          @orig_name=ldptr.w @orig_fmt=DJSk14ps2 @modify=D
 25000000 stox4.w                DJSk14          @orig_name=stptr.w @orig_fmt=DJSk14ps2
-28000000 ld.b                   DJSk12          @la32 @primary @qemu
-28400000 ld.h                   DJSk12          @la32 @primary @qemu
-28800000 ld.w                   DJSk12          @la32 @primary @qemu
+28000000 ld.b                   DJSk12          @la32 @primary @qemu @modify=D
+28400000 ld.h                   DJSk12          @la32 @primary @qemu @modify=D
+28800000 ld.w                   DJSk12          @la32 @primary @qemu @modify=D
 29000000 st.b                   DJSk12          @la32 @primary @qemu
 29400000 st.h                   DJSk12          @la32 @primary @qemu
 29800000 st.w                   DJSk12          @la32 @primary @qemu
-2a000000 ld.bu                  DJSk12          @la32 @primary @qemu
-2a400000 ld.hu                  DJSk12          @la32 @primary @qemu
+2a000000 ld.bu                  DJSk12          @la32 @primary @qemu @modify=D
+2a400000 ld.hu                  DJSk12          @la32 @primary @qemu @modify=D
 2ac00000 preld                  JUd5Sk12        @orig_fmt=Ud5JSk12 @la32 @primary
-38000000 ldx.b                  DJK             @qemu
-38040000 ldx.h                  DJK             @qemu
-38080000 ldx.w                  DJK             @qemu
+38000000 ldx.b                  DJK             @qemu @modify=D
+38040000 ldx.h                  DJK             @qemu @modify=D
+38080000 ldx.w                  DJK             @qemu @modify=D
 38100000 stx.b                  DJK             @qemu
 38140000 stx.h                  DJK             @qemu
 38180000 stx.w                  DJK             @qemu
-38200000 ldx.bu                 DJK             @qemu
-38240000 ldx.hu                 DJK             @qemu
+38200000 ldx.bu                 DJK             @qemu @modify=D
+38240000 ldx.hu                 DJK             @qemu @modify=D
 382c0000 preldx                 JKUd5           @orig_fmt=Ud5JK
 38720000 dbar                   Ud15            @la32 @primary @qemu
 38728000 ibar                   Ud15            @la32 @primary
 40000000 beqz                   JSd5k16         @orig_fmt=JSd5k16ps2 @la32
 44000000 bnez                   JSd5k16         @orig_fmt=JSd5k16ps2 @la32
-4c000000 jirl                   DJSk16          @orig_fmt=DJSk16ps2 @la32 @primary @qemu
+4c000000 jirl                   DJSk16          @orig_fmt=DJSk16ps2 @la32 @primary @qemu @modify=D
 50000000 b                      Sd10k16         @orig_fmt=Sd10k16ps2 @la32 @primary @qemu
 54000000 bl                     Sd10k16         @orig_fmt=Sd10k16ps2 @la32 @primary @qemu
 58000000 beq                    DJSk16          @orig_fmt=JDSk16ps2 @la32 @primary @qemu

@@ -1,717 +1,717 @@
-09100000 vfmadd.s               VdVjVkVa
-09200000 vfmadd.d               VdVjVkVa
-09500000 vfmsub.s               VdVjVkVa
-09600000 vfmsub.d               VdVjVkVa
-09900000 vfnmadd.s              VdVjVkVa
-09a00000 vfnmadd.d              VdVjVkVa
-09d00000 vfnmsub.s              VdVjVkVa
-09e00000 vfnmsub.d              VdVjVkVa
-0c500000 vfcmp.caf.s            VdVjVk
-0c508000 vfcmp.saf.s            VdVjVk
-0c510000 vfcmp.clt.s            VdVjVk
-0c518000 vfcmp.slt.s            VdVjVk
-0c520000 vfcmp.ceq.s            VdVjVk
-0c528000 vfcmp.seq.s            VdVjVk
-0c530000 vfcmp.cle.s            VdVjVk
-0c538000 vfcmp.sle.s            VdVjVk
-0c540000 vfcmp.cun.s            VdVjVk
-0c548000 vfcmp.sun.s            VdVjVk
-0c550000 vfcmp.cult.s           VdVjVk
-0c558000 vfcmp.sult.s           VdVjVk
-0c560000 vfcmp.cueq.s           VdVjVk
-0c568000 vfcmp.sueq.s           VdVjVk
-0c570000 vfcmp.cule.s           VdVjVk
-0c578000 vfcmp.sule.s           VdVjVk
-0c580000 vfcmp.cne.s            VdVjVk
-0c588000 vfcmp.sne.s            VdVjVk
-0c5a0000 vfcmp.cor.s            VdVjVk
-0c5a8000 vfcmp.sor.s            VdVjVk
-0c5c0000 vfcmp.cune.s           VdVjVk
-0c5c8000 vfcmp.sune.s           VdVjVk
-0c600000 vfcmp.caf.d            VdVjVk
-0c608000 vfcmp.saf.d            VdVjVk
-0c610000 vfcmp.clt.d            VdVjVk
-0c618000 vfcmp.slt.d            VdVjVk
-0c620000 vfcmp.ceq.d            VdVjVk
-0c628000 vfcmp.seq.d            VdVjVk
-0c630000 vfcmp.cle.d            VdVjVk
-0c638000 vfcmp.sle.d            VdVjVk
-0c640000 vfcmp.cun.d            VdVjVk
-0c648000 vfcmp.sun.d            VdVjVk
-0c650000 vfcmp.cult.d           VdVjVk
-0c658000 vfcmp.sult.d           VdVjVk
-0c660000 vfcmp.cueq.d           VdVjVk
-0c668000 vfcmp.sueq.d           VdVjVk
-0c670000 vfcmp.cule.d           VdVjVk
-0c678000 vfcmp.sule.d           VdVjVk
-0c680000 vfcmp.cne.d            VdVjVk
-0c688000 vfcmp.sne.d            VdVjVk
-0c6a0000 vfcmp.cor.d            VdVjVk
-0c6a8000 vfcmp.sor.d            VdVjVk
-0c6c0000 vfcmp.cune.d           VdVjVk
-0c6c8000 vfcmp.sune.d           VdVjVk
-0d100000 vbitsel.v              VdVjVkVa        @qemu
-0d500000 vshuf.b                VdVjVkVa        @qemu
-2c000000 vld                    VdJSk12         @qemu
+09100000 vfmadd.s               VdVjVkVa        @modify=Vd
+09200000 vfmadd.d               VdVjVkVa        @modify=Vd
+09500000 vfmsub.s               VdVjVkVa        @modify=Vd
+09600000 vfmsub.d               VdVjVkVa        @modify=Vd
+09900000 vfnmadd.s              VdVjVkVa        @modify=Vd
+09a00000 vfnmadd.d              VdVjVkVa        @modify=Vd
+09d00000 vfnmsub.s              VdVjVkVa        @modify=Vd
+09e00000 vfnmsub.d              VdVjVkVa        @modify=Vd
+0c500000 vfcmp.caf.s            VdVjVk          @modify=Vd
+0c508000 vfcmp.saf.s            VdVjVk          @modify=Vd
+0c510000 vfcmp.clt.s            VdVjVk          @modify=Vd
+0c518000 vfcmp.slt.s            VdVjVk          @modify=Vd
+0c520000 vfcmp.ceq.s            VdVjVk          @modify=Vd
+0c528000 vfcmp.seq.s            VdVjVk          @modify=Vd
+0c530000 vfcmp.cle.s            VdVjVk          @modify=Vd
+0c538000 vfcmp.sle.s            VdVjVk          @modify=Vd
+0c540000 vfcmp.cun.s            VdVjVk          @modify=Vd
+0c548000 vfcmp.sun.s            VdVjVk          @modify=Vd
+0c550000 vfcmp.cult.s           VdVjVk          @modify=Vd
+0c558000 vfcmp.sult.s           VdVjVk          @modify=Vd
+0c560000 vfcmp.cueq.s           VdVjVk          @modify=Vd
+0c568000 vfcmp.sueq.s           VdVjVk          @modify=Vd
+0c570000 vfcmp.cule.s           VdVjVk          @modify=Vd
+0c578000 vfcmp.sule.s           VdVjVk          @modify=Vd
+0c580000 vfcmp.cne.s            VdVjVk          @modify=Vd
+0c588000 vfcmp.sne.s            VdVjVk          @modify=Vd
+0c5a0000 vfcmp.cor.s            VdVjVk          @modify=Vd
+0c5a8000 vfcmp.sor.s            VdVjVk          @modify=Vd
+0c5c0000 vfcmp.cune.s           VdVjVk          @modify=Vd
+0c5c8000 vfcmp.sune.s           VdVjVk          @modify=Vd
+0c600000 vfcmp.caf.d            VdVjVk          @modify=Vd
+0c608000 vfcmp.saf.d            VdVjVk          @modify=Vd
+0c610000 vfcmp.clt.d            VdVjVk          @modify=Vd
+0c618000 vfcmp.slt.d            VdVjVk          @modify=Vd
+0c620000 vfcmp.ceq.d            VdVjVk          @modify=Vd
+0c628000 vfcmp.seq.d            VdVjVk          @modify=Vd
+0c630000 vfcmp.cle.d            VdVjVk          @modify=Vd
+0c638000 vfcmp.sle.d            VdVjVk          @modify=Vd
+0c640000 vfcmp.cun.d            VdVjVk          @modify=Vd
+0c648000 vfcmp.sun.d            VdVjVk          @modify=Vd
+0c650000 vfcmp.cult.d           VdVjVk          @modify=Vd
+0c658000 vfcmp.sult.d           VdVjVk          @modify=Vd
+0c660000 vfcmp.cueq.d           VdVjVk          @modify=Vd
+0c668000 vfcmp.sueq.d           VdVjVk          @modify=Vd
+0c670000 vfcmp.cule.d           VdVjVk          @modify=Vd
+0c678000 vfcmp.sule.d           VdVjVk          @modify=Vd
+0c680000 vfcmp.cne.d            VdVjVk          @modify=Vd
+0c688000 vfcmp.sne.d            VdVjVk          @modify=Vd
+0c6a0000 vfcmp.cor.d            VdVjVk          @modify=Vd
+0c6a8000 vfcmp.sor.d            VdVjVk          @modify=Vd
+0c6c0000 vfcmp.cune.d           VdVjVk          @modify=Vd
+0c6c8000 vfcmp.sune.d           VdVjVk          @modify=Vd
+0d100000 vbitsel.v              VdVjVkVa        @qemu @modify=Vd
+0d500000 vshuf.b                VdVjVkVa        @qemu @modify=Vd
+2c000000 vld                    VdJSk12         @qemu @modify=Vd
 2c400000 vst                    VdJSk12         @qemu
-30100000 vldrepl.d              VdJSk9          @orig_fmt=VdJSk9ps3 @qemu
-30200000 vldrepl.w              VdJSk10         @orig_fmt=VdJSk10ps2 @qemu
-30400000 vldrepl.h              VdJSk11         @orig_fmt=VdJSk11ps1 @qemu
-30800000 vldrepl.b              VdJSk12         @qemu
+30100000 vldrepl.d              VdJSk9          @orig_fmt=VdJSk9ps3 @qemu @modify=Vd
+30200000 vldrepl.w              VdJSk10         @orig_fmt=VdJSk10ps2 @qemu @modify=Vd
+30400000 vldrepl.h              VdJSk11         @orig_fmt=VdJSk11ps1 @qemu @modify=Vd
+30800000 vldrepl.b              VdJSk12         @qemu @modify=Vd
 31100000 vstelm.d               VdJSk8Un1       @orig_fmt=VdJSk8ps3Un1 @qemu
 31200000 vstelm.w               VdJSk8Un2       @orig_fmt=VdJSk8ps2Un2 @qemu
 31400000 vstelm.h               VdJSk8Un3       @orig_fmt=VdJSk8ps1Un3 @qemu
 31800000 vstelm.b               VdJSk8Un4       @qemu
-38400000 vldx                   VdJK            @qemu
+38400000 vldx                   VdJK            @qemu @modify=Vd
 38440000 vstx                   VdJK            @qemu
-70000000 vseq.b                 VdVjVk          @qemu
-70008000 vseq.h                 VdVjVk          @qemu
-70010000 vseq.w                 VdVjVk          @qemu
-70018000 vseq.d                 VdVjVk          @qemu
-70020000 vsle.b                 VdVjVk          @qemu
-70028000 vsle.h                 VdVjVk          @qemu
-70030000 vsle.w                 VdVjVk          @qemu
-70038000 vsle.d                 VdVjVk          @qemu
-70040000 vsle.bu                VdVjVk          @qemu
-70048000 vsle.hu                VdVjVk          @qemu
-70050000 vsle.wu                VdVjVk          @qemu
-70058000 vsle.du                VdVjVk          @qemu
-70060000 vslt.b                 VdVjVk          @qemu
-70068000 vslt.h                 VdVjVk          @qemu
-70070000 vslt.w                 VdVjVk          @qemu
-70078000 vslt.d                 VdVjVk          @qemu
-70080000 vslt.bu                VdVjVk          @qemu
-70088000 vslt.hu                VdVjVk          @qemu
-70090000 vslt.wu                VdVjVk          @qemu
-70098000 vslt.du                VdVjVk          @qemu
-700a0000 vadd.b                 VdVjVk          @qemu
-700a8000 vadd.h                 VdVjVk          @qemu
-700b0000 vadd.w                 VdVjVk          @qemu
-700b8000 vadd.d                 VdVjVk          @qemu
-700c0000 vsub.b                 VdVjVk          @qemu
-700c8000 vsub.h                 VdVjVk          @qemu
-700d0000 vsub.w                 VdVjVk          @qemu
-700d8000 vsub.d                 VdVjVk          @qemu
-701e0000 vaddwev.h.b            VdVjVk
-701e8000 vaddwev.w.h            VdVjVk
-701f0000 vaddwev.d.w            VdVjVk
-701f8000 vaddwev.q.d            VdVjVk
-70200000 vsubwev.h.b            VdVjVk
-70208000 vsubwev.w.h            VdVjVk
-70210000 vsubwev.d.w            VdVjVk
-70218000 vsubwev.q.d            VdVjVk
-70220000 vaddwod.h.b            VdVjVk
-70228000 vaddwod.w.h            VdVjVk
-70230000 vaddwod.d.w            VdVjVk
-70238000 vaddwod.q.d            VdVjVk
-70240000 vsubwod.h.b            VdVjVk
-70248000 vsubwod.w.h            VdVjVk
-70250000 vsubwod.d.w            VdVjVk
-70258000 vsubwod.q.d            VdVjVk
-702e0000 vaddwev.h.bu           VdVjVk
-702e8000 vaddwev.w.hu           VdVjVk
-702f0000 vaddwev.d.wu           VdVjVk
-702f8000 vaddwev.q.du           VdVjVk
-70300000 vsubwev.h.bu           VdVjVk
-70308000 vsubwev.w.hu           VdVjVk
-70310000 vsubwev.d.wu           VdVjVk
-70318000 vsubwev.q.du           VdVjVk
-70320000 vaddwod.h.bu           VdVjVk
-70328000 vaddwod.w.hu           VdVjVk
-70330000 vaddwod.d.wu           VdVjVk
-70338000 vaddwod.q.du           VdVjVk
-70340000 vsubwod.h.bu           VdVjVk
-70348000 vsubwod.w.hu           VdVjVk
-70350000 vsubwod.d.wu           VdVjVk
-70358000 vsubwod.q.du           VdVjVk
-703e0000 vaddwev.h.bu.b         VdVjVk
-703e8000 vaddwev.w.hu.h         VdVjVk
-703f0000 vaddwev.d.wu.w         VdVjVk
-703f8000 vaddwev.q.du.d         VdVjVk
-70400000 vaddwod.h.bu.b         VdVjVk
-70408000 vaddwod.w.hu.h         VdVjVk
-70410000 vaddwod.d.wu.w         VdVjVk
-70418000 vaddwod.q.du.d         VdVjVk
-70460000 vsadd.b                VdVjVk          @qemu
-70468000 vsadd.h                VdVjVk          @qemu
-70470000 vsadd.w                VdVjVk          @qemu
-70478000 vsadd.d                VdVjVk          @qemu
-70480000 vssub.b                VdVjVk          @qemu
-70488000 vssub.h                VdVjVk          @qemu
-70490000 vssub.w                VdVjVk          @qemu
-70498000 vssub.d                VdVjVk          @qemu
-704a0000 vsadd.bu               VdVjVk          @qemu
-704a8000 vsadd.hu               VdVjVk          @qemu
-704b0000 vsadd.wu               VdVjVk          @qemu
-704b8000 vsadd.du               VdVjVk          @qemu
-704c0000 vssub.bu               VdVjVk          @qemu
-704c8000 vssub.hu               VdVjVk          @qemu
-704d0000 vssub.wu               VdVjVk          @qemu
-704d8000 vssub.du               VdVjVk          @qemu
-70540000 vhaddw.h.b             VdVjVk
-70548000 vhaddw.w.h             VdVjVk
-70550000 vhaddw.d.w             VdVjVk
-70558000 vhaddw.q.d             VdVjVk
-70560000 vhsubw.h.b             VdVjVk
-70568000 vhsubw.w.h             VdVjVk
-70570000 vhsubw.d.w             VdVjVk
-70578000 vhsubw.q.d             VdVjVk
-70580000 vhaddw.hu.bu           VdVjVk
-70588000 vhaddw.wu.hu           VdVjVk
-70590000 vhaddw.du.wu           VdVjVk
-70598000 vhaddw.qu.du           VdVjVk
-705a0000 vhsubw.hu.bu           VdVjVk
-705a8000 vhsubw.wu.hu           VdVjVk
-705b0000 vhsubw.du.wu           VdVjVk
-705b8000 vhsubw.qu.du           VdVjVk
-705c0000 vadda.b                VdVjVk
-705c8000 vadda.h                VdVjVk
-705d0000 vadda.w                VdVjVk
-705d8000 vadda.d                VdVjVk
-70600000 vabsd.b                VdVjVk
-70608000 vabsd.h                VdVjVk
-70610000 vabsd.w                VdVjVk
-70618000 vabsd.d                VdVjVk
-70620000 vabsd.bu               VdVjVk
-70628000 vabsd.hu               VdVjVk
-70630000 vabsd.wu               VdVjVk
-70638000 vabsd.du               VdVjVk
-70640000 vavg.b                 VdVjVk
-70648000 vavg.h                 VdVjVk
-70650000 vavg.w                 VdVjVk
-70658000 vavg.d                 VdVjVk
-70660000 vavg.bu                VdVjVk
-70668000 vavg.hu                VdVjVk
-70670000 vavg.wu                VdVjVk
-70678000 vavg.du                VdVjVk
-70680000 vavgr.b                VdVjVk
-70688000 vavgr.h                VdVjVk
-70690000 vavgr.w                VdVjVk
-70698000 vavgr.d                VdVjVk
-706a0000 vavgr.bu               VdVjVk
-706a8000 vavgr.hu               VdVjVk
-706b0000 vavgr.wu               VdVjVk
-706b8000 vavgr.du               VdVjVk
-70700000 vmax.b                 VdVjVk          @qemu
-70708000 vmax.h                 VdVjVk          @qemu
-70710000 vmax.w                 VdVjVk          @qemu
-70718000 vmax.d                 VdVjVk          @qemu
-70720000 vmin.b                 VdVjVk          @qemu
-70728000 vmin.h                 VdVjVk          @qemu
-70730000 vmin.w                 VdVjVk          @qemu
-70738000 vmin.d                 VdVjVk          @qemu
-70740000 vmax.bu                VdVjVk          @qemu
-70748000 vmax.hu                VdVjVk          @qemu
-70750000 vmax.wu                VdVjVk          @qemu
-70758000 vmax.du                VdVjVk          @qemu
-70760000 vmin.bu                VdVjVk          @qemu
-70768000 vmin.hu                VdVjVk          @qemu
-70770000 vmin.wu                VdVjVk          @qemu
-70778000 vmin.du                VdVjVk          @qemu
-70840000 vmul.b                 VdVjVk          @qemu
-70848000 vmul.h                 VdVjVk          @qemu
-70850000 vmul.w                 VdVjVk          @qemu
-70858000 vmul.d                 VdVjVk          @qemu
-70860000 vmuh.b                 VdVjVk
-70868000 vmuh.h                 VdVjVk
-70870000 vmuh.w                 VdVjVk
-70878000 vmuh.d                 VdVjVk
-70880000 vmuh.bu                VdVjVk
-70888000 vmuh.hu                VdVjVk
-70890000 vmuh.wu                VdVjVk
-70898000 vmuh.du                VdVjVk
-70900000 vmulwev.h.b            VdVjVk
-70908000 vmulwev.w.h            VdVjVk
-70910000 vmulwev.d.w            VdVjVk
-70918000 vmulwev.q.d            VdVjVk
-70920000 vmulwod.h.b            VdVjVk
-70928000 vmulwod.w.h            VdVjVk
-70930000 vmulwod.d.w            VdVjVk
-70938000 vmulwod.q.d            VdVjVk
-70980000 vmulwev.h.bu           VdVjVk
-70988000 vmulwev.w.hu           VdVjVk
-70990000 vmulwev.d.wu           VdVjVk
-70998000 vmulwev.q.du           VdVjVk
-709a0000 vmulwod.h.bu           VdVjVk
-709a8000 vmulwod.w.hu           VdVjVk
-709b0000 vmulwod.d.wu           VdVjVk
-709b8000 vmulwod.q.du           VdVjVk
-70a00000 vmulwev.h.bu.b         VdVjVk
-70a08000 vmulwev.w.hu.h         VdVjVk
-70a10000 vmulwev.d.wu.w         VdVjVk
-70a18000 vmulwev.q.du.d         VdVjVk
-70a20000 vmulwod.h.bu.b         VdVjVk
-70a28000 vmulwod.w.hu.h         VdVjVk
-70a30000 vmulwod.d.wu.w         VdVjVk
-70a38000 vmulwod.q.du.d         VdVjVk
-70a80000 vmadd.b                VdVjVk
-70a88000 vmadd.h                VdVjVk
-70a90000 vmadd.w                VdVjVk
-70a98000 vmadd.d                VdVjVk
-70aa0000 vmsub.b                VdVjVk
-70aa8000 vmsub.h                VdVjVk
-70ab0000 vmsub.w                VdVjVk
-70ab8000 vmsub.d                VdVjVk
-70ac0000 vmaddwev.h.b           VdVjVk
-70ac8000 vmaddwev.w.h           VdVjVk
-70ad0000 vmaddwev.d.w           VdVjVk
-70ad8000 vmaddwev.q.d           VdVjVk
-70ae0000 vmaddwod.h.b           VdVjVk
-70ae8000 vmaddwod.w.h           VdVjVk
-70af0000 vmaddwod.d.w           VdVjVk
-70af8000 vmaddwod.q.d           VdVjVk
-70b40000 vmaddwev.h.bu          VdVjVk
-70b48000 vmaddwev.w.hu          VdVjVk
-70b50000 vmaddwev.d.wu          VdVjVk
-70b58000 vmaddwev.q.du          VdVjVk
-70b60000 vmaddwod.h.bu          VdVjVk
-70b68000 vmaddwod.w.hu          VdVjVk
-70b70000 vmaddwod.d.wu          VdVjVk
-70b78000 vmaddwod.q.du          VdVjVk
-70bc0000 vmaddwev.h.bu.b        VdVjVk
-70bc8000 vmaddwev.w.hu.h        VdVjVk
-70bd0000 vmaddwev.d.wu.w        VdVjVk
-70bd8000 vmaddwev.q.du.d        VdVjVk
-70be0000 vmaddwod.h.bu.b        VdVjVk
-70be8000 vmaddwod.w.hu.h        VdVjVk
-70bf0000 vmaddwod.d.wu.w        VdVjVk
-70bf8000 vmaddwod.q.du.d        VdVjVk
-70e00000 vdiv.b                 VdVjVk
-70e08000 vdiv.h                 VdVjVk
-70e10000 vdiv.w                 VdVjVk
-70e18000 vdiv.d                 VdVjVk
-70e20000 vmod.b                 VdVjVk
-70e28000 vmod.h                 VdVjVk
-70e30000 vmod.w                 VdVjVk
-70e38000 vmod.d                 VdVjVk
-70e40000 vdiv.bu                VdVjVk
-70e48000 vdiv.hu                VdVjVk
-70e50000 vdiv.wu                VdVjVk
-70e58000 vdiv.du                VdVjVk
-70e60000 vmod.bu                VdVjVk
-70e68000 vmod.hu                VdVjVk
-70e70000 vmod.wu                VdVjVk
-70e78000 vmod.du                VdVjVk
-70e80000 vsll.b                 VdVjVk          @qemu
-70e88000 vsll.h                 VdVjVk          @qemu
-70e90000 vsll.w                 VdVjVk          @qemu
-70e98000 vsll.d                 VdVjVk          @qemu
-70ea0000 vsrl.b                 VdVjVk          @qemu
-70ea8000 vsrl.h                 VdVjVk          @qemu
-70eb0000 vsrl.w                 VdVjVk          @qemu
-70eb8000 vsrl.d                 VdVjVk          @qemu
-70ec0000 vsra.b                 VdVjVk          @qemu
-70ec8000 vsra.h                 VdVjVk          @qemu
-70ed0000 vsra.w                 VdVjVk          @qemu
-70ed8000 vsra.d                 VdVjVk          @qemu
-70ee0000 vrotr.b                VdVjVk          @qemu
-70ee8000 vrotr.h                VdVjVk          @qemu
-70ef0000 vrotr.w                VdVjVk          @qemu
-70ef8000 vrotr.d                VdVjVk          @qemu
-70f00000 vsrlr.b                VdVjVk
-70f08000 vsrlr.h                VdVjVk
-70f10000 vsrlr.w                VdVjVk
-70f18000 vsrlr.d                VdVjVk
-70f20000 vsrar.b                VdVjVk
-70f28000 vsrar.h                VdVjVk
-70f30000 vsrar.w                VdVjVk
-70f38000 vsrar.d                VdVjVk
-70f48000 vsrln.b.h              VdVjVk
-70f50000 vsrln.h.w              VdVjVk
-70f58000 vsrln.w.d              VdVjVk
-70f68000 vsran.b.h              VdVjVk
-70f70000 vsran.h.w              VdVjVk
-70f78000 vsran.w.d              VdVjVk
-70f88000 vsrlrn.b.h             VdVjVk
-70f90000 vsrlrn.h.w             VdVjVk
-70f98000 vsrlrn.w.d             VdVjVk
-70fa8000 vsrarn.b.h             VdVjVk
-70fb0000 vsrarn.h.w             VdVjVk
-70fb8000 vsrarn.w.d             VdVjVk
-70fc8000 vssrln.b.h             VdVjVk
-70fd0000 vssrln.h.w             VdVjVk
-70fd8000 vssrln.w.d             VdVjVk
-70fe8000 vssran.b.h             VdVjVk
-70ff0000 vssran.h.w             VdVjVk
-70ff8000 vssran.w.d             VdVjVk
-71008000 vssrlrn.b.h            VdVjVk
-71010000 vssrlrn.h.w            VdVjVk
-71018000 vssrlrn.w.d            VdVjVk
-71028000 vssrarn.b.h            VdVjVk
-71030000 vssrarn.h.w            VdVjVk
-71038000 vssrarn.w.d            VdVjVk
-71048000 vssrln.bu.h            VdVjVk
-71050000 vssrln.hu.w            VdVjVk
-71058000 vssrln.wu.d            VdVjVk
-71068000 vssran.bu.h            VdVjVk
-71070000 vssran.hu.w            VdVjVk
-71078000 vssran.wu.d            VdVjVk
-71088000 vssrlrn.bu.h           VdVjVk
-71090000 vssrlrn.hu.w           VdVjVk
-71098000 vssrlrn.wu.d           VdVjVk
-710a8000 vssrarn.bu.h           VdVjVk
-710b0000 vssrarn.hu.w           VdVjVk
-710b8000 vssrarn.wu.d           VdVjVk
-710c0000 vbitclr.b              VdVjVk
-710c8000 vbitclr.h              VdVjVk
-710d0000 vbitclr.w              VdVjVk
-710d8000 vbitclr.d              VdVjVk
-710e0000 vbitset.b              VdVjVk
-710e8000 vbitset.h              VdVjVk
-710f0000 vbitset.w              VdVjVk
-710f8000 vbitset.d              VdVjVk
-71100000 vbitrev.b              VdVjVk
-71108000 vbitrev.h              VdVjVk
-71110000 vbitrev.w              VdVjVk
-71118000 vbitrev.d              VdVjVk
-71160000 vpackev.b              VdVjVk
-71168000 vpackev.h              VdVjVk
-71170000 vpackev.w              VdVjVk
-71178000 vpackev.d              VdVjVk
-71180000 vpackod.b              VdVjVk
-71188000 vpackod.h              VdVjVk
-71190000 vpackod.w              VdVjVk
-71198000 vpackod.d              VdVjVk
-711a0000 vilvl.b                VdVjVk
-711a8000 vilvl.h                VdVjVk
-711b0000 vilvl.w                VdVjVk
-711b8000 vilvl.d                VdVjVk
-711c0000 vilvh.b                VdVjVk
-711c8000 vilvh.h                VdVjVk
-711d0000 vilvh.w                VdVjVk
-711d8000 vilvh.d                VdVjVk
-711e0000 vpickev.b              VdVjVk
-711e8000 vpickev.h              VdVjVk
-711f0000 vpickev.w              VdVjVk
-711f8000 vpickev.d              VdVjVk
-71200000 vpickod.b              VdVjVk
-71208000 vpickod.h              VdVjVk
-71210000 vpickod.w              VdVjVk
-71218000 vpickod.d              VdVjVk
-71220000 vreplve.b              VdVjK           @qemu
-71228000 vreplve.h              VdVjK           @qemu
-71230000 vreplve.w              VdVjK           @qemu
-71238000 vreplve.d              VdVjK           @qemu
-71260000 vand.v                 VdVjVk          @qemu
-71268000 vor.v                  VdVjVk          @qemu
-71270000 vxor.v                 VdVjVk          @qemu
-71278000 vnor.v                 VdVjVk          @qemu
-71280000 vandn.v                VdVjVk          @qemu
-71288000 vorn.v                 VdVjVk          @qemu
-712b0000 vfrstp.b               VdVjVk
-712b8000 vfrstp.h               VdVjVk
-712d0000 vadd.q                 VdVjVk
-712d8000 vsub.q                 VdVjVk
-712e0000 vsigncov.b             VdVjVk
-712e8000 vsigncov.h             VdVjVk
-712f0000 vsigncov.w             VdVjVk
-712f8000 vsigncov.d             VdVjVk
-71308000 vfadd.s                VdVjVk
-71310000 vfadd.d                VdVjVk
-71328000 vfsub.s                VdVjVk
-71330000 vfsub.d                VdVjVk
-71388000 vfmul.s                VdVjVk
-71390000 vfmul.d                VdVjVk
-713a8000 vfdiv.s                VdVjVk
-713b0000 vfdiv.d                VdVjVk
-713c8000 vfmax.s                VdVjVk
-713d0000 vfmax.d                VdVjVk
-713e8000 vfmin.s                VdVjVk
-713f0000 vfmin.d                VdVjVk
-71408000 vfmaxa.s               VdVjVk
-71410000 vfmaxa.d               VdVjVk
-71428000 vfmina.s               VdVjVk
-71430000 vfmina.d               VdVjVk
-71460000 vfcvt.h.s              VdVjVk
-71468000 vfcvt.s.d              VdVjVk
-71480000 vffint.s.l             VdVjVk
-71498000 vftint.w.d             VdVjVk
-714a0000 vftintrm.w.d           VdVjVk
-714a8000 vftintrp.w.d           VdVjVk
-714b0000 vftintrz.w.d           VdVjVk
-714b8000 vftintrne.w.d          VdVjVk
-717a8000 vshuf.h                VdVjVk
-717b0000 vshuf.w                VdVjVk
-717b8000 vshuf.d                VdVjVk
-72800000 vseqi.b                VdVjSk5         @qemu
-72808000 vseqi.h                VdVjSk5         @qemu
-72810000 vseqi.w                VdVjSk5         @qemu
-72818000 vseqi.d                VdVjSk5         @qemu
-72820000 vslei.b                VdVjSk5         @qemu
-72828000 vslei.h                VdVjSk5         @qemu
-72830000 vslei.w                VdVjSk5         @qemu
-72838000 vslei.d                VdVjSk5         @qemu
-72840000 vslei.bu               VdVjUk5         @qemu
-72848000 vslei.hu               VdVjUk5         @qemu
-72850000 vslei.wu               VdVjUk5         @qemu
-72858000 vslei.du               VdVjUk5         @qemu
-72860000 vslti.b                VdVjSk5         @qemu
-72868000 vslti.h                VdVjSk5         @qemu
-72870000 vslti.w                VdVjSk5         @qemu
-72878000 vslti.d                VdVjSk5         @qemu
-72880000 vslti.bu               VdVjUk5         @qemu
-72888000 vslti.hu               VdVjUk5         @qemu
-72890000 vslti.wu               VdVjUk5         @qemu
-72898000 vslti.du               VdVjUk5         @qemu
-728a0000 vaddi.bu               VdVjUk5         @qemu
-728a8000 vaddi.hu               VdVjUk5         @qemu
-728b0000 vaddi.wu               VdVjUk5         @qemu
-728b8000 vaddi.du               VdVjUk5         @qemu
-728c0000 vsubi.bu               VdVjUk5         @qemu
-728c8000 vsubi.hu               VdVjUk5         @qemu
-728d0000 vsubi.wu               VdVjUk5         @qemu
-728d8000 vsubi.du               VdVjUk5         @qemu
-728e0000 vbsll.v                VdVjUk5
-728e8000 vbsrl.v                VdVjUk5
-72900000 vmaxi.b                VdVjSk5         @qemu
-72908000 vmaxi.h                VdVjSk5         @qemu
-72910000 vmaxi.w                VdVjSk5         @qemu
-72918000 vmaxi.d                VdVjSk5         @qemu
-72920000 vmini.b                VdVjSk5         @qemu
-72928000 vmini.h                VdVjSk5         @qemu
-72930000 vmini.w                VdVjSk5         @qemu
-72938000 vmini.d                VdVjSk5         @qemu
-72940000 vmaxi.bu               VdVjUk5         @qemu
-72948000 vmaxi.hu               VdVjUk5         @qemu
-72950000 vmaxi.wu               VdVjUk5         @qemu
-72958000 vmaxi.du               VdVjUk5         @qemu
-72960000 vmini.bu               VdVjUk5         @qemu
-72968000 vmini.hu               VdVjUk5         @qemu
-72970000 vmini.wu               VdVjUk5         @qemu
-72978000 vmini.du               VdVjUk5         @qemu
-729a0000 vfrstpi.b              VdVjUk5
-729a8000 vfrstpi.h              VdVjUk5
-729b8000 vmepatmsk.v            VdUj5Uk5
-729c0000 vclo.b                 VdVj
-729c0400 vclo.h                 VdVj
-729c0800 vclo.w                 VdVj
-729c0c00 vclo.d                 VdVj
-729c1000 vclz.b                 VdVj
-729c1400 vclz.h                 VdVj
-729c1800 vclz.w                 VdVj
-729c1c00 vclz.d                 VdVj
-729c2000 vpcnt.b                VdVj
-729c2400 vpcnt.h                VdVj
-729c2800 vpcnt.w                VdVj
-729c2c00 vpcnt.d                VdVj
-729c3000 vneg.b                 VdVj            @qemu
-729c3400 vneg.h                 VdVj            @qemu
-729c3800 vneg.w                 VdVj            @qemu
-729c3c00 vneg.d                 VdVj            @qemu
-729c4000 vmskltz.b              VdVj
-729c4400 vmskltz.h              VdVj
-729c4800 vmskltz.w              VdVj
-729c4c00 vmskltz.d              VdVj
-729c5000 vmskgez.b              VdVj
-729c6000 vmsknz.b               VdVj
-729c9800 vseteqz.v              CdVj
-729c9c00 vsetnez.v              CdVj
-729ca000 vsetanyeqz.b           CdVj
-729ca400 vsetanyeqz.h           CdVj
-729ca800 vsetanyeqz.w           CdVj
-729cac00 vsetanyeqz.d           CdVj
-729cb000 vsetallnez.b           CdVj
-729cb400 vsetallnez.h           CdVj
-729cb800 vsetallnez.w           CdVj
-729cbc00 vsetallnez.d           CdVj
-729cc400 vflogb.s               VdVj
-729cc800 vflogb.d               VdVj
-729cd400 vfclass.s              VdVj
-729cd800 vfclass.d              VdVj
-729ce400 vfsqrt.s               VdVj
-729ce800 vfsqrt.d               VdVj
-729cf400 vfrecip.s              VdVj
-729cf800 vfrecip.d              VdVj
-729d0400 vfrsqrt.s              VdVj
-729d0800 vfrsqrt.d              VdVj
-729d1400 vfrecipe.s             VdVj            @rev=1p10
-729d1800 vfrecipe.d             VdVj            @rev=1p10
-729d2400 vfrsqrte.s             VdVj            @rev=1p10
-729d2800 vfrsqrte.d             VdVj            @rev=1p10
-729d3400 vfrint.s               VdVj
-729d3800 vfrint.d               VdVj
-729d4400 vfrintrm.s             VdVj
-729d4800 vfrintrm.d             VdVj
-729d5400 vfrintrp.s             VdVj
-729d5800 vfrintrp.d             VdVj
-729d6400 vfrintrz.s             VdVj
-729d6800 vfrintrz.d             VdVj
-729d7400 vfrintrne.s            VdVj
-729d7800 vfrintrne.d            VdVj
-729de800 vfcvtl.s.h             VdVj
-729dec00 vfcvth.s.h             VdVj
-729df000 vfcvtl.d.s             VdVj
-729df400 vfcvth.d.s             VdVj
-729e0000 vffint.s.w             VdVj
-729e0400 vffint.s.wu            VdVj
-729e0800 vffint.d.l             VdVj
-729e0c00 vffint.d.lu            VdVj
-729e1000 vffintl.d.w            VdVj
-729e1400 vffinth.d.w            VdVj
-729e3000 vftint.w.s             VdVj
-729e3400 vftint.l.d             VdVj
-729e3800 vftintrm.w.s           VdVj
-729e3c00 vftintrm.l.d           VdVj
-729e4000 vftintrp.w.s           VdVj
-729e4400 vftintrp.l.d           VdVj
-729e4800 vftintrz.w.s           VdVj
-729e4c00 vftintrz.l.d           VdVj
-729e5000 vftintrne.w.s          VdVj
-729e5400 vftintrne.l.d          VdVj
-729e5800 vftint.wu.s            VdVj
-729e5c00 vftint.lu.d            VdVj
-729e7000 vftintrz.wu.s          VdVj
-729e7400 vftintrz.lu.d          VdVj
-729e8000 vftintl.l.s            VdVj
-729e8400 vftinth.l.s            VdVj
-729e8800 vftintrml.l.s          VdVj
-729e8c00 vftintrmh.l.s          VdVj
-729e9000 vftintrpl.l.s          VdVj
-729e9400 vftintrph.l.s          VdVj
-729e9800 vftintrzl.l.s          VdVj
-729e9c00 vftintrzh.l.s          VdVj
-729ea000 vftintrnel.l.s         VdVj
-729ea400 vftintrneh.l.s         VdVj
-729ee000 vexth.h.b              VdVj
-729ee400 vexth.w.h              VdVj
-729ee800 vexth.d.w              VdVj
-729eec00 vexth.q.d              VdVj
-729ef000 vexth.hu.bu            VdVj
-729ef400 vexth.wu.hu            VdVj
-729ef800 vexth.du.wu            VdVj
-729efc00 vexth.qu.du            VdVj
-729f0000 vreplgr2vr.b           VdJ             @qemu
-729f0400 vreplgr2vr.h           VdJ             @qemu
-729f0800 vreplgr2vr.w           VdJ             @qemu
-729f0c00 vreplgr2vr.d           VdJ             @qemu
-72a02000 vrotri.b               VdVjUk3         @qemu
-72a04000 vrotri.h               VdVjUk4         @qemu
-72a08000 vrotri.w               VdVjUk5         @qemu
-72a10000 vrotri.d               VdVjUk6         @qemu
-72a42000 vsrlri.b               VdVjUk3
-72a44000 vsrlri.h               VdVjUk4
-72a48000 vsrlri.w               VdVjUk5
-72a50000 vsrlri.d               VdVjUk6
-72a82000 vsrari.b               VdVjUk3
-72a84000 vsrari.h               VdVjUk4
-72a88000 vsrari.w               VdVjUk5
-72a90000 vsrari.d               VdVjUk6
-72eb8000 vinsgr2vr.b            VdJUk4          @qemu
-72ebc000 vinsgr2vr.h            VdJUk3          @qemu
-72ebe000 vinsgr2vr.w            VdJUk2          @qemu
-72ebf000 vinsgr2vr.d            VdJUk1          @qemu
-72ef8000 vpickve2gr.b           DVjUk4          @qemu
-72efc000 vpickve2gr.h           DVjUk3          @qemu
-72efe000 vpickve2gr.w           DVjUk2          @qemu
-72eff000 vpickve2gr.d           DVjUk1          @qemu
-72f38000 vpickve2gr.bu          DVjUk4          @qemu
-72f3c000 vpickve2gr.hu          DVjUk3          @qemu
-72f3e000 vpickve2gr.wu          DVjUk2          @qemu
-72f3f000 vpickve2gr.du          DVjUk1          @qemu
-72f78000 vreplvei.b             VdVjUk4         @qemu
-72f7c000 vreplvei.h             VdVjUk3         @qemu
-72f7e000 vreplvei.w             VdVjUk2         @qemu
-72f7f000 vreplvei.d             VdVjUk1         @qemu
-73082000 vsllwil.h.b            VdVjUk3
-73084000 vsllwil.w.h            VdVjUk4
-73088000 vsllwil.d.w            VdVjUk5
-73090000 vextl.q.d              VdVj
-730c2000 vsllwil.hu.bu          VdVjUk3
-730c4000 vsllwil.wu.hu          VdVjUk4
-730c8000 vsllwil.du.wu          VdVjUk5
-730d0000 vextl.qu.du            VdVj
-73102000 vbitclri.b             VdVjUk3         @qemu
-73104000 vbitclri.h             VdVjUk4         @qemu
-73108000 vbitclri.w             VdVjUk5         @qemu
-73110000 vbitclri.d             VdVjUk6         @qemu
-73142000 vbitseti.b             VdVjUk3         @qemu
-73144000 vbitseti.h             VdVjUk4         @qemu
-73148000 vbitseti.w             VdVjUk5         @qemu
-73150000 vbitseti.d             VdVjUk6         @qemu
-73182000 vbitrevi.b             VdVjUk3         @qemu
-73184000 vbitrevi.h             VdVjUk4         @qemu
-73188000 vbitrevi.w             VdVjUk5         @qemu
-73190000 vbitrevi.d             VdVjUk6         @qemu
-73242000 vsat.b                 VdVjUk3
-73244000 vsat.h                 VdVjUk4
-73248000 vsat.w                 VdVjUk5
-73250000 vsat.d                 VdVjUk6
-73282000 vsat.bu                VdVjUk3
-73284000 vsat.hu                VdVjUk4
-73288000 vsat.wu                VdVjUk5
-73290000 vsat.du                VdVjUk6
-732c2000 vslli.b                VdVjUk3         @qemu
-732c4000 vslli.h                VdVjUk4         @qemu
-732c8000 vslli.w                VdVjUk5         @qemu
-732d0000 vslli.d                VdVjUk6         @qemu
-73302000 vsrli.b                VdVjUk3         @qemu
-73304000 vsrli.h                VdVjUk4         @qemu
-73308000 vsrli.w                VdVjUk5         @qemu
-73310000 vsrli.d                VdVjUk6         @qemu
-73342000 vsrai.b                VdVjUk3         @qemu
-73344000 vsrai.h                VdVjUk4         @qemu
-73348000 vsrai.w                VdVjUk5         @qemu
-73350000 vsrai.d                VdVjUk6         @qemu
-73404000 vsrlni.b.h             VdVjUk4
-73408000 vsrlni.h.w             VdVjUk5
-73410000 vsrlni.w.d             VdVjUk6
-73420000 vsrlni.d.q             VdVjUk7
-73444000 vsrlrni.b.h            VdVjUk4
-73448000 vsrlrni.h.w            VdVjUk5
-73450000 vsrlrni.w.d            VdVjUk6
-73460000 vsrlrni.d.q            VdVjUk7
-73484000 vssrlni.b.h            VdVjUk4
-73488000 vssrlni.h.w            VdVjUk5
-73490000 vssrlni.w.d            VdVjUk6
-734a0000 vssrlni.d.q            VdVjUk7
-734c4000 vssrlni.bu.h           VdVjUk4
-734c8000 vssrlni.hu.w           VdVjUk5
-734d0000 vssrlni.wu.d           VdVjUk6
-734e0000 vssrlni.du.q           VdVjUk7
-73504000 vssrlrni.b.h           VdVjUk4
-73508000 vssrlrni.h.w           VdVjUk5
-73510000 vssrlrni.w.d           VdVjUk6
-73520000 vssrlrni.d.q           VdVjUk7
-73544000 vssrlrni.bu.h          VdVjUk4
-73548000 vssrlrni.hu.w          VdVjUk5
-73550000 vssrlrni.wu.d          VdVjUk6
-73560000 vssrlrni.du.q          VdVjUk7
-73584000 vsrani.b.h             VdVjUk4
-73588000 vsrani.h.w             VdVjUk5
-73590000 vsrani.w.d             VdVjUk6
-735a0000 vsrani.d.q             VdVjUk7
-735c4000 vsrarni.b.h            VdVjUk4
-735c8000 vsrarni.h.w            VdVjUk5
-735d0000 vsrarni.w.d            VdVjUk6
-735e0000 vsrarni.d.q            VdVjUk7
-73604000 vssrani.b.h            VdVjUk4
-73608000 vssrani.h.w            VdVjUk5
-73610000 vssrani.w.d            VdVjUk6
-73620000 vssrani.d.q            VdVjUk7
-73644000 vssrani.bu.h           VdVjUk4
-73648000 vssrani.hu.w           VdVjUk5
-73650000 vssrani.wu.d           VdVjUk6
-73660000 vssrani.du.q           VdVjUk7
-73684000 vssrarni.b.h           VdVjUk4
-73688000 vssrarni.h.w           VdVjUk5
-73690000 vssrarni.w.d           VdVjUk6
-736a0000 vssrarni.d.q           VdVjUk7
-736c4000 vssrarni.bu.h          VdVjUk4
-736c8000 vssrarni.hu.w          VdVjUk5
-736d0000 vssrarni.wu.d          VdVjUk6
-736e0000 vssrarni.du.q          VdVjUk7
-73800000 vextrins.d             VdVjUk8
-73840000 vextrins.w             VdVjUk8
-73880000 vextrins.h             VdVjUk8
-738c0000 vextrins.b             VdVjUk8
-73900000 vshuf4i.b              VdVjUk8
-73940000 vshuf4i.h              VdVjUk8
-73980000 vshuf4i.w              VdVjUk8
-739c0000 vshuf4i.d              VdVjUk8
-73c40000 vbitseli.b             VdVjUk8         @qemu
-73d00000 vandi.b                VdVjUk8         @qemu
-73d40000 vori.b                 VdVjUk8         @qemu
-73d80000 vxori.b                VdVjUk8         @qemu
-73dc0000 vnori.b                VdVjUk8         @qemu
-73e00000 vldi                   VdSj13          @qemu
-73e40000 vpermi.w               VdVjUk8
+70000000 vseq.b                 VdVjVk          @qemu @modify=Vd
+70008000 vseq.h                 VdVjVk          @qemu @modify=Vd
+70010000 vseq.w                 VdVjVk          @qemu @modify=Vd
+70018000 vseq.d                 VdVjVk          @qemu @modify=Vd
+70020000 vsle.b                 VdVjVk          @qemu @modify=Vd
+70028000 vsle.h                 VdVjVk          @qemu @modify=Vd
+70030000 vsle.w                 VdVjVk          @qemu @modify=Vd
+70038000 vsle.d                 VdVjVk          @qemu @modify=Vd
+70040000 vsle.bu                VdVjVk          @qemu @modify=Vd
+70048000 vsle.hu                VdVjVk          @qemu @modify=Vd
+70050000 vsle.wu                VdVjVk          @qemu @modify=Vd
+70058000 vsle.du                VdVjVk          @qemu @modify=Vd
+70060000 vslt.b                 VdVjVk          @qemu @modify=Vd
+70068000 vslt.h                 VdVjVk          @qemu @modify=Vd
+70070000 vslt.w                 VdVjVk          @qemu @modify=Vd
+70078000 vslt.d                 VdVjVk          @qemu @modify=Vd
+70080000 vslt.bu                VdVjVk          @qemu @modify=Vd
+70088000 vslt.hu                VdVjVk          @qemu @modify=Vd
+70090000 vslt.wu                VdVjVk          @qemu @modify=Vd
+70098000 vslt.du                VdVjVk          @qemu @modify=Vd
+700a0000 vadd.b                 VdVjVk          @qemu @modify=Vd
+700a8000 vadd.h                 VdVjVk          @qemu @modify=Vd
+700b0000 vadd.w                 VdVjVk          @qemu @modify=Vd
+700b8000 vadd.d                 VdVjVk          @qemu @modify=Vd
+700c0000 vsub.b                 VdVjVk          @qemu @modify=Vd
+700c8000 vsub.h                 VdVjVk          @qemu @modify=Vd
+700d0000 vsub.w                 VdVjVk          @qemu @modify=Vd
+700d8000 vsub.d                 VdVjVk          @qemu @modify=Vd
+701e0000 vaddwev.h.b            VdVjVk          @modify=Vd
+701e8000 vaddwev.w.h            VdVjVk          @modify=Vd
+701f0000 vaddwev.d.w            VdVjVk          @modify=Vd
+701f8000 vaddwev.q.d            VdVjVk          @modify=Vd
+70200000 vsubwev.h.b            VdVjVk          @modify=Vd
+70208000 vsubwev.w.h            VdVjVk          @modify=Vd
+70210000 vsubwev.d.w            VdVjVk          @modify=Vd
+70218000 vsubwev.q.d            VdVjVk          @modify=Vd
+70220000 vaddwod.h.b            VdVjVk          @modify=Vd
+70228000 vaddwod.w.h            VdVjVk          @modify=Vd
+70230000 vaddwod.d.w            VdVjVk          @modify=Vd
+70238000 vaddwod.q.d            VdVjVk          @modify=Vd
+70240000 vsubwod.h.b            VdVjVk          @modify=Vd
+70248000 vsubwod.w.h            VdVjVk          @modify=Vd
+70250000 vsubwod.d.w            VdVjVk          @modify=Vd
+70258000 vsubwod.q.d            VdVjVk          @modify=Vd
+702e0000 vaddwev.h.bu           VdVjVk          @modify=Vd
+702e8000 vaddwev.w.hu           VdVjVk          @modify=Vd
+702f0000 vaddwev.d.wu           VdVjVk          @modify=Vd
+702f8000 vaddwev.q.du           VdVjVk          @modify=Vd
+70300000 vsubwev.h.bu           VdVjVk          @modify=Vd
+70308000 vsubwev.w.hu           VdVjVk          @modify=Vd
+70310000 vsubwev.d.wu           VdVjVk          @modify=Vd
+70318000 vsubwev.q.du           VdVjVk          @modify=Vd
+70320000 vaddwod.h.bu           VdVjVk          @modify=Vd
+70328000 vaddwod.w.hu           VdVjVk          @modify=Vd
+70330000 vaddwod.d.wu           VdVjVk          @modify=Vd
+70338000 vaddwod.q.du           VdVjVk          @modify=Vd
+70340000 vsubwod.h.bu           VdVjVk          @modify=Vd
+70348000 vsubwod.w.hu           VdVjVk          @modify=Vd
+70350000 vsubwod.d.wu           VdVjVk          @modify=Vd
+70358000 vsubwod.q.du           VdVjVk          @modify=Vd
+703e0000 vaddwev.h.bu.b         VdVjVk          @modify=Vd
+703e8000 vaddwev.w.hu.h         VdVjVk          @modify=Vd
+703f0000 vaddwev.d.wu.w         VdVjVk          @modify=Vd
+703f8000 vaddwev.q.du.d         VdVjVk          @modify=Vd
+70400000 vaddwod.h.bu.b         VdVjVk          @modify=Vd
+70408000 vaddwod.w.hu.h         VdVjVk          @modify=Vd
+70410000 vaddwod.d.wu.w         VdVjVk          @modify=Vd
+70418000 vaddwod.q.du.d         VdVjVk          @modify=Vd
+70460000 vsadd.b                VdVjVk          @qemu @modify=Vd
+70468000 vsadd.h                VdVjVk          @qemu @modify=Vd
+70470000 vsadd.w                VdVjVk          @qemu @modify=Vd
+70478000 vsadd.d                VdVjVk          @qemu @modify=Vd
+70480000 vssub.b                VdVjVk          @qemu @modify=Vd
+70488000 vssub.h                VdVjVk          @qemu @modify=Vd
+70490000 vssub.w                VdVjVk          @qemu @modify=Vd
+70498000 vssub.d                VdVjVk          @qemu @modify=Vd
+704a0000 vsadd.bu               VdVjVk          @qemu @modify=Vd
+704a8000 vsadd.hu               VdVjVk          @qemu @modify=Vd
+704b0000 vsadd.wu               VdVjVk          @qemu @modify=Vd
+704b8000 vsadd.du               VdVjVk          @qemu @modify=Vd
+704c0000 vssub.bu               VdVjVk          @qemu @modify=Vd
+704c8000 vssub.hu               VdVjVk          @qemu @modify=Vd
+704d0000 vssub.wu               VdVjVk          @qemu @modify=Vd
+704d8000 vssub.du               VdVjVk          @qemu @modify=Vd
+70540000 vhaddw.h.b             VdVjVk          @modify=Vd
+70548000 vhaddw.w.h             VdVjVk          @modify=Vd
+70550000 vhaddw.d.w             VdVjVk          @modify=Vd
+70558000 vhaddw.q.d             VdVjVk          @modify=Vd
+70560000 vhsubw.h.b             VdVjVk          @modify=Vd
+70568000 vhsubw.w.h             VdVjVk          @modify=Vd
+70570000 vhsubw.d.w             VdVjVk          @modify=Vd
+70578000 vhsubw.q.d             VdVjVk          @modify=Vd
+70580000 vhaddw.hu.bu           VdVjVk          @modify=Vd
+70588000 vhaddw.wu.hu           VdVjVk          @modify=Vd
+70590000 vhaddw.du.wu           VdVjVk          @modify=Vd
+70598000 vhaddw.qu.du           VdVjVk          @modify=Vd
+705a0000 vhsubw.hu.bu           VdVjVk          @modify=Vd
+705a8000 vhsubw.wu.hu           VdVjVk          @modify=Vd
+705b0000 vhsubw.du.wu           VdVjVk          @modify=Vd
+705b8000 vhsubw.qu.du           VdVjVk          @modify=Vd
+705c0000 vadda.b                VdVjVk          @modify=Vd
+705c8000 vadda.h                VdVjVk          @modify=Vd
+705d0000 vadda.w                VdVjVk          @modify=Vd
+705d8000 vadda.d                VdVjVk          @modify=Vd
+70600000 vabsd.b                VdVjVk          @modify=Vd
+70608000 vabsd.h                VdVjVk          @modify=Vd
+70610000 vabsd.w                VdVjVk          @modify=Vd
+70618000 vabsd.d                VdVjVk          @modify=Vd
+70620000 vabsd.bu               VdVjVk          @modify=Vd
+70628000 vabsd.hu               VdVjVk          @modify=Vd
+70630000 vabsd.wu               VdVjVk          @modify=Vd
+70638000 vabsd.du               VdVjVk          @modify=Vd
+70640000 vavg.b                 VdVjVk          @modify=Vd
+70648000 vavg.h                 VdVjVk          @modify=Vd
+70650000 vavg.w                 VdVjVk          @modify=Vd
+70658000 vavg.d                 VdVjVk          @modify=Vd
+70660000 vavg.bu                VdVjVk          @modify=Vd
+70668000 vavg.hu                VdVjVk          @modify=Vd
+70670000 vavg.wu                VdVjVk          @modify=Vd
+70678000 vavg.du                VdVjVk          @modify=Vd
+70680000 vavgr.b                VdVjVk          @modify=Vd
+70688000 vavgr.h                VdVjVk          @modify=Vd
+70690000 vavgr.w                VdVjVk          @modify=Vd
+70698000 vavgr.d                VdVjVk          @modify=Vd
+706a0000 vavgr.bu               VdVjVk          @modify=Vd
+706a8000 vavgr.hu               VdVjVk          @modify=Vd
+706b0000 vavgr.wu               VdVjVk          @modify=Vd
+706b8000 vavgr.du               VdVjVk          @modify=Vd
+70700000 vmax.b                 VdVjVk          @qemu @modify=Vd
+70708000 vmax.h                 VdVjVk          @qemu @modify=Vd
+70710000 vmax.w                 VdVjVk          @qemu @modify=Vd
+70718000 vmax.d                 VdVjVk          @qemu @modify=Vd
+70720000 vmin.b                 VdVjVk          @qemu @modify=Vd
+70728000 vmin.h                 VdVjVk          @qemu @modify=Vd
+70730000 vmin.w                 VdVjVk          @qemu @modify=Vd
+70738000 vmin.d                 VdVjVk          @qemu @modify=Vd
+70740000 vmax.bu                VdVjVk          @qemu @modify=Vd
+70748000 vmax.hu                VdVjVk          @qemu @modify=Vd
+70750000 vmax.wu                VdVjVk          @qemu @modify=Vd
+70758000 vmax.du                VdVjVk          @qemu @modify=Vd
+70760000 vmin.bu                VdVjVk          @qemu @modify=Vd
+70768000 vmin.hu                VdVjVk          @qemu @modify=Vd
+70770000 vmin.wu                VdVjVk          @qemu @modify=Vd
+70778000 vmin.du                VdVjVk          @qemu @modify=Vd
+70840000 vmul.b                 VdVjVk          @qemu @modify=Vd
+70848000 vmul.h                 VdVjVk          @qemu @modify=Vd
+70850000 vmul.w                 VdVjVk          @qemu @modify=Vd
+70858000 vmul.d                 VdVjVk          @qemu @modify=Vd
+70860000 vmuh.b                 VdVjVk          @modify=Vd
+70868000 vmuh.h                 VdVjVk          @modify=Vd
+70870000 vmuh.w                 VdVjVk          @modify=Vd
+70878000 vmuh.d                 VdVjVk          @modify=Vd
+70880000 vmuh.bu                VdVjVk          @modify=Vd
+70888000 vmuh.hu                VdVjVk          @modify=Vd
+70890000 vmuh.wu                VdVjVk          @modify=Vd
+70898000 vmuh.du                VdVjVk          @modify=Vd
+70900000 vmulwev.h.b            VdVjVk          @modify=Vd
+70908000 vmulwev.w.h            VdVjVk          @modify=Vd
+70910000 vmulwev.d.w            VdVjVk          @modify=Vd
+70918000 vmulwev.q.d            VdVjVk          @modify=Vd
+70920000 vmulwod.h.b            VdVjVk          @modify=Vd
+70928000 vmulwod.w.h            VdVjVk          @modify=Vd
+70930000 vmulwod.d.w            VdVjVk          @modify=Vd
+70938000 vmulwod.q.d            VdVjVk          @modify=Vd
+70980000 vmulwev.h.bu           VdVjVk          @modify=Vd
+70988000 vmulwev.w.hu           VdVjVk          @modify=Vd
+70990000 vmulwev.d.wu           VdVjVk          @modify=Vd
+70998000 vmulwev.q.du           VdVjVk          @modify=Vd
+709a0000 vmulwod.h.bu           VdVjVk          @modify=Vd
+709a8000 vmulwod.w.hu           VdVjVk          @modify=Vd
+709b0000 vmulwod.d.wu           VdVjVk          @modify=Vd
+709b8000 vmulwod.q.du           VdVjVk          @modify=Vd
+70a00000 vmulwev.h.bu.b         VdVjVk          @modify=Vd
+70a08000 vmulwev.w.hu.h         VdVjVk          @modify=Vd
+70a10000 vmulwev.d.wu.w         VdVjVk          @modify=Vd
+70a18000 vmulwev.q.du.d         VdVjVk          @modify=Vd
+70a20000 vmulwod.h.bu.b         VdVjVk          @modify=Vd
+70a28000 vmulwod.w.hu.h         VdVjVk          @modify=Vd
+70a30000 vmulwod.d.wu.w         VdVjVk          @modify=Vd
+70a38000 vmulwod.q.du.d         VdVjVk          @modify=Vd
+70a80000 vmadd.b                VdVjVk          @modify=Vd
+70a88000 vmadd.h                VdVjVk          @modify=Vd
+70a90000 vmadd.w                VdVjVk          @modify=Vd
+70a98000 vmadd.d                VdVjVk          @modify=Vd
+70aa0000 vmsub.b                VdVjVk          @modify=Vd
+70aa8000 vmsub.h                VdVjVk          @modify=Vd
+70ab0000 vmsub.w                VdVjVk          @modify=Vd
+70ab8000 vmsub.d                VdVjVk          @modify=Vd
+70ac0000 vmaddwev.h.b           VdVjVk          @modify=Vd
+70ac8000 vmaddwev.w.h           VdVjVk          @modify=Vd
+70ad0000 vmaddwev.d.w           VdVjVk          @modify=Vd
+70ad8000 vmaddwev.q.d           VdVjVk          @modify=Vd
+70ae0000 vmaddwod.h.b           VdVjVk          @modify=Vd
+70ae8000 vmaddwod.w.h           VdVjVk          @modify=Vd
+70af0000 vmaddwod.d.w           VdVjVk          @modify=Vd
+70af8000 vmaddwod.q.d           VdVjVk          @modify=Vd
+70b40000 vmaddwev.h.bu          VdVjVk          @modify=Vd
+70b48000 vmaddwev.w.hu          VdVjVk          @modify=Vd
+70b50000 vmaddwev.d.wu          VdVjVk          @modify=Vd
+70b58000 vmaddwev.q.du          VdVjVk          @modify=Vd
+70b60000 vmaddwod.h.bu          VdVjVk          @modify=Vd
+70b68000 vmaddwod.w.hu          VdVjVk          @modify=Vd
+70b70000 vmaddwod.d.wu          VdVjVk          @modify=Vd
+70b78000 vmaddwod.q.du          VdVjVk          @modify=Vd
+70bc0000 vmaddwev.h.bu.b        VdVjVk          @modify=Vd
+70bc8000 vmaddwev.w.hu.h        VdVjVk          @modify=Vd
+70bd0000 vmaddwev.d.wu.w        VdVjVk          @modify=Vd
+70bd8000 vmaddwev.q.du.d        VdVjVk          @modify=Vd
+70be0000 vmaddwod.h.bu.b        VdVjVk          @modify=Vd
+70be8000 vmaddwod.w.hu.h        VdVjVk          @modify=Vd
+70bf0000 vmaddwod.d.wu.w        VdVjVk          @modify=Vd
+70bf8000 vmaddwod.q.du.d        VdVjVk          @modify=Vd
+70e00000 vdiv.b                 VdVjVk          @modify=Vd
+70e08000 vdiv.h                 VdVjVk          @modify=Vd
+70e10000 vdiv.w                 VdVjVk          @modify=Vd
+70e18000 vdiv.d                 VdVjVk          @modify=Vd
+70e20000 vmod.b                 VdVjVk          @modify=Vd
+70e28000 vmod.h                 VdVjVk          @modify=Vd
+70e30000 vmod.w                 VdVjVk          @modify=Vd
+70e38000 vmod.d                 VdVjVk          @modify=Vd
+70e40000 vdiv.bu                VdVjVk          @modify=Vd
+70e48000 vdiv.hu                VdVjVk          @modify=Vd
+70e50000 vdiv.wu                VdVjVk          @modify=Vd
+70e58000 vdiv.du                VdVjVk          @modify=Vd
+70e60000 vmod.bu                VdVjVk          @modify=Vd
+70e68000 vmod.hu                VdVjVk          @modify=Vd
+70e70000 vmod.wu                VdVjVk          @modify=Vd
+70e78000 vmod.du                VdVjVk          @modify=Vd
+70e80000 vsll.b                 VdVjVk          @qemu @modify=Vd
+70e88000 vsll.h                 VdVjVk          @qemu @modify=Vd
+70e90000 vsll.w                 VdVjVk          @qemu @modify=Vd
+70e98000 vsll.d                 VdVjVk          @qemu @modify=Vd
+70ea0000 vsrl.b                 VdVjVk          @qemu @modify=Vd
+70ea8000 vsrl.h                 VdVjVk          @qemu @modify=Vd
+70eb0000 vsrl.w                 VdVjVk          @qemu @modify=Vd
+70eb8000 vsrl.d                 VdVjVk          @qemu @modify=Vd
+70ec0000 vsra.b                 VdVjVk          @qemu @modify=Vd
+70ec8000 vsra.h                 VdVjVk          @qemu @modify=Vd
+70ed0000 vsra.w                 VdVjVk          @qemu @modify=Vd
+70ed8000 vsra.d                 VdVjVk          @qemu @modify=Vd
+70ee0000 vrotr.b                VdVjVk          @qemu @modify=Vd
+70ee8000 vrotr.h                VdVjVk          @qemu @modify=Vd
+70ef0000 vrotr.w                VdVjVk          @qemu @modify=Vd
+70ef8000 vrotr.d                VdVjVk          @qemu @modify=Vd
+70f00000 vsrlr.b                VdVjVk          @modify=Vd
+70f08000 vsrlr.h                VdVjVk          @modify=Vd
+70f10000 vsrlr.w                VdVjVk          @modify=Vd
+70f18000 vsrlr.d                VdVjVk          @modify=Vd
+70f20000 vsrar.b                VdVjVk          @modify=Vd
+70f28000 vsrar.h                VdVjVk          @modify=Vd
+70f30000 vsrar.w                VdVjVk          @modify=Vd
+70f38000 vsrar.d                VdVjVk          @modify=Vd
+70f48000 vsrln.b.h              VdVjVk          @modify=Vd
+70f50000 vsrln.h.w              VdVjVk          @modify=Vd
+70f58000 vsrln.w.d              VdVjVk          @modify=Vd
+70f68000 vsran.b.h              VdVjVk          @modify=Vd
+70f70000 vsran.h.w              VdVjVk          @modify=Vd
+70f78000 vsran.w.d              VdVjVk          @modify=Vd
+70f88000 vsrlrn.b.h             VdVjVk          @modify=Vd
+70f90000 vsrlrn.h.w             VdVjVk          @modify=Vd
+70f98000 vsrlrn.w.d             VdVjVk          @modify=Vd
+70fa8000 vsrarn.b.h             VdVjVk          @modify=Vd
+70fb0000 vsrarn.h.w             VdVjVk          @modify=Vd
+70fb8000 vsrarn.w.d             VdVjVk          @modify=Vd
+70fc8000 vssrln.b.h             VdVjVk          @modify=Vd
+70fd0000 vssrln.h.w             VdVjVk          @modify=Vd
+70fd8000 vssrln.w.d             VdVjVk          @modify=Vd
+70fe8000 vssran.b.h             VdVjVk          @modify=Vd
+70ff0000 vssran.h.w             VdVjVk          @modify=Vd
+70ff8000 vssran.w.d             VdVjVk          @modify=Vd
+71008000 vssrlrn.b.h            VdVjVk          @modify=Vd
+71010000 vssrlrn.h.w            VdVjVk          @modify=Vd
+71018000 vssrlrn.w.d            VdVjVk          @modify=Vd
+71028000 vssrarn.b.h            VdVjVk          @modify=Vd
+71030000 vssrarn.h.w            VdVjVk          @modify=Vd
+71038000 vssrarn.w.d            VdVjVk          @modify=Vd
+71048000 vssrln.bu.h            VdVjVk          @modify=Vd
+71050000 vssrln.hu.w            VdVjVk          @modify=Vd
+71058000 vssrln.wu.d            VdVjVk          @modify=Vd
+71068000 vssran.bu.h            VdVjVk          @modify=Vd
+71070000 vssran.hu.w            VdVjVk          @modify=Vd
+71078000 vssran.wu.d            VdVjVk          @modify=Vd
+71088000 vssrlrn.bu.h           VdVjVk          @modify=Vd
+71090000 vssrlrn.hu.w           VdVjVk          @modify=Vd
+71098000 vssrlrn.wu.d           VdVjVk          @modify=Vd
+710a8000 vssrarn.bu.h           VdVjVk          @modify=Vd
+710b0000 vssrarn.hu.w           VdVjVk          @modify=Vd
+710b8000 vssrarn.wu.d           VdVjVk          @modify=Vd
+710c0000 vbitclr.b              VdVjVk          @modify=Vd
+710c8000 vbitclr.h              VdVjVk          @modify=Vd
+710d0000 vbitclr.w              VdVjVk          @modify=Vd
+710d8000 vbitclr.d              VdVjVk          @modify=Vd
+710e0000 vbitset.b              VdVjVk          @modify=Vd
+710e8000 vbitset.h              VdVjVk          @modify=Vd
+710f0000 vbitset.w              VdVjVk          @modify=Vd
+710f8000 vbitset.d              VdVjVk          @modify=Vd
+71100000 vbitrev.b              VdVjVk          @modify=Vd
+71108000 vbitrev.h              VdVjVk          @modify=Vd
+71110000 vbitrev.w              VdVjVk          @modify=Vd
+71118000 vbitrev.d              VdVjVk          @modify=Vd
+71160000 vpackev.b              VdVjVk          @modify=Vd
+71168000 vpackev.h              VdVjVk          @modify=Vd
+71170000 vpackev.w              VdVjVk          @modify=Vd
+71178000 vpackev.d              VdVjVk          @modify=Vd
+71180000 vpackod.b              VdVjVk          @modify=Vd
+71188000 vpackod.h              VdVjVk          @modify=Vd
+71190000 vpackod.w              VdVjVk          @modify=Vd
+71198000 vpackod.d              VdVjVk          @modify=Vd
+711a0000 vilvl.b                VdVjVk          @modify=Vd
+711a8000 vilvl.h                VdVjVk          @modify=Vd
+711b0000 vilvl.w                VdVjVk          @modify=Vd
+711b8000 vilvl.d                VdVjVk          @modify=Vd
+711c0000 vilvh.b                VdVjVk          @modify=Vd
+711c8000 vilvh.h                VdVjVk          @modify=Vd
+711d0000 vilvh.w                VdVjVk          @modify=Vd
+711d8000 vilvh.d                VdVjVk          @modify=Vd
+711e0000 vpickev.b              VdVjVk          @modify=Vd
+711e8000 vpickev.h              VdVjVk          @modify=Vd
+711f0000 vpickev.w              VdVjVk          @modify=Vd
+711f8000 vpickev.d              VdVjVk          @modify=Vd
+71200000 vpickod.b              VdVjVk          @modify=Vd
+71208000 vpickod.h              VdVjVk          @modify=Vd
+71210000 vpickod.w              VdVjVk          @modify=Vd
+71218000 vpickod.d              VdVjVk          @modify=Vd
+71220000 vreplve.b              VdVjK           @qemu @modify=Vd
+71228000 vreplve.h              VdVjK           @qemu @modify=Vd
+71230000 vreplve.w              VdVjK           @qemu @modify=Vd
+71238000 vreplve.d              VdVjK           @qemu @modify=Vd
+71260000 vand.v                 VdVjVk          @qemu @modify=Vd
+71268000 vor.v                  VdVjVk          @qemu @modify=Vd
+71270000 vxor.v                 VdVjVk          @qemu @modify=Vd
+71278000 vnor.v                 VdVjVk          @qemu @modify=Vd
+71280000 vandn.v                VdVjVk          @qemu @modify=Vd
+71288000 vorn.v                 VdVjVk          @qemu @modify=Vd
+712b0000 vfrstp.b               VdVjVk          @modify=Vd
+712b8000 vfrstp.h               VdVjVk          @modify=Vd
+712d0000 vadd.q                 VdVjVk          @modify=Vd
+712d8000 vsub.q                 VdVjVk          @modify=Vd
+712e0000 vsigncov.b             VdVjVk          @modify=Vd
+712e8000 vsigncov.h             VdVjVk          @modify=Vd
+712f0000 vsigncov.w             VdVjVk          @modify=Vd
+712f8000 vsigncov.d             VdVjVk          @modify=Vd
+71308000 vfadd.s                VdVjVk          @modify=Vd
+71310000 vfadd.d                VdVjVk          @modify=Vd
+71328000 vfsub.s                VdVjVk          @modify=Vd
+71330000 vfsub.d                VdVjVk          @modify=Vd
+71388000 vfmul.s                VdVjVk          @modify=Vd
+71390000 vfmul.d                VdVjVk          @modify=Vd
+713a8000 vfdiv.s                VdVjVk          @modify=Vd
+713b0000 vfdiv.d                VdVjVk          @modify=Vd
+713c8000 vfmax.s                VdVjVk          @modify=Vd
+713d0000 vfmax.d                VdVjVk          @modify=Vd
+713e8000 vfmin.s                VdVjVk          @modify=Vd
+713f0000 vfmin.d                VdVjVk          @modify=Vd
+71408000 vfmaxa.s               VdVjVk          @modify=Vd
+71410000 vfmaxa.d               VdVjVk          @modify=Vd
+71428000 vfmina.s               VdVjVk          @modify=Vd
+71430000 vfmina.d               VdVjVk          @modify=Vd
+71460000 vfcvt.h.s              VdVjVk          @modify=Vd
+71468000 vfcvt.s.d              VdVjVk          @modify=Vd
+71480000 vffint.s.l             VdVjVk          @modify=Vd
+71498000 vftint.w.d             VdVjVk          @modify=Vd
+714a0000 vftintrm.w.d           VdVjVk          @modify=Vd
+714a8000 vftintrp.w.d           VdVjVk          @modify=Vd
+714b0000 vftintrz.w.d           VdVjVk          @modify=Vd
+714b8000 vftintrne.w.d          VdVjVk          @modify=Vd
+717a8000 vshuf.h                VdVjVk          @modify=Vd
+717b0000 vshuf.w                VdVjVk          @modify=Vd
+717b8000 vshuf.d                VdVjVk          @modify=Vd
+72800000 vseqi.b                VdVjSk5         @qemu @modify=Vd
+72808000 vseqi.h                VdVjSk5         @qemu @modify=Vd
+72810000 vseqi.w                VdVjSk5         @qemu @modify=Vd
+72818000 vseqi.d                VdVjSk5         @qemu @modify=Vd
+72820000 vslei.b                VdVjSk5         @qemu @modify=Vd
+72828000 vslei.h                VdVjSk5         @qemu @modify=Vd
+72830000 vslei.w                VdVjSk5         @qemu @modify=Vd
+72838000 vslei.d                VdVjSk5         @qemu @modify=Vd
+72840000 vslei.bu               VdVjUk5         @qemu @modify=Vd
+72848000 vslei.hu               VdVjUk5         @qemu @modify=Vd
+72850000 vslei.wu               VdVjUk5         @qemu @modify=Vd
+72858000 vslei.du               VdVjUk5         @qemu @modify=Vd
+72860000 vslti.b                VdVjSk5         @qemu @modify=Vd
+72868000 vslti.h                VdVjSk5         @qemu @modify=Vd
+72870000 vslti.w                VdVjSk5         @qemu @modify=Vd
+72878000 vslti.d                VdVjSk5         @qemu @modify=Vd
+72880000 vslti.bu               VdVjUk5         @qemu @modify=Vd
+72888000 vslti.hu               VdVjUk5         @qemu @modify=Vd
+72890000 vslti.wu               VdVjUk5         @qemu @modify=Vd
+72898000 vslti.du               VdVjUk5         @qemu @modify=Vd
+728a0000 vaddi.bu               VdVjUk5         @qemu @modify=Vd
+728a8000 vaddi.hu               VdVjUk5         @qemu @modify=Vd
+728b0000 vaddi.wu               VdVjUk5         @qemu @modify=Vd
+728b8000 vaddi.du               VdVjUk5         @qemu @modify=Vd
+728c0000 vsubi.bu               VdVjUk5         @qemu @modify=Vd
+728c8000 vsubi.hu               VdVjUk5         @qemu @modify=Vd
+728d0000 vsubi.wu               VdVjUk5         @qemu @modify=Vd
+728d8000 vsubi.du               VdVjUk5         @qemu @modify=Vd
+728e0000 vbsll.v                VdVjUk5         @modify=Vd
+728e8000 vbsrl.v                VdVjUk5         @modify=Vd
+72900000 vmaxi.b                VdVjSk5         @qemu @modify=Vd
+72908000 vmaxi.h                VdVjSk5         @qemu @modify=Vd
+72910000 vmaxi.w                VdVjSk5         @qemu @modify=Vd
+72918000 vmaxi.d                VdVjSk5         @qemu @modify=Vd
+72920000 vmini.b                VdVjSk5         @qemu @modify=Vd
+72928000 vmini.h                VdVjSk5         @qemu @modify=Vd
+72930000 vmini.w                VdVjSk5         @qemu @modify=Vd
+72938000 vmini.d                VdVjSk5         @qemu @modify=Vd
+72940000 vmaxi.bu               VdVjUk5         @qemu @modify=Vd
+72948000 vmaxi.hu               VdVjUk5         @qemu @modify=Vd
+72950000 vmaxi.wu               VdVjUk5         @qemu @modify=Vd
+72958000 vmaxi.du               VdVjUk5         @qemu @modify=Vd
+72960000 vmini.bu               VdVjUk5         @qemu @modify=Vd
+72968000 vmini.hu               VdVjUk5         @qemu @modify=Vd
+72970000 vmini.wu               VdVjUk5         @qemu @modify=Vd
+72978000 vmini.du               VdVjUk5         @qemu @modify=Vd
+729a0000 vfrstpi.b              VdVjUk5         @modify=Vd
+729a8000 vfrstpi.h              VdVjUk5         @modify=Vd
+729b8000 vmepatmsk.v            VdUj5Uk5        @modify=Vd
+729c0000 vclo.b                 VdVj            @modify=Vd
+729c0400 vclo.h                 VdVj            @modify=Vd
+729c0800 vclo.w                 VdVj            @modify=Vd
+729c0c00 vclo.d                 VdVj            @modify=Vd
+729c1000 vclz.b                 VdVj            @modify=Vd
+729c1400 vclz.h                 VdVj            @modify=Vd
+729c1800 vclz.w                 VdVj            @modify=Vd
+729c1c00 vclz.d                 VdVj            @modify=Vd
+729c2000 vpcnt.b                VdVj            @modify=Vd
+729c2400 vpcnt.h                VdVj            @modify=Vd
+729c2800 vpcnt.w                VdVj            @modify=Vd
+729c2c00 vpcnt.d                VdVj            @modify=Vd
+729c3000 vneg.b                 VdVj            @qemu @modify=Vd
+729c3400 vneg.h                 VdVj            @qemu @modify=Vd
+729c3800 vneg.w                 VdVj            @qemu @modify=Vd
+729c3c00 vneg.d                 VdVj            @qemu @modify=Vd
+729c4000 vmskltz.b              VdVj            @modify=Vd
+729c4400 vmskltz.h              VdVj            @modify=Vd
+729c4800 vmskltz.w              VdVj            @modify=Vd
+729c4c00 vmskltz.d              VdVj            @modify=Vd
+729c5000 vmskgez.b              VdVj            @modify=Vd
+729c6000 vmsknz.b               VdVj            @modify=Vd
+729c9800 vseteqz.v              CdVj            @modify=Cd
+729c9c00 vsetnez.v              CdVj            @modify=Cd
+729ca000 vsetanyeqz.b           CdVj            @modify=Cd
+729ca400 vsetanyeqz.h           CdVj            @modify=Cd
+729ca800 vsetanyeqz.w           CdVj            @modify=Cd
+729cac00 vsetanyeqz.d           CdVj            @modify=Cd
+729cb000 vsetallnez.b           CdVj            @modify=Cd
+729cb400 vsetallnez.h           CdVj            @modify=Cd
+729cb800 vsetallnez.w           CdVj            @modify=Cd
+729cbc00 vsetallnez.d           CdVj            @modify=Cd
+729cc400 vflogb.s               VdVj            @modify=Vd
+729cc800 vflogb.d               VdVj            @modify=Vd
+729cd400 vfclass.s              VdVj            @modify=Vd
+729cd800 vfclass.d              VdVj            @modify=Vd
+729ce400 vfsqrt.s               VdVj            @modify=Vd
+729ce800 vfsqrt.d               VdVj            @modify=Vd
+729cf400 vfrecip.s              VdVj            @modify=Vd
+729cf800 vfrecip.d              VdVj            @modify=Vd
+729d0400 vfrsqrt.s              VdVj            @modify=Vd
+729d0800 vfrsqrt.d              VdVj            @modify=Vd
+729d1400 vfrecipe.s             VdVj            @rev=1p10 @modify=Vd
+729d1800 vfrecipe.d             VdVj            @rev=1p10 @modify=Vd
+729d2400 vfrsqrte.s             VdVj            @rev=1p10 @modify=Vd
+729d2800 vfrsqrte.d             VdVj            @rev=1p10 @modify=Vd
+729d3400 vfrint.s               VdVj            @modify=Vd
+729d3800 vfrint.d               VdVj            @modify=Vd
+729d4400 vfrintrm.s             VdVj            @modify=Vd
+729d4800 vfrintrm.d             VdVj            @modify=Vd
+729d5400 vfrintrp.s             VdVj            @modify=Vd
+729d5800 vfrintrp.d             VdVj            @modify=Vd
+729d6400 vfrintrz.s             VdVj            @modify=Vd
+729d6800 vfrintrz.d             VdVj            @modify=Vd
+729d7400 vfrintrne.s            VdVj            @modify=Vd
+729d7800 vfrintrne.d            VdVj            @modify=Vd
+729de800 vfcvtl.s.h             VdVj            @modify=Vd
+729dec00 vfcvth.s.h             VdVj            @modify=Vd
+729df000 vfcvtl.d.s             VdVj            @modify=Vd
+729df400 vfcvth.d.s             VdVj            @modify=Vd
+729e0000 vffint.s.w             VdVj            @modify=Vd
+729e0400 vffint.s.wu            VdVj            @modify=Vd
+729e0800 vffint.d.l             VdVj            @modify=Vd
+729e0c00 vffint.d.lu            VdVj            @modify=Vd
+729e1000 vffintl.d.w            VdVj            @modify=Vd
+729e1400 vffinth.d.w            VdVj            @modify=Vd
+729e3000 vftint.w.s             VdVj            @modify=Vd
+729e3400 vftint.l.d             VdVj            @modify=Vd
+729e3800 vftintrm.w.s           VdVj            @modify=Vd
+729e3c00 vftintrm.l.d           VdVj            @modify=Vd
+729e4000 vftintrp.w.s           VdVj            @modify=Vd
+729e4400 vftintrp.l.d           VdVj            @modify=Vd
+729e4800 vftintrz.w.s           VdVj            @modify=Vd
+729e4c00 vftintrz.l.d           VdVj            @modify=Vd
+729e5000 vftintrne.w.s          VdVj            @modify=Vd
+729e5400 vftintrne.l.d          VdVj            @modify=Vd
+729e5800 vftint.wu.s            VdVj            @modify=Vd
+729e5c00 vftint.lu.d            VdVj            @modify=Vd
+729e7000 vftintrz.wu.s          VdVj            @modify=Vd
+729e7400 vftintrz.lu.d          VdVj            @modify=Vd
+729e8000 vftintl.l.s            VdVj            @modify=Vd
+729e8400 vftinth.l.s            VdVj            @modify=Vd
+729e8800 vftintrml.l.s          VdVj            @modify=Vd
+729e8c00 vftintrmh.l.s          VdVj            @modify=Vd
+729e9000 vftintrpl.l.s          VdVj            @modify=Vd
+729e9400 vftintrph.l.s          VdVj            @modify=Vd
+729e9800 vftintrzl.l.s          VdVj            @modify=Vd
+729e9c00 vftintrzh.l.s          VdVj            @modify=Vd
+729ea000 vftintrnel.l.s         VdVj            @modify=Vd
+729ea400 vftintrneh.l.s         VdVj            @modify=Vd
+729ee000 vexth.h.b              VdVj            @modify=Vd
+729ee400 vexth.w.h              VdVj            @modify=Vd
+729ee800 vexth.d.w              VdVj            @modify=Vd
+729eec00 vexth.q.d              VdVj            @modify=Vd
+729ef000 vexth.hu.bu            VdVj            @modify=Vd
+729ef400 vexth.wu.hu            VdVj            @modify=Vd
+729ef800 vexth.du.wu            VdVj            @modify=Vd
+729efc00 vexth.qu.du            VdVj            @modify=Vd
+729f0000 vreplgr2vr.b           VdJ             @qemu @modify=Vd
+729f0400 vreplgr2vr.h           VdJ             @qemu @modify=Vd
+729f0800 vreplgr2vr.w           VdJ             @qemu @modify=Vd
+729f0c00 vreplgr2vr.d           VdJ             @qemu @modify=Vd
+72a02000 vrotri.b               VdVjUk3         @qemu @modify=Vd
+72a04000 vrotri.h               VdVjUk4         @qemu @modify=Vd
+72a08000 vrotri.w               VdVjUk5         @qemu @modify=Vd
+72a10000 vrotri.d               VdVjUk6         @qemu @modify=Vd
+72a42000 vsrlri.b               VdVjUk3         @modify=Vd
+72a44000 vsrlri.h               VdVjUk4         @modify=Vd
+72a48000 vsrlri.w               VdVjUk5         @modify=Vd
+72a50000 vsrlri.d               VdVjUk6         @modify=Vd
+72a82000 vsrari.b               VdVjUk3         @modify=Vd
+72a84000 vsrari.h               VdVjUk4         @modify=Vd
+72a88000 vsrari.w               VdVjUk5         @modify=Vd
+72a90000 vsrari.d               VdVjUk6         @modify=Vd
+72eb8000 vinsgr2vr.b            VdJUk4          @qemu @modify=Vd
+72ebc000 vinsgr2vr.h            VdJUk3          @qemu @modify=Vd
+72ebe000 vinsgr2vr.w            VdJUk2          @qemu @modify=Vd
+72ebf000 vinsgr2vr.d            VdJUk1          @qemu @modify=Vd
+72ef8000 vpickve2gr.b           DVjUk4          @qemu @modify=Vd
+72efc000 vpickve2gr.h           DVjUk3          @qemu @modify=Vd
+72efe000 vpickve2gr.w           DVjUk2          @qemu @modify=Vd
+72eff000 vpickve2gr.d           DVjUk1          @qemu @modify=Vd
+72f38000 vpickve2gr.bu          DVjUk4          @qemu @modify=Vd
+72f3c000 vpickve2gr.hu          DVjUk3          @qemu @modify=Vd
+72f3e000 vpickve2gr.wu          DVjUk2          @qemu @modify=Vd
+72f3f000 vpickve2gr.du          DVjUk1          @qemu @modify=Vd
+72f78000 vreplvei.b             VdVjUk4         @qemu @modify=Vd
+72f7c000 vreplvei.h             VdVjUk3         @qemu @modify=Vd
+72f7e000 vreplvei.w             VdVjUk2         @qemu @modify=Vd
+72f7f000 vreplvei.d             VdVjUk1         @qemu @modify=Vd
+73082000 vsllwil.h.b            VdVjUk3         @modify=Vd
+73084000 vsllwil.w.h            VdVjUk4         @modify=Vd
+73088000 vsllwil.d.w            VdVjUk5         @modify=Vd
+73090000 vextl.q.d              VdVj            @modify=Vd
+730c2000 vsllwil.hu.bu          VdVjUk3         @modify=Vd
+730c4000 vsllwil.wu.hu          VdVjUk4         @modify=Vd
+730c8000 vsllwil.du.wu          VdVjUk5         @modify=Vd
+730d0000 vextl.qu.du            VdVj            @modify=Vd
+73102000 vbitclri.b             VdVjUk3         @qemu @modify=Vd
+73104000 vbitclri.h             VdVjUk4         @qemu @modify=Vd
+73108000 vbitclri.w             VdVjUk5         @qemu @modify=Vd
+73110000 vbitclri.d             VdVjUk6         @qemu @modify=Vd
+73142000 vbitseti.b             VdVjUk3         @qemu @modify=Vd
+73144000 vbitseti.h             VdVjUk4         @qemu @modify=Vd
+73148000 vbitseti.w             VdVjUk5         @qemu @modify=Vd
+73150000 vbitseti.d             VdVjUk6         @qemu @modify=Vd
+73182000 vbitrevi.b             VdVjUk3         @qemu @modify=Vd
+73184000 vbitrevi.h             VdVjUk4         @qemu @modify=Vd
+73188000 vbitrevi.w             VdVjUk5         @qemu @modify=Vd
+73190000 vbitrevi.d             VdVjUk6         @qemu @modify=Vd
+73242000 vsat.b                 VdVjUk3         @modify=Vd
+73244000 vsat.h                 VdVjUk4         @modify=Vd
+73248000 vsat.w                 VdVjUk5         @modify=Vd
+73250000 vsat.d                 VdVjUk6         @modify=Vd
+73282000 vsat.bu                VdVjUk3         @modify=Vd
+73284000 vsat.hu                VdVjUk4         @modify=Vd
+73288000 vsat.wu                VdVjUk5         @modify=Vd
+73290000 vsat.du                VdVjUk6         @modify=Vd
+732c2000 vslli.b                VdVjUk3         @qemu @modify=Vd
+732c4000 vslli.h                VdVjUk4         @qemu @modify=Vd
+732c8000 vslli.w                VdVjUk5         @qemu @modify=Vd
+732d0000 vslli.d                VdVjUk6         @qemu @modify=Vd
+73302000 vsrli.b                VdVjUk3         @qemu @modify=Vd
+73304000 vsrli.h                VdVjUk4         @qemu @modify=Vd
+73308000 vsrli.w                VdVjUk5         @qemu @modify=Vd
+73310000 vsrli.d                VdVjUk6         @qemu @modify=Vd
+73342000 vsrai.b                VdVjUk3         @qemu @modify=Vd
+73344000 vsrai.h                VdVjUk4         @qemu @modify=Vd
+73348000 vsrai.w                VdVjUk5         @qemu @modify=Vd
+73350000 vsrai.d                VdVjUk6         @qemu @modify=Vd
+73404000 vsrlni.b.h             VdVjUk4         @modify=Vd
+73408000 vsrlni.h.w             VdVjUk5         @modify=Vd
+73410000 vsrlni.w.d             VdVjUk6         @modify=Vd
+73420000 vsrlni.d.q             VdVjUk7         @modify=Vd
+73444000 vsrlrni.b.h            VdVjUk4         @modify=Vd
+73448000 vsrlrni.h.w            VdVjUk5         @modify=Vd
+73450000 vsrlrni.w.d            VdVjUk6         @modify=Vd
+73460000 vsrlrni.d.q            VdVjUk7         @modify=Vd
+73484000 vssrlni.b.h            VdVjUk4         @modify=Vd
+73488000 vssrlni.h.w            VdVjUk5         @modify=Vd
+73490000 vssrlni.w.d            VdVjUk6         @modify=Vd
+734a0000 vssrlni.d.q            VdVjUk7         @modify=Vd
+734c4000 vssrlni.bu.h           VdVjUk4         @modify=Vd
+734c8000 vssrlni.hu.w           VdVjUk5         @modify=Vd
+734d0000 vssrlni.wu.d           VdVjUk6         @modify=Vd
+734e0000 vssrlni.du.q           VdVjUk7         @modify=Vd
+73504000 vssrlrni.b.h           VdVjUk4         @modify=Vd
+73508000 vssrlrni.h.w           VdVjUk5         @modify=Vd
+73510000 vssrlrni.w.d           VdVjUk6         @modify=Vd
+73520000 vssrlrni.d.q           VdVjUk7         @modify=Vd
+73544000 vssrlrni.bu.h          VdVjUk4         @modify=Vd
+73548000 vssrlrni.hu.w          VdVjUk5         @modify=Vd
+73550000 vssrlrni.wu.d          VdVjUk6         @modify=Vd
+73560000 vssrlrni.du.q          VdVjUk7         @modify=Vd
+73584000 vsrani.b.h             VdVjUk4         @modify=Vd
+73588000 vsrani.h.w             VdVjUk5         @modify=Vd
+73590000 vsrani.w.d             VdVjUk6         @modify=Vd
+735a0000 vsrani.d.q             VdVjUk7         @modify=Vd
+735c4000 vsrarni.b.h            VdVjUk4         @modify=Vd
+735c8000 vsrarni.h.w            VdVjUk5         @modify=Vd
+735d0000 vsrarni.w.d            VdVjUk6         @modify=Vd
+735e0000 vsrarni.d.q            VdVjUk7         @modify=Vd
+73604000 vssrani.b.h            VdVjUk4         @modify=Vd
+73608000 vssrani.h.w            VdVjUk5         @modify=Vd
+73610000 vssrani.w.d            VdVjUk6         @modify=Vd
+73620000 vssrani.d.q            VdVjUk7         @modify=Vd
+73644000 vssrani.bu.h           VdVjUk4         @modify=Vd
+73648000 vssrani.hu.w           VdVjUk5         @modify=Vd
+73650000 vssrani.wu.d           VdVjUk6         @modify=Vd
+73660000 vssrani.du.q           VdVjUk7         @modify=Vd
+73684000 vssrarni.b.h           VdVjUk4         @modify=Vd
+73688000 vssrarni.h.w           VdVjUk5         @modify=Vd
+73690000 vssrarni.w.d           VdVjUk6         @modify=Vd
+736a0000 vssrarni.d.q           VdVjUk7         @modify=Vd
+736c4000 vssrarni.bu.h          VdVjUk4         @modify=Vd
+736c8000 vssrarni.hu.w          VdVjUk5         @modify=Vd
+736d0000 vssrarni.wu.d          VdVjUk6         @modify=Vd
+736e0000 vssrarni.du.q          VdVjUk7         @modify=Vd
+73800000 vextrins.d             VdVjUk8         @modify=Vd
+73840000 vextrins.w             VdVjUk8         @modify=Vd
+73880000 vextrins.h             VdVjUk8         @modify=Vd
+738c0000 vextrins.b             VdVjUk8         @modify=Vd
+73900000 vshuf4i.b              VdVjUk8         @modify=Vd
+73940000 vshuf4i.h              VdVjUk8         @modify=Vd
+73980000 vshuf4i.w              VdVjUk8         @modify=Vd
+739c0000 vshuf4i.d              VdVjUk8         @modify=Vd
+73c40000 vbitseli.b             VdVjUk8         @qemu @modify=Vd
+73d00000 vandi.b                VdVjUk8         @qemu @modify=Vd
+73d40000 vori.b                 VdVjUk8         @qemu @modify=Vd
+73d80000 vxori.b                VdVjUk8         @qemu @modify=Vd
+73dc0000 vnori.b                VdVjUk8         @qemu @modify=Vd
+73e00000 vldi                   VdSj13          @qemu @modify=Vd
+73e40000 vpermi.w               VdVjUk8         @modify=Vd

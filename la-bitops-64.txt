@@ -1,18 +1,18 @@
-00002000 clo.d                  DJ
-00002400 clz.d                  DJ              @qemu
-00002800 cto.d                  DJ
-00002c00 ctz.d                  DJ              @qemu
-00003400 revb.4h                DJ
-00003800 revb.2w                DJ              @qemu
-00003c00 revb.d                 DJ              @qemu
-00004000 revh.2w                DJ
-00004400 revh.d                 DJ
-00004c00 revbit.8b              DJ              @orig_name=bitrev.8b
-00005400 revbit.d               DJ              @orig_name=bitrev.d
-00060000 sladd.wu               DJKUa2          @orig_name=alsl.wu @orig_fmt=DJKUa2pp1
-000c0000 catpick.d              DJKUa3          @orig_name=bytepick.d
-00258000 crc.w.d.w              DJK
-00278000 crcc.w.d.w             DJK
-002c0000 sladd.d                DJKUa2          @orig_name=alsl.d @orig_fmt=DJKUa2pp1
-00800000 bstrins.d              DJUk6Um6        @orig_fmt=DJUm6Uk6 @qemu
-00c00000 bstrpick.d             DJUk6Um6        @orig_fmt=DJUm6Uk6 @qemu
+00002000 clo.d                  DJ              @modify=D
+00002400 clz.d                  DJ              @qemu @modify=D
+00002800 cto.d                  DJ              @modify=D
+00002c00 ctz.d                  DJ              @qemu @modify=D
+00003400 revb.4h                DJ              @modify=D
+00003800 revb.2w                DJ              @qemu @modify=D
+00003c00 revb.d                 DJ              @qemu @modify=D
+00004000 revh.2w                DJ              @modify=D
+00004400 revh.d                 DJ              @modify=D
+00004c00 revbit.8b              DJ              @orig_name=bitrev.8b @modify=D
+00005400 revbit.d               DJ              @orig_name=bitrev.d @modify=D
+00060000 sladd.wu               DJKUa2          @orig_name=alsl.wu @orig_fmt=DJKUa2pp1 @modify=D
+000c0000 catpick.d              DJKUa3          @orig_name=bytepick.d @modify=D
+00258000 crc.w.d.w              DJK             @modify=D
+00278000 crcc.w.d.w             DJK             @modify=D
+002c0000 sladd.d                DJKUa2          @orig_name=alsl.d @orig_fmt=DJKUa2pp1 @modify=D
+00800000 bstrins.d              DJUk6Um6        @orig_fmt=DJUm6Uk6 @qemu @modify=D
+00c00000 bstrpick.d             DJUk6Um6        @orig_fmt=DJUm6Uk6 @qemu @modify=D

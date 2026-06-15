@@ -75,6 +75,7 @@ const (
 	slotK = 10
 	slotA = 15
 	slotM = 16
+	slotN = 18
 )
 
 func gatherDistinctSlotCombinations(fmts []*common.InsnFormat) []string {
@@ -120,6 +121,8 @@ func slotCombinationForFmt(f *common.InsnFormat) string {
 			sb.WriteRune('A')
 		case slotM:
 			sb.WriteRune('M')
+		case slotN:
+			sb.WriteRune('N')
 		default:
 			panic("should never happen")
 		}
@@ -140,6 +143,8 @@ func slotOffsetFromRune(s rune) int {
 		return slotA
 	case 'M', 'm':
 		return slotM
+	case 'N', 'n':
+		return slotN
 	default:
 		panic("should never happen")
 	}
@@ -290,6 +295,15 @@ func emitValidatorForFormat(ectx *common.EmitterCtx, f *common.InsnFormat) {
 		case common.ArgKindFCCReg:
 			ectx.Emit("wantFCCReg(insn.as, %s)", argParamName)
 
+		case common.ArgKindScratchReg:
+			ectx.Emit("wantLBTScratchReg(insn.as, %s)", argParamName)
+
+		case common.ArgKindVReg:
+			ectx.Emit("wantLSXReg(insn.as, %s)", argParamName)
+
+		case common.ArgKindXReg:
+			ectx.Emit("wantLASXReg(insn.as, %s)", argParamName)
+
 		case common.ArgKindSignedImm,
 			common.ArgKindUnsignedImm:
 			// want[Un]signedImm(argX, width)
@@ -388,6 +402,12 @@ func emitBigEncoderFn(ectx *common.EmitterCtx, fmts []*common.InsnFormat) {
 				ectx.Emit("regFP(%s)", fieldExpr)
 			case common.ArgKindFCCReg:
 				ectx.Emit("regFCC(%s)", fieldExpr)
+			case common.ArgKindScratchReg:
+				ectx.Emit("regLBTScratch(%s)", fieldExpr)
+			case common.ArgKindVReg:
+				ectx.Emit("regLSX(%s)", fieldExpr)
+			case common.ArgKindXReg:
+				ectx.Emit("regLASX(%s)", fieldExpr)
 			case common.ArgKindSignedImm, common.ArgKindUnsignedImm:
 				widthMask := (1 << a.TotalWidth()) - 1
 				ectx.Emit("uint32(%s) & 0x%x", fieldExpr, widthMask)
