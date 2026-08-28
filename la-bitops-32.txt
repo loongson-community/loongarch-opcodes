@@ -3,9 +3,9 @@
 00001800 cto.w                  DJ              @la32
 00001c00 ctz.w                  DJ              @la32 @qemu
 00003000 revb.2h                DJ              @la32 @qemu
-00004800 revbit.4b              DJ              @orig_name=bitrev.4b @la32
-00005000 revbit.w               DJ              @orig_name=bitrev.w @la32
-00040000 sladd.w                DJKUa2          @orig_name=alsl.w @orig_fmt=DJKUa2pp1 @la32
+00004800 revbit.4b              DJ              @orig_name=bitrev.4b @la32 @qemu
+00005000 revbit.w               DJ              @orig_name=bitrev.w @la32 @qemu
+00040000 sladd.w                DJKUa2          @orig_name=alsl.w @orig_fmt=DJKUa2pp1 @la32 @qemu
 00080000 catpick.w              DJKUa2          @orig_name=bytepick.w @la32
 00240000 crc.w.b.w              DJK
 00248000 crc.w.h.w              DJK
